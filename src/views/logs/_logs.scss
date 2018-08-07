@@ -1,0 +1,106 @@
+
+@import '../../assets/styles/_dark-variables.scss';
+
+.logs {
+
+  .container {
+    display: flex;
+    margin: 0 auto;
+    height: 100%;
+    width: 100%;
+    min-width: 900px;
+    padding: 0 14px 0 70px;
+
+  }
+
+
+  .log {
+    margin: 20px 0 0 0;
+    width: 100%;
+    height: 80%;
+    padding: 1em 13px 6em 0;
+    overflow: auto;
+
+    &::-webkit-scrollbar { width: 0.5em; }
+    &::-webkit-scrollbar-thumb {
+      background: $bg-lightest;
+      border-radius: 5px;
+      &:hover { background: $bg-lightultra; }
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background: $bg-darker;
+    }
+  }
+
+  
+  .log-item {
+    position: relative;
+    display: flex;
+    flex-wrap: nowrap;
+    margin-bottom: 10px;
+    width: 100%;
+    font-family: 'Fira Code';
+    font-weight: 300;
+    padding: 10px 0;
+    background: $bg-lighter;
+    border-bottom: 1px solid hsl(0, 0%, 0%);
+    color: $pmry;
+    font-size: 1em;
+    text-align: center;
+    cursor: pointer;
+    transition: border .25s ease, background .25s ease;
+
+    &.default {
+      border-left: 4px solid $pmry-darker;
+      &:hover {
+        border-left-color: $pmry-dark;
+        border-bottom-color: $pmry-dark;
+      }
+    }
+    &.good {
+      border-left: 4px solid hsl(93, 35%, 50%);
+      &:hover {
+        background-color: hsl(102, 12%, 22%);
+        border-left-color: hsl(78, 87%, 69%);
+        border-bottom-color:  hsl(78, 87%, 69%);
+      }
+    }
+    &.warn {
+      border-left: 4px solid hsl(39, 50%, 55%);
+      &:hover {
+        background-color: hsl(28, 12%, 22%);
+        border-left-color: hsl(37, 100%, 70%);
+        border-bottom-color:  hsl(37, 100%, 70%);
+      }
+    }
+    &.error {
+      border-left: 4px solid hsl(340, 67%, 68%);
+      &:hover {
+        background-color: hsl(342, 11%, 22%);
+        border-left-color: hsl(340, 100%, 81%);
+        border-bottom-color: hsl(340, 100%, 81%);
+      }
+    }
+
+    span { display: table-cell; }
+  }
+
+
+  .timestamp { flex: 2;   color: rgba($pmry, 0.4); text-align: right; max-width: 200px; }
+  .ip        { flex: 1.8; color: rgba($pmry, 0.8);  max-width: 200px; }
+  .method    { flex: 1;   color: rgba($pmry, 0.4); max-width: 90px; }
+  .message   {
+    flex: 4;
+    padding: 0 1em;
+    text-align: left;
+    font-weight: 300;
+  }
+    .warn  .message { color: hsl(37, 100%, 70%); font-weight: 400; }
+    .good  .message { color: hsl(78, 87%, 69%); }
+    .error .message { color: hsl(340, 100%, 81%); font-weight: 400; }
+
+
+
+
+}

@@ -1,8 +1,8 @@
 <template>
   <div class="home">
-    <img src="../../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+    <h1>Admin Panel</h1>
+    <!-- <HelloWorld msg="Hello World"/> -->
   </div>
 </template>
 
-<script lang="ts" src='./Home.ts'></script>
+// <script lang="ts" src='./home.ts'></script>

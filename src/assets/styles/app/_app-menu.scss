@@ -1,0 +1,114 @@
+/**************************
+ * Menu Toggle Animations
+ **************************/
+#MenuFlag {
+  position: absolute;
+  appearance: none;
+  top: -100%;
+  left: -100%;
+
+  &:checked {
+    + label:after {
+      content: 'close';
+      font-size: 32px;
+      color: rgb(255, 115, 115);
+    }
+
+    + label {
+      transform: translate(-7px, -7px);
+    }
+
+    ~ #MainMenu {
+      transform: translateX(0px);
+    }
+
+    ~ #RouterView {
+      transform: translateX(180px);
+      overflow: hidden;
+    }
+
+    ~ #RouterView:before {
+      opacity: 0.4;
+      pointer-events: all;
+    }
+  }
+
+}
+
+
+
+
+#MenuIcon {
+  position: fixed;
+  top: 0;
+  left: 10px;
+  font-size: 48px;
+  color: $pmry-darkest;
+  user-select: none;
+  cursor: pointer;
+  text-shadow: 1px 1px 3px hsla(0, 0%, 0%, 0.7);
+  z-index: 20;
+  transition: transform .3s ease;
+
+  &:hover {
+    color: $pmry-dark;
+  }
+
+  &:after {
+    content: 'menu';
+    font-family: 'Material Icons';
+    transition: all .3s ease;
+  }
+}
+
+
+
+
+#MainMenu {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 180px;
+  text-align: left;
+  background: $bg-light;
+  border-right: 2px solid $bg-lighter;
+  transform: translateX(-200px);
+  transition: transform .3s ease;
+
+  ul {
+    position: fixed;
+    padding-top: 30px;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    border-left: 2px solid $bg-light;
+  }
+
+  li {
+    width: 100%;
+    margin-top: 5px;
+    padding: 5px 0 9px 16%;
+    font-size: 1.3em;
+    color: $cmpt-dark;
+    cursor: pointer;
+    user-select: none;
+    transition: color .3s ease, background .3s ease;
+
+    &:hover {
+      color: $cmpt;
+      background: $bg-lighter;
+    }
+
+    &:hover span { color: $pmry; }
+
+  }
+
+  span {
+    position: relative;
+    top: 5px;
+    color: $pmry-dark;
+    transition: color .3s ease;
+  }
+}

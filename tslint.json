@@ -9,7 +9,10 @@
         "ordered-imports": false,
         "semicolon": true,
         "quotemark": false,
-        "arrow-parens": false
+        "arrow-parens": false,
+        "one-variable-per-declaration": false,
+        "object-literal-shorthand": false,
+        "no-trailing-whitespace": false
     },
     "rulesDirectory": []
 }
