@@ -33,7 +33,7 @@
     }
   }
 
-  
+
   .log-item {
     position: relative;
     display: flex;
@@ -51,35 +51,38 @@
     cursor: pointer;
     transition: border .25s ease, background .25s ease;
 
+    $default-bg: lighten($bg-light, 1.5%);
+
     &.default {
       border-left: 4px solid $pmry-darker;
       &:hover {
+        background-color: $default-bg;
         border-left-color: $pmry-dark;
         border-bottom-color: $pmry-dark;
       }
     }
     &.good {
-      border-left: 4px solid hsl(93, 35%, 50%);
+      border-left: 4px solid $good-accent;
       &:hover {
-        background-color: hsl(102, 12%, 22%);
-        border-left-color: hsl(78, 87%, 69%);
-        border-bottom-color:  hsl(78, 87%, 69%);
+        background-color: $default-bg;
+        border-left-color: $good-high;
+        border-bottom-color: $good-high;
       }
     }
     &.warn {
-      border-left: 4px solid hsl(39, 50%, 55%);
+      border-left: 4px solid $warn-accent;
       &:hover {
-        background-color: hsl(28, 12%, 22%);
-        border-left-color: hsl(37, 100%, 70%);
-        border-bottom-color:  hsl(37, 100%, 70%);
+        background-color: $default-bg;
+        border-left-color: $warn-high;
+        border-bottom-color:  $warn-high;
       }
     }
     &.error {
-      border-left: 4px solid hsl(340, 67%, 68%);
+      border-left: 4px solid $error-accent;
       &:hover {
-        background-color: hsl(342, 11%, 22%);
-        border-left-color: hsl(340, 100%, 81%);
-        border-bottom-color: hsl(340, 100%, 81%);
+        background-color: $default-bg;
+        border-left-color: $error-high;
+        border-bottom-color: $error-high;
       }
     }
 
@@ -96,9 +99,9 @@
     text-align: left;
     font-weight: 300;
   }
-    .warn  .message { color: hsl(37, 100%, 70%); font-weight: 400; }
-    .good  .message { color: hsl(78, 87%, 69%); }
-    .error .message { color: hsl(340, 100%, 81%); font-weight: 400; }
+    .warn  .message { color: $warn-text; font-weight: 400; }
+    .good  .message { color: $good-text; }
+    .error .message { color: $error-text; font-weight: 400; }
 
 
 

@@ -9,12 +9,26 @@ $cmpt: hsl(207, 100%, 83%);
 $cmpt-dark: hsl(207, 55%, 72%);
 
 
-$bg: hsl(210, 10%, 15%);
-
+$bg: hsl(210, 11%, 14%);
 $bg-dark: darken($bg, 3%);
 $bg-darker: darken($bg, 5%);
-
 $bg-light: lighten($bg, 3%);
 $bg-lighter: lighten($bg, 7%);
 $bg-lightest: lighten($bg, 11%);
 $bg-lightultra: lighten($bg, 20%);
+
+
+$good-c: hsl(100, 100%, 70%);
+$good-text: desaturate(darken($good-c, 3.3%), 48%);
+$good-accent: desaturate(darken($good-text, 9%), 20%);
+$good-high: $good-text;
+
+$warn-c: hsl(39, 100%, 70%);
+$warn-text: desaturate(darken($warn-c, 3.3%), 25%);
+$warn-accent: desaturate(darken($warn-c, 12%), 45%);
+$warn-high: $warn-text;
+
+$error-c: hsl(340, 100%, 85%);
+$error-text: desaturate(darken($error-c, 3.7%), 0%);
+$error-accent: desaturate(darken($error-c, 12%), 45%);
+$error-high: $error-text;
