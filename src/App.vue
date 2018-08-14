@@ -14,6 +14,10 @@
         <li><span class="material-icons">recent_actors</span> Users</li>
       </ul>
     </nav>
+    
+    <header>
+    </header>
+
     <router-view id="RouterView" />
   </div>
 </template>

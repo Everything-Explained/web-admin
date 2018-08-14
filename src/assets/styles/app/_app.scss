@@ -23,25 +23,39 @@ h1 {
   color: $silver;
 }
 
+%menushade {
+  position: fixed;
+  display: block;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: hsl(0, 0%, 0%);
+  opacity: 0;
+  content: ' ';
+  user-select: none;
+  pointer-events: none;
+  transition: opacity .3s ease;
+  z-index: 20;
+}
+
+header {
+  position: relative;
+  width: 100%;
+  height: 3em;
+  transition: transform .3s ease;
+  &::before {
+    @extend %menushade;
+  }
+}
+
 #RouterView {
   height: 100%;
   width: 100%;
   transition: transform .3s ease;
 
   &:before {
-    position: fixed;
-    display: block;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: hsl(0, 0%, 0%);
-    opacity: 0;
-    content: ' ';
-    user-select: none;
-    pointer-events: none;
-    transition: opacity .3s ease;
-    z-index: 20;
+    @extend %menushade
   }
 }
 

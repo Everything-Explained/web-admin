@@ -8,17 +8,15 @@
     margin: 0 auto;
     height: 100%;
     width: 100%;
-    min-width: 900px;
-    padding: 0 14px 0 70px;
+    padding: 0 7px 0 1.5em;
 
   }
 
 
   .log {
-    margin: 20px 0 0 0;
     width: 100%;
     height: 80%;
-    padding: 1em 13px 6em 0;
+    padding: 0 13px 6em 0;
     overflow: auto;
 
     &::-webkit-scrollbar { width: 0.5em; }
@@ -34,29 +32,32 @@
   }
 
 
+  .log-container {
+    display: none;
+    flex-direction: row;
+    &.open { display: flex; }
+  }
+
+  $default-bg: lighten($bg-light, 1.5%);
   .log-item {
     position: relative;
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
     margin-bottom: 10px;
+    padding: 10px 0;
     width: 100%;
     font-family: 'Fira Code';
     font-weight: 300;
-    padding: 10px 0;
-    background: $bg-lighter;
+    background: $cmpt-darkturbo;
     border-bottom: 1px solid hsl(0, 0%, 0%);
     color: $pmry;
     font-size: 1em;
     text-align: center;
-    cursor: pointer;
     transition: border .25s ease, background .25s ease;
-
-    $default-bg: lighten($bg-light, 1.5%);
 
     &.default {
       border-left: 4px solid $pmry-darker;
       &:hover {
-        background-color: $default-bg;
         border-left-color: $pmry-dark;
         border-bottom-color: $pmry-dark;
       }
@@ -64,7 +65,6 @@
     &.good {
       border-left: 4px solid $good-accent;
       &:hover {
-        background-color: $default-bg;
         border-left-color: $good-high;
         border-bottom-color: $good-high;
       }
@@ -72,7 +72,6 @@
     &.warn {
       border-left: 4px solid $warn-accent;
       &:hover {
-        background-color: $default-bg;
         border-left-color: $warn-high;
         border-bottom-color:  $warn-high;
       }
@@ -80,7 +79,6 @@
     &.error {
       border-left: 4px solid $error-accent;
       &:hover {
-        background-color: $default-bg;
         border-left-color: $error-high;
         border-bottom-color: $error-high;
       }
@@ -90,8 +88,103 @@
   }
 
 
-  .timestamp { flex: 2;   color: rgba($pmry, 0.4); text-align: right; max-width: 200px; }
-  .ip        { flex: 1.8; color: rgba($pmry, 0.8);  max-width: 200px; }
+  .log-data {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: -10px;
+    padding: 10px 0 10px 0;
+    border-top: 1px solid black;
+    background: $pmry-darkultra;
+    color: $pmry-dark;
+    flex-wrap: wrap;
+    font-size: 1.1em;
+    font-weight: 500;
+    letter-spacing: 1px;
+    text-shadow: -1px -1px 0 black, 1px 0 0 black;
+    width: 100%;
+    justify-content: center;
+
+    dd {
+      &::before {
+        padding: 0 5px;
+        content: '::';
+      }
+      &:last-child::after {
+        padding: 0 5px;
+        content: '::';
+      }
+    }
+  }
+
+
+  aside.toggle {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 2.1em;
+    cursor: pointer;
+    z-index: 10;
+  }
+
+  .child-log-list {
+    margin-top: 10px;
+    margin-bottom: -10px;
+    border-top: 2px solid $bg;
+    width: 100%;
+  }
+
+  .log-child {
+    display: flex;
+    flex-direction: row;
+    padding: 5px 0;
+    background: $bg-light;
+    &:first-child { padding-top: 15px; }
+    &:last-child { padding-bottom: 15px; }
+
+    &.good { background: rgba(desaturate(darken($good-accent, 47%), 0%), 0.3); }
+    &.warn { background: rgba(desaturate(darken($warn-accent, 47%), 0%), 0.3); }
+  }
+
+  .stack-container {
+    border-bottom: 3px solid $bg-darker;
+    text-align: left;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+
+    &::-webkit-scrollbar { width: 8px; height: 8px; }
+    &::-webkit-scrollbar-thumb {
+      background: $bg-lightest;
+      border-radius: 5px;
+      &:hover { background: $bg-lightultra; }
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background: $bg-darker;
+    }
+  }
+
+  .timestamp {
+    flex: 2;
+    color: rgba($pmry, 0.4);
+    text-align: right;
+    max-width: 200px;
+    &.small { display: none; max-width: 6.3em; }
+  }
+  .count {
+    position: absolute;
+    top: 0;
+    right: 0;
+    padding: 0.27em 0.3em 0.23em 0.35em;
+    font-size: 1.45em;
+    background: $cmpt-darkest;
+    border-left: 2px solid black;
+    color: $pmry;
+    text-shadow: -1px -1px 0 black, -1px 0 0 black;
+    font-weight: 500;
+  }
+  .stack     {            color: rgba($pmry, 0.8); padding: 0 40px 0 20px; }
+  .ip        { flex: 1.8; color: rgba($pmry, 0.8); max-width: 200px; }
   .method    { flex: 1;   color: rgba($pmry, 0.4); max-width: 90px; }
   .message   {
     flex: 4;
@@ -106,4 +199,39 @@
 
 
 
+}
+
+@media only screen and (max-width: 850px) {
+  .logs {
+    .ip { display: none !important; }
+    .log-data {
+      flex-direction: column;
+      text-align: left;
+      dd { padding: 5px 5px; }
+      dd::after { display: none; }
+    }
+  }
+}
+
+
+
+@media only screen and (max-width: 690px) {
+  .logs {
+
+    .container {
+      padding-left: 2px;
+      padding-right: 2px;
+    }
+
+    .log {
+      padding-right: 2px;
+      overflow-x: hidden;
+    }
+
+    .timestamp.large { display: none; }
+    .timestamp.small { display: block; }
+    .method {
+      display: none !important;
+    }
+  }
 }

@@ -1,0 +1,1547 @@
+[
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-10T00:07:51.966Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHELLTTP",
+        "reqLink": "F3PHELLTTH",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /forum/",
+        "time": "2018-08-10T00:07:51.966Z"
+    },
+    {
+        "uid": "F3PHELLTWR",
+        "req_type": "GET /forum/",
+        "reqLink": "F3PHELLTTH",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/forum/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:07:52.632Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:07:53.657Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEMM30J",
+        "reqLink": "F3PHEMM30A",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /forum/forum.php",
+        "time": "2018-08-10T00:07:53.658Z"
+    },
+    {
+        "uid": "F3PHEMM32J",
+        "req_type": "GET /forum/forum.php",
+        "reqLink": "F3PHEMM30A",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/forum/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:07:54.325Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:07:55.381Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHENMZWN",
+        "reqLink": "F3PHENMZWF",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /forums/",
+        "time": "2018-08-10T00:07:55.381Z"
+    },
+    {
+        "uid": "F3PHENMZZQ",
+        "req_type": "GET /forums/",
+        "reqLink": "F3PHENMZWF",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/forums/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:07:56.061Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:07:57.040Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEOMKQP",
+        "reqLink": "F3PHEOMKPV",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /forums/forum.php",
+        "time": "2018-08-10T00:07:57.041Z"
+    },
+    {
+        "uid": "F3PHEOMKSO",
+        "req_type": "GET /forums/forum.php",
+        "reqLink": "F3PHEOMKPV",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/forums/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:07:57.707Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:07:58.694Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEPM0FP",
+        "reqLink": "F3PHEPM0FH",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /bulletin/",
+        "time": "2018-08-10T00:07:58.694Z"
+    },
+    {
+        "uid": "F3PHEPM0IQ",
+        "req_type": "GET /bulletin/",
+        "reqLink": "F3PHEPM0FH",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/bulletin/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:07:59.373Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:00.366Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEQLUXI",
+        "reqLink": "F3PHEQLUX9",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /bulletin/forum.php",
+        "time": "2018-08-10T00:08:00.366Z"
+    },
+    {
+        "uid": "F3PHEQLUZF",
+        "req_type": "GET /bulletin/forum.php",
+        "reqLink": "F3PHEQLUX9",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/bulletin/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:01.031Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:02.097Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHERMYIY",
+        "reqLink": "F3PHERMYIQ",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /VB/",
+        "time": "2018-08-10T00:08:02.097Z"
+    },
+    {
+        "uid": "F3PHERMYLY",
+        "req_type": "GET /VB/",
+        "reqLink": "F3PHERMYIQ",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/VB/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:02.793Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:03.810Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHESNO5J",
+        "reqLink": "F3PHESNO5B",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /VB/forum.php",
+        "time": "2018-08-10T00:08:03.810Z"
+    },
+    {
+        "uid": "F3PHESNO7J",
+        "req_type": "GET /VB/forum.php",
+        "reqLink": "F3PHESNO5B",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/VB/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:04.474Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:05.488Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHETNNPZ",
+        "reqLink": "F3PHETNNPR",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /community/forum/",
+        "time": "2018-08-10T00:08:05.489Z"
+    },
+    {
+        "uid": "F3PHETNNRW",
+        "req_type": "GET /community/forum/",
+        "reqLink": "F3PHETNNPR",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/community/forum/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:06.211Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:07.250Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEUPFD1",
+        "reqLink": "F3PHEUPFCT",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /community/forum/forum.php",
+        "time": "2018-08-10T00:08:07.251Z"
+    },
+    {
+        "uid": "F3PHEUPFEW",
+        "req_type": "GET /community/forum/forum.php",
+        "reqLink": "F3PHEUPFCT",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/community/forum/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:07.937Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:08.946Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEVPS0I",
+        "reqLink": "F3PHEVPS09",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /discussion/",
+        "time": "2018-08-10T00:08:08.947Z"
+    },
+    {
+        "uid": "F3PHEVPS2H",
+        "req_type": "GET /discussion/",
+        "reqLink": "F3PHEVPS09",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/discussion/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:09.626Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:10.592Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEWP25M",
+        "reqLink": "F3PHEWP25D",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /discussion/forum.php",
+        "time": "2018-08-10T00:08:10.593Z"
+    },
+    {
+        "uid": "F3PHEWP28P",
+        "req_type": "GET /discussion/forum.php",
+        "reqLink": "F3PHEWP25D",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/discussion/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:11.284Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:12.234Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEXO8EC",
+        "reqLink": "F3PHEXO8E3",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /Forums/",
+        "time": "2018-08-10T00:08:12.234Z"
+    },
+    {
+        "uid": "F3PHEXO8HD",
+        "req_type": "GET /Forums/",
+        "reqLink": "F3PHEXO8E3",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/Forums/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:12.940Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:13.977Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHEYPL0T",
+        "reqLink": "F3PHEYPL0L",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /Forums/forum.php",
+        "time": "2018-08-10T00:08:13.977Z"
+    },
+    {
+        "uid": "F3PHEYPL2R",
+        "req_type": "GET /Forums/forum.php",
+        "reqLink": "F3PHEYPL0L",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/Forums/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:14.661Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:16.157Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF00BC4",
+        "reqLink": "F3PHF00BBX",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /vbulletin/",
+        "time": "2018-08-10T00:08:16.157Z"
+    },
+    {
+        "uid": "F3PHF00BDY",
+        "req_type": "GET /vbulletin/",
+        "reqLink": "F3PHF00BBX",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/vbulletin/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:16.830Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:18.827Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF1LJHY",
+        "reqLink": "F3PHF1LJHR",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /vbulletin/forum.php",
+        "time": "2018-08-10T00:08:18.827Z"
+    },
+    {
+        "uid": "F3PHF1LJJU",
+        "req_type": "GET /vbulletin/forum.php",
+        "reqLink": "F3PHF1LJHR",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/vbulletin/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:19.514Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:21.016Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF2WGGT",
+        "reqLink": "F3PHF2WGGL",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /community/",
+        "time": "2018-08-10T00:08:21.016Z"
+    },
+    {
+        "uid": "F3PHF2WGJY",
+        "req_type": "GET /community/",
+        "reqLink": "F3PHF2WGGL",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/community/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:21.719Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:22.742Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF3XGP1",
+        "reqLink": "F3PHF3XGOT",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /community/forum.php",
+        "time": "2018-08-10T00:08:22.742Z"
+    },
+    {
+        "uid": "F3PHF3XGQX",
+        "req_type": "GET /community/forum.php",
+        "reqLink": "F3PHF3XGOT",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/community/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:23.412Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:24.406Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF4X4SO",
+        "reqLink": "F3PHF4X4SG",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /vb/",
+        "time": "2018-08-10T00:08:24.406Z"
+    },
+    {
+        "uid": "F3PHF4X4UK",
+        "req_type": "GET /vb/",
+        "reqLink": "F3PHF4X4SG",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/vb/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:25.065Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:26.047Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF5WB3W",
+        "reqLink": "F3PHF5WB3P",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /vb/forum.php",
+        "time": "2018-08-10T00:08:26.047Z"
+    },
+    {
+        "uid": "F3PHF5WB5T",
+        "req_type": "GET /vb/forum.php",
+        "reqLink": "F3PHF5WB3P",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/vb/forum.php",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:26.719Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:27.729Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF6WC7Y",
+        "reqLink": "F3PHF6WC7Q",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /discussions/",
+        "time": "2018-08-10T00:08:27.729Z"
+    },
+    {
+        "uid": "F3PHF6WC9U",
+        "req_type": "GET /discussions/",
+        "reqLink": "F3PHF6WC7Q",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/discussions/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:28.394Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:29.621Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF80W2K",
+        "reqLink": "F3PHF80W2C",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /Forum/",
+        "time": "2018-08-10T00:08:29.621Z"
+    },
+    {
+        "uid": "F3PHF80W5K",
+        "req_type": "GET /Forum/",
+        "reqLink": "F3PHF80W2C",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/Forum/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:30.328Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:31.350Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHF91YMY",
+        "reqLink": "F3PHF91YMQ",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /board/",
+        "time": "2018-08-10T00:08:31.351Z"
+    },
+    {
+        "uid": "F3PHF91YP3",
+        "req_type": "GET /board/",
+        "reqLink": "F3PHF91YMQ",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/board/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:32.024Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:33.100Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHFA3GQW",
+        "reqLink": "F3PHFA3GQP",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /boards/",
+        "time": "2018-08-10T00:08:33.100Z"
+    },
+    {
+        "uid": "F3PHFA3GSN",
+        "req_type": "GET /boards/",
+        "reqLink": "F3PHFA3GQP",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/boards/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:33.766Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:34.814Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHFB47GK",
+        "reqLink": "F3PHFB47GB",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /messages/",
+        "time": "2018-08-10T00:08:34.814Z"
+    },
+    {
+        "uid": "F3PHFB47IK",
+        "req_type": "GET /messages/",
+        "reqLink": "F3PHFB47GB",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/messages/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:35.508Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T00:08:36.499Z"
+    },
+    {
+        "level": 30,
+        "identity": "188.165.192.220",
+        "uid": "F3PHFC4BL8",
+        "reqLink": "F3PHFC4BL0",
+        "browser": "FireFox: 56.0",
+        "msg": "GET /vBulletin/",
+        "time": "2018-08-10T00:08:36.499Z"
+    },
+    {
+        "uid": "F3PHFC4BN5",
+        "req_type": "GET /vBulletin/",
+        "reqLink": "F3PHFC4BL0",
+        "identity": "188.165.192.220",
+        "data": null,
+        "browser": "FireFox: 56.0",
+        "level": 40,
+        "path": "/vBulletin/",
+        "host": "188.165.192.220",
+        "msg": "Page Not Found",
+        "time": "2018-08-10T00:08:37.180Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T04:41:59.754Z"
+    },
+    {
+        "level": 30,
+        "identity": "207.241.231.147",
+        "uid": "F3POYM6ZZQ",
+        "reqLink": "F3POYM6ZZG",
+        "browser": "UNKNOWN:  [Mozilla/5.0 (compatible; archive.org_bot +http://www.archive.org/details/archive.org_bot)]",
+        "msg": "GET /robots.txt",
+        "time": "2018-08-10T04:41:59.754Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T08:57:52.987Z"
+    },
+    {
+        "level": 30,
+        "identity": "185.234.218.16",
+        "uid": "F3PW0J42NV",
+        "reqLink": "F3PW0J42NM",
+        "browser": "FireFox: 9.0",
+        "msg": "GET /",
+        "time": "2018-08-10T08:57:52.987Z"
+    },
+    {
+        "uid": "F3PW0J42PX",
+        "req_type": "GET /",
+        "reqLink": "F3PW0J42NM",
+        "identity": "185.234.218.16",
+        "data": null,
+        "browser": "FireFox: 9.0",
+        "level": 40,
+        "msg": "Direct Connection Denied",
+        "time": "2018-08-10T08:57:52.989Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T08:57:58.542Z"
+    },
+    {
+        "level": 30,
+        "identity": "185.234.218.16",
+        "uid": "F3PW0MF4AL",
+        "reqLink": "F3PW0MF4AD",
+        "browser": "FireFox: 9.0",
+        "msg": "GET /",
+        "time": "2018-08-10T08:57:58.542Z"
+    },
+    {
+        "uid": "F3PW0MF4CM",
+        "req_type": "GET /",
+        "reqLink": "F3PW0MF4AD",
+        "identity": "185.234.218.16",
+        "data": null,
+        "browser": "FireFox: 9.0",
+        "level": 40,
+        "msg": "Direct Connection Denied",
+        "time": "2018-08-10T08:57:58.545Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T08:58:04.137Z"
+    },
+    {
+        "level": 30,
+        "identity": "185.234.218.16",
+        "uid": "F3PW0PR22R",
+        "reqLink": "F3PW0PR22J",
+        "browser": "FireFox: 9.0",
+        "msg": "GET /",
+        "time": "2018-08-10T08:58:04.138Z"
+    },
+    {
+        "uid": "F3PW0PR24V",
+        "req_type": "GET /",
+        "reqLink": "F3PW0PR22J",
+        "identity": "185.234.218.16",
+        "data": null,
+        "browser": "FireFox: 9.0",
+        "level": 40,
+        "msg": "Direct Connection Denied",
+        "time": "2018-08-10T08:58:04.139Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T09:16:17.147Z"
+    },
+    {
+        "level": 30,
+        "identity": "66.249.69.243",
+        "uid": "F3PWISI1ZO",
+        "reqLink": "F3PWISI1ZD",
+        "browser": "UNKNOWN:  [Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)]",
+        "msg": "GET /robots.txt",
+        "time": "2018-08-10T09:16:17.147Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T12:54:51.863Z"
+    },
+    {
+        "level": 30,
+        "identity": "162.158.68.22",
+        "uid": "F3Q2JONXAB",
+        "reqLink": "F3Q2JONXA2",
+        "browser": "UNKNOWN:  [Mozilla/5.0 (compatible; CloudFlare-AlwaysOnline/1.0; +http://www.cloudflare.com/always-online) AppleWebKit/534.34]",
+        "msg": "GET /",
+        "time": "2018-08-10T12:54:51.863Z"
+    },
+    {
+        "level": 30,
+        "identity": "162.158.65.234",
+        "uid": "F3Q2JOPD4A",
+        "reqLink": "F3Q2JOPD42",
+        "browser": "UNKNOWN:  [Mozilla/5.0 (compatible; CloudFlare-AlwaysOnline/1.0; +http://www.cloudflare.com/always-online) AppleWebKit/534.34]",
+        "country": "United States",
+        "msg": "GET /",
+        "time": "2018-08-10T12:54:51.930Z"
+    },
+    {
+        "level": 50,
+        "err": {
+            "message": "Got EMPTY locale info from freegeoip",
+            "name": "Error",
+            "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+        },
+        "msg": "Got EMPTY locale info from freegeoip",
+        "time": "2018-08-10T12:54:52.523Z"
+    },
+    {
+        "level": 30,
+        "identity": "74.82.47.2",
+        "uid": "F3Q3OY2CF9",
+        "reqLink": "F3Q3OY2CF2",
+        "browser": null,
+        "country": "United States",
+        "msg": "GET /",
+        "time": "2018-08-10T13:36:26.766Z"
+    },
+    {
+        "uid": "F3Q3OY2CKI",
+        "req_type": "GET /",
+        "reqLink": "F3Q3OY2CF2",
+        "identity": "74.82.47.2",
+        "country": "United States",
+        "data": null,
+        "browser": null,
+        "level": 40,
+        "msg": "Direct Connection Denied",
+        "time": "2018-08-10T13:36:26.768Z"
+    },
+    {
+        "level": 30,
+        "identity": "5.8.10.202",
+        "uid": "F3Q4KJZBEE",
+        "reqLink": "F3Q4KJZBE6",
+        "browser": "UNKNOWN:  [Go-http-client/1.1]",
+        "country": "Russia",
+        "msg": "GET /",
+        "time": "2018-08-10T14:08:18.028Z"
+    },
+    {
+        "uid": "F3Q4KJZBJ8",
+        "req_type": "GET /",
+        "reqLink": "F3Q4KJZBE6",
+        "identity": "5.8.10.202",
+        "country": "Russia",
+        "data": null,
+        "browser": "UNKNOWN:  [Go-http-client/1.1]",
+        "level": 40,
+        "msg": "Direct Connection Denied",
+        "time": "2018-08-10T14:08:18.029Z"
+    },
+    {
+        "level": 30,
+        "identity": "13.57.233.99",
+        "uid": "F3Q4PFOUHY",
+        "reqLink": "F3Q4PFOUHQ",
+        "browser": "Chrome: 61.0",
+        "country": "United States",
+        "msg": "GET /",
+        "time": "2018-08-10T14:13:13.152Z"
+    },
+  {
+          "level": 30,
+          "identity": "71.6.202.204",
+          "uid": "F3FOSDKPXA",
+          "reqLink": "F3FOSDKPX1",
+          "browser": "Chrome: 67.0",
+          "country": "United States",
+          "msg": "GET /",
+          "time": "2018-08-01T02:55:00.840Z"
+  },
+  {
+          "uid": "F3FOSDKQ4K",
+          "req_type": "GET /",
+          "reqLink": "F3FOSDKPX1",
+          "identity": "71.6.202.204",
+          "country": "United States",
+          "data": null,
+          "browser": "Chrome: 67.0",
+          "level": 40,
+          "msg": "Direct Connection Denied",
+          "time": "2018-08-01T02:55:00.842Z"
+  },
+  {
+          "level": 30,
+          "identity": "107.185.40.53",
+          "uid": "F3GE1ZSM7J",
+          "reqLink": "F3GE1ZSM6Q",
+          "browser": "Chrome: 68.0",
+          "country": "United States",
+          "msg": "GET /",
+          "time": "2018-08-01T18:11:41.914Z"
+  },
+  {
+          "uid": "F3GEDS5YXU",
+          "req_type": "GET /libs/live.js",
+          "reqLink": "F3GEDS5YXE",
+          "identity": "127.0.0.1",
+          "data": null,
+          "browser": "Chrome: 68.0",
+          "level": 40,
+          "path": "/libs/live.js",
+          "host": "127.0.0.1",
+          "msg": "Page Not Found",
+          "time": "2018-08-01T18:23:35.455Z"
+  },
+  {
+          "level": 30,
+          "identity": "127.0.0.1",
+          "uid": "F3GEDSNY7D",
+          "reqLink": "F3GEDSNY74",
+          "browser": "Chrome: 68.0",
+          "msg": "GET /internal/ping",
+          "time": "2018-08-01T18:23:35.533Z"
+  },
+  {
+          "uid": "F3GEE84YXA",
+          "req_type": "DELETE /protected/invite/ONEJIRVIZIF",
+          "reqLink": "F3GEE84YWW",
+          "identity": "127.0.0.1",
+          "data": null,
+          "browser": "Chrome: 68.0",
+          "level": 30,
+          "msg": "Deleted an Invite",
+          "time": "2018-08-01T18:24:01.575Z"
+  },
+  {
+          "uid": "F3GFD77XL6",
+          "req_type": "GET /libs/live.js",
+          "reqLink": "F3GFD77XKQ",
+          "identity": "127.0.0.1",
+          "data": null,
+          "browser": "Chrome: 68.0",
+          "level": 40,
+          "path": "/libs/live.js",
+          "host": "127.0.0.1",
+          "msg": "Page Not Found",
+          "time": "2018-08-01T18:59:17.003Z"
+  },
+  {
+          "level": 30,
+          "identity": "127.0.0.1",
+          "uid": "F3GFD7ORTI",
+          "reqLink": "F3GFD7ORTA",
+          "browser": "Chrome: 68.0",
+          "msg": "GET /internal/ping",
+          "time": "2018-08-01T18:59:17.081Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T02:10:17.718Z"
+  },
+  {
+      "level": 30,
+      "identity": "67.21.36.3",
+      "uid": "F3OH36QXHL",
+      "reqLink": "F3OH36QXHD",
+      "browser": "UNKNOWN:  [Mozilla/5.0 zgrab/0.x]",
+      "msg": "GET /robots.txt",
+      "time": "2018-08-09T02:10:17.719Z"
+  },
+  {
+      "uid": "F3OH36QXKB",
+      "req_type": "GET /robots.txt",
+      "reqLink": "F3OH36QXHD",
+      "identity": "67.21.36.3",
+      "data": null,
+      "browser": "UNKNOWN:  [Mozilla/5.0 zgrab/0.x]",
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T02:10:17.720Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T05:04:57.589Z"
+  },
+  {
+      "level": 30,
+      "identity": "85.114.138.167",
+      "uid": "F3OLWI6WY5",
+      "reqLink": "F3OLWI6WXW",
+      "browser": null,
+      "msg": "GET /",
+      "time": "2018-08-09T05:04:57.589Z"
+  },
+  {
+      "uid": "F3OLWI6X0G",
+      "req_type": "GET /",
+      "reqLink": "F3OLWI6WXW",
+      "identity": "85.114.138.167",
+      "data": null,
+      "browser": null,
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T05:04:57.591Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T05:06:38.449Z"
+  },
+  {
+      "level": 30,
+      "identity": "85.114.138.167",
+      "uid": "F3OLY68Q53",
+      "reqLink": "F3OLY68Q4U",
+      "browser": null,
+      "msg": "GET /",
+      "time": "2018-08-09T05:06:38.450Z"
+  },
+  {
+      "uid": "F3OLY68Q77",
+      "req_type": "GET /",
+      "reqLink": "F3OLY68Q4U",
+      "identity": "85.114.138.167",
+      "data": null,
+      "browser": null,
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T05:06:38.451Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T06:30:55.271Z"
+  },
+  {
+      "level": 30,
+      "identity": "122.228.10.51",
+      "uid": "F3OO9SXY4G",
+      "reqLink": "F3OO9SXY47",
+      "browser": "FireFox: 47.0",
+      "msg": "GET /",
+      "time": "2018-08-09T06:30:55.271Z"
+  },
+  {
+      "uid": "F3OO9SXY6O",
+      "req_type": "GET /",
+      "reqLink": "F3OO9SXY47",
+      "identity": "122.228.10.51",
+      "data": null,
+      "browser": "FireFox: 47.0",
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T06:30:55.273Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T08:00:39.613Z"
+  },
+  {
+      "level": 30,
+      "identity": "173.211.114.165",
+      "uid": "F3OQQUN2YE",
+      "reqLink": "F3OQQUN2Y4",
+      "browser": "Chrome: 58.0",
+      "msg": "GET /",
+      "time": "2018-08-09T08:00:39.613Z"
+  },
+  {
+      "level": 30,
+      "identity": "184.105.247.252",
+      "uid": "F3P0C4TGY0",
+      "reqLink": "F3P0C4TGXR",
+      "browser": null,
+      "country": "United States",
+      "msg": "GET /",
+      "time": "2018-08-09T13:48:37.538Z"
+  },
+  {
+      "uid": "F3P0C4TH2S",
+      "req_type": "GET /",
+      "reqLink": "F3P0C4TGXR",
+      "identity": "184.105.247.252",
+      "country": "United States",
+      "data": null,
+      "browser": null,
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T13:48:37.539Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T14:03:37.289Z"
+  },
+  {
+      "level": 30,
+      "identity": "80.87.199.224",
+      "uid": "F3P0R0IA27",
+      "reqLink": "F3P0R0IA1V",
+      "browser": "FireFox: 9.0",
+      "msg": "GET /",
+      "time": "2018-08-09T14:03:37.290Z"
+  },
+  {
+      "uid": "F3P0R0IA5Y",
+      "req_type": "GET /",
+      "reqLink": "F3P0R0IA1V",
+      "identity": "80.87.199.224",
+      "data": null,
+      "browser": "FireFox: 9.0",
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T14:03:37.291Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T14:03:42.826Z"
+  },
+  {
+      "level": 30,
+      "identity": "80.87.199.224",
+      "uid": "F3P0R3SYFQ",
+      "reqLink": "F3P0R3SYFG",
+      "browser": "FireFox: 9.0",
+      "msg": "GET /",
+      "time": "2018-08-09T14:03:42.826Z"
+  },
+  {
+      "uid": "F3P0R3SYHN",
+      "req_type": "GET /",
+      "reqLink": "F3P0R3SYFG",
+      "identity": "80.87.199.224",
+      "data": null,
+      "browser": "FireFox: 9.0",
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T14:03:42.828Z"
+  },
+  {
+      "level": 50,
+      "err": {
+          "message": "Got EMPTY locale info from freegeoip",
+          "name": "Error",
+          "stack": "Error: Got EMPTY locale info from freegeoip\n    at Object.<anonymous> (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:156:27)\n    at step (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:32:23)\n    at Object.next (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:13:53)\n    at fulfilled (E:\\Programming\\Nodejs\\noumenae\\release\\server\\middleware\\request_logger.js:4:58)\n    at tryCatcher (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\util.js:16:23)\n    at Promise._settlePromiseFromHandler (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:512:31)\n    at Promise._settlePromise (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:569:18)\n    at Promise._settlePromise0 (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:614:10)\n    at Promise._settlePromises (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\promise.js:693:18)\n    at Async._drainQueue (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:133:16)\n    at Async._drainQueues (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:143:10)\n    at Immediate.Async.drainQueues [as _onImmediate] (E:\\Programming\\Nodejs\\noumenae\\release\\server\\node_modules\\bluebird\\js\\release\\async.js:17:14)\n    at runCallback (timers.js:696:18)\n    at tryOnImmediate (timers.js:667:5)\n    at processImmediate (timers.js:649:5)"
+      },
+      "msg": "Got EMPTY locale info from freegeoip",
+      "time": "2018-08-09T14:03:49.083Z"
+  },
+  {
+      "level": 30,
+      "identity": "80.87.199.224",
+      "uid": "F3P0R7J23J",
+      "reqLink": "F3P0R7J23A",
+      "browser": "FireFox: 9.0",
+      "msg": "GET /",
+      "time": "2018-08-09T14:03:49.083Z"
+  },
+  {
+      "uid": "F3P0R7J25F",
+      "req_type": "GET /",
+      "reqLink": "F3P0R7J23A",
+      "identity": "80.87.199.224",
+      "data": null,
+      "browser": "FireFox: 9.0",
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T14:03:49.085Z"
+  },
+  {
+      "level": 30,
+      "identity": "180.76.15.156",
+      "uid": "F3P1NPT6BT",
+      "reqLink": "F3P1NPT6BB",
+      "browser": "UNKNOWN:  [Mozilla/5.0 (compatible; Baiduspider/2.0; +http://www.baidu.com/search/spider.html)]",
+      "country": "China",
+      "msg": "GET /",
+      "time": "2018-08-09T14:36:34.706Z"
+  },
+  {
+      "uid": "F3P40IUZ8L",
+      "req_type": "GET /admin/assets/js/views/login.js",
+      "reqLink": "F3P40IUZ82",
+      "identity": "188.246.234.62",
+      "data": null,
+      "browser": "UNKNOWN:  [python-requests/2.18.4]",
+      "level": 40,
+      "msg": "Direct Connection Denied",
+      "time": "2018-08-09T16:02:02.659Z"
+  },
+  {
+      "uid": "F3P7MWZXT2",
+      "req_type": "GET /protected/logger/request.log",
+      "reqLink": "F3P7MWZXS7",
+      "identity": "127.0.0.1",
+      "data": null,
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "level": 40,
+      "msg": "Requested a log that does not exist",
+      "time": "2018-08-09T18:13:27.009Z"
+  },
+  {
+      "uid": "F3P7NTIEF3",
+      "req_type": "GET /protected/logger/request.log",
+      "reqLink": "F3P7NTIEEL",
+      "identity": "127.0.0.1",
+      "data": null,
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "level": 40,
+      "msg": "Requested a log that does not exist",
+      "time": "2018-08-09T18:14:21.618Z"
+  },
+  {
+      "level": 30,
+      "identity": "127.0.0.1",
+      "uid": "F3P7PD9S4X",
+      "reqLink": "F3P7PD9S4P",
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "msg": "GET /",
+      "time": "2018-08-09T18:15:55.272Z"
+  },
+  {
+      "level": 30,
+      "identity": "127.0.0.1",
+      "uid": "F3P7TVQTMM",
+      "reqLink": "F3P7TVQTMC",
+      "browser": "Chrome: 68.0",
+      "msg": "GET /protected/request.log.0",
+      "time": "2018-08-09T18:20:28.165Z"
+  },
+  {
+      "uid": "F3P7TVQTRK",
+      "req_type": "GET /protected/request.log.0",
+      "reqLink": "F3P7TVQTMC",
+      "identity": "127.0.0.1",
+      "data": null,
+      "browser": "Chrome: 68.0",
+      "level": 40,
+      "path": "/protected/request.log.0",
+      "host": "127.0.0.1",
+      "msg": "Page Not Found",
+      "time": "2018-08-09T18:20:28.906Z"
+  },
+  {
+      "uid": "F3P7U6S78R",
+      "req_type": "GET /protected/logger/request.log.0",
+      "reqLink": "F3P7U6S77Z",
+      "identity": "127.0.0.1",
+      "data": null,
+      "browser": "Chrome: 68.0",
+      "level": 40,
+      "msg": "Requested a log that does not exist",
+      "time": "2018-08-09T18:20:46.708Z"
+  },
+  {
+      "uid": "F3P7UDJYFB",
+      "req_type": "GET /protected/logger/request.log.0",
+      "reqLink": "F3P7UDJYEW",
+      "identity": "127.0.0.1",
+      "data": null,
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "level": 40,
+      "msg": "Requested a log that does not exist",
+      "time": "2018-08-09T18:20:58.079Z"
+  },
+  {
+      "level": 30,
+      "identity": "127.0.0.1",
+      "uid": "F3P7VQNVY4",
+      "reqLink": "F3P7VQNVXV",
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "msg": "GET /",
+      "time": "2018-08-09T18:22:20.563Z"
+  },
+  {
+      "level": 30,
+      "identity": "127.0.0.1",
+      "uid": "F3P7W1XV09",
+      "reqLink": "F3P7W1XV01",
+      "browser": "Chrome: 68.0",
+      "msg": "GET /",
+      "time": "2018-08-09T18:22:39.504Z"
+  },
+  {
+      "level": 30,
+      "identity": "127.0.0.1",
+      "uid": "F3P7W3PE7N",
+      "reqLink": "F3P7W3PE7H",
+      "browser": "Chrome: 68.0",
+      "msg": "GET /",
+      "time": "2018-08-09T18:22:42.468Z"
+  },
+  {
+      "level": 30,
+      "identity": "127.0.0.1",
+      "uid": "F3P7X06RCF",
+      "reqLink": "F3P7X06RC6",
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "msg": "GET /",
+      "time": "2018-08-09T18:23:37.025Z"
+  },
+  {
+      "level": 30,
+      "identity": "127.0.0.1",
+      "uid": "F3P7ZCYQ04",
+      "reqLink": "F3P7ZCYPZU",
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "msg": "GET /",
+      "time": "2018-08-09T18:25:59.418Z"
+  },
+  {
+      "uid": "F3P7ZQVS6U",
+      "req_type": "GET /logger/requests.log",
+      "reqLink": "F3P7ZQVS6A",
+      "identity": "127.0.0.1",
+      "data": null,
+      "browser": "UNKNOWN:  [PostmanRuntime/7.2.0]",
+      "level": 40,
+      "path": "/logger/requests.log",
+      "host": "127.0.0.1",
+      "msg": "Page Not Found",
+      "time": "2018-08-09T18:26:23.472Z"
+  }
+]

@@ -22,12 +22,12 @@
       transform: translateX(0px);
     }
 
-    ~ #RouterView {
+    ~ #RouterView, ~ header {
       transform: translateX(180px);
       overflow: hidden;
     }
 
-    ~ #RouterView:before {
+    ~ #RouterView:before, ~ header:before {
       opacity: 0.4;
       pointer-events: all;
     }

@@ -2,12 +2,18 @@ $silver: hsl(207, 100%, 92%);
 $mint: hsl(173, 55%, 85%);
 
 $pmry: hsl(210, 100%, 93%);
-$pmry-dark: desaturate(darken($pmry, 30%), 80%);
+$pmry-dark: desaturate(darken($pmry, 25%), 80%);
 $pmry-darker: desaturate(darken($pmry, 40%), 80%);
 $pmry-darkest: desaturate(darken($pmry, 55%), 80%);
-$cmpt: hsl(207, 100%, 83%);
-$cmpt-dark: hsl(207, 55%, 72%);
+$pmry-darkultra: desaturate(darken($pmry, 65%), 88%);
 
+$cmpt: hsl(207, 95%, 83%);
+$cmpt-darkless: desaturate(darken($cmpt, 15%), 70%);
+$cmpt-dark: desaturate(darken($cmpt, 25%), 70%);
+$cmpt-darker: desaturate(darken($cmpt, 35%), 70%);
+$cmpt-darkest: desaturate(darken($cmpt, 45%), 70%);
+$cmpt-darkturbo: desaturate(darken($cmpt, 61%), 75%);
+$cmpt-darkultra: desaturate(darken($cmpt, 65%), 75%);
 
 $bg: hsl(210, 11%, 14%);
 $bg-dark: darken($bg, 3%);
