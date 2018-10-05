@@ -1,13 +1,13 @@
 $silver: hsl(207, 100%, 92%);
 $mint: hsl(173, 55%, 85%);
 
-$pmry: hsl(210, 100%, 93%);
+$pmry: hsl(209, 100%, 93%);
 $pmry-dark: desaturate(darken($pmry, 25%), 80%);
 $pmry-darker: desaturate(darken($pmry, 40%), 80%);
 $pmry-darkest: desaturate(darken($pmry, 55%), 80%);
 $pmry-darkultra: desaturate(darken($pmry, 65%), 88%);
 
-$cmpt: hsl(207, 95%, 83%);
+$cmpt: hsl(209, 100%, 87%);
 $cmpt-darkless: desaturate(darken($cmpt, 15%), 70%);
 $cmpt-dark: desaturate(darken($cmpt, 25%), 70%);
 $cmpt-darker: desaturate(darken($cmpt, 35%), 70%);
@@ -15,7 +15,7 @@ $cmpt-darkest: desaturate(darken($cmpt, 45%), 70%);
 $cmpt-darkturbo: desaturate(darken($cmpt, 61%), 75%);
 $cmpt-darkultra: desaturate(darken($cmpt, 65%), 75%);
 
-$bg: hsl(210, 11%, 14%);
+$bg: hsl(240, 20%, 13%);
 $bg-dark: darken($bg, 3%);
 $bg-darker: darken($bg, 5%);
 $bg-light: lighten($bg, 3%);
@@ -24,17 +24,31 @@ $bg-lightest: lighten($bg, 11%);
 $bg-lightultra: lighten($bg, 20%);
 
 
-$good-c: hsl(100, 100%, 70%);
+$good-c: hsl(155, 100%, 70%);
 $good-text: desaturate(darken($good-c, 3.3%), 48%);
 $good-accent: desaturate(darken($good-text, 9%), 20%);
+$good-bg: desaturate(darken($good-c, 50%), 75%);
 $good-high: $good-text;
 
-$warn-c: hsl(39, 100%, 70%);
-$warn-text: desaturate(darken($warn-c, 3.3%), 25%);
-$warn-accent: desaturate(darken($warn-c, 12%), 45%);
+$special-c: hsl(240, 100%, 80%);
+$special-text: desaturate($special-c, 40%);
+$special-accent: desaturate(darken($special-text, 8%), 10%);
+$special-bg: desaturate(darken($special-c, 50%), 75%);
+$special-high: $special-text;
+
+$debug-c: hsl(77, 100%, 70%);
+$debug-text: desaturate($debug-c, 40%);
+$debug-accent: desaturate(darken($debug-c, 5%), 55%);
+$debug-bg: desaturate(darken($debug-c, 43%), 48%);
+$debug-high: $debug-text;
+
+$warn-c: hsl(53, 100%, 70%);
+$warn-text: desaturate(darken($warn-c, 3.3%), 33%);
+$warn-accent: desaturate(darken($warn-c, 15%), 55%);
 $warn-high: $warn-text;
 
-$error-c: hsl(340, 100%, 85%);
-$error-text: desaturate(darken($error-c, 3.7%), 0%);
-$error-accent: desaturate(darken($error-c, 12%), 45%);
+$error-c: hsl(320, 100%, 80%);
+$error-text: desaturate(darken($error-c, 3.7%), 65%);
+$error-accent: desaturate(darken($error-c, 12%), 70%);
+$debug-bg: desaturate(darken($error-c, 60%), 90%);
 $error-high: $error-text;

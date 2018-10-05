@@ -1,235 +1,226 @@
 
 @import '../../assets/styles/_dark-variables.scss';
 
-.logs {
-
-  .container {
-    display: flex;
-    margin: 0 auto;
-    height: 100%;
-    width: 100%;
-    padding: 0 7px 0 1.5em;
-
-  }
-
-
-  .log {
-    width: 100%;
-    height: 80%;
-    padding: 0 13px 6em 0;
-    overflow: auto;
-
-    &::-webkit-scrollbar { width: 0.5em; }
-    &::-webkit-scrollbar-thumb {
-      background: $bg-lightest;
-      border-radius: 5px;
-      &:hover { background: $bg-lightultra; }
-    }
-    &::-webkit-scrollbar-track {
-      border-radius: 5px;
-      background: $bg-darker;
-    }
-  }
-
-
-  .log-container {
-    display: none;
-    flex-direction: row;
-    &.open { display: flex; }
-  }
-
-  $default-bg: lighten($bg-light, 1.5%);
-  .log-item {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-    padding: 10px 0;
-    width: 100%;
-    font-family: 'Fira Code';
-    font-weight: 300;
-    background: $cmpt-darkturbo;
-    border-bottom: 1px solid hsl(0, 0%, 0%);
-    color: $pmry;
-    font-size: 1em;
-    text-align: center;
-    transition: border .25s ease, background .25s ease;
-
-    &.default {
-      border-left: 4px solid $pmry-darker;
-      &:hover {
-        border-left-color: $pmry-dark;
-        border-bottom-color: $pmry-dark;
-      }
-    }
-    &.good {
-      border-left: 4px solid $good-accent;
-      &:hover {
-        border-left-color: $good-high;
-        border-bottom-color: $good-high;
-      }
-    }
-    &.warn {
-      border-left: 4px solid $warn-accent;
-      &:hover {
-        border-left-color: $warn-high;
-        border-bottom-color:  $warn-high;
-      }
-    }
-    &.error {
-      border-left: 4px solid $error-accent;
-      &:hover {
-        border-left-color: $error-high;
-        border-bottom-color: $error-high;
-      }
-    }
-
-    span { display: table-cell; }
-  }
-
-
-  .log-data {
-    display: flex;
-    margin-top: 10px;
-    margin-bottom: -10px;
-    padding: 10px 0 10px 0;
-    border-top: 1px solid black;
-    background: $pmry-darkultra;
-    color: $pmry-dark;
-    flex-wrap: wrap;
-    font-size: 1.1em;
-    font-weight: 500;
-    letter-spacing: 1px;
-    text-shadow: -1px -1px 0 black, 1px 0 0 black;
-    width: 100%;
-    justify-content: center;
-
-    dd {
-      &::before {
-        padding: 0 5px;
-        content: '::';
-      }
-      &:last-child::after {
-        padding: 0 5px;
-        content: '::';
-      }
-    }
-  }
-
-
-  aside.toggle {
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 2.1em;
-    cursor: pointer;
-    z-index: 10;
-  }
-
-  .child-log-list {
-    margin-top: 10px;
-    margin-bottom: -10px;
-    border-top: 2px solid $bg;
-    width: 100%;
-  }
-
-  .log-child {
-    display: flex;
-    flex-direction: row;
-    padding: 5px 0;
-    background: $bg-light;
-    &:first-child { padding-top: 15px; }
-    &:last-child { padding-bottom: 15px; }
-
-    &.good { background: rgba(desaturate(darken($good-accent, 47%), 0%), 0.3); }
-    &.warn { background: rgba(desaturate(darken($warn-accent, 47%), 0%), 0.3); }
-  }
-
-  .stack-container {
-    border-bottom: 3px solid $bg-darker;
-    text-align: left;
-    width: 100%;
-    overflow-x: auto;
-    overflow-y: hidden;
-
-    &::-webkit-scrollbar { width: 8px; height: 8px; }
-    &::-webkit-scrollbar-thumb {
-      background: $bg-lightest;
-      border-radius: 5px;
-      &:hover { background: $bg-lightultra; }
-    }
-    &::-webkit-scrollbar-track {
-      border-radius: 5px;
-      background: $bg-darker;
-    }
-  }
-
-  .timestamp {
-    flex: 2;
-    color: rgba($pmry, 0.4);
-    text-align: right;
-    max-width: 200px;
-    &.small { display: none; max-width: 6.3em; }
-  }
-  .count {
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0.27em 0.3em 0.23em 0.35em;
-    font-size: 1.45em;
-    background: $cmpt-darkest;
-    border-left: 2px solid black;
-    color: $pmry;
-    text-shadow: -1px -1px 0 black, -1px 0 0 black;
-    font-weight: 500;
-  }
-  .stack     {            color: rgba($pmry, 0.8); padding: 0 40px 0 20px; }
-  .ip        { flex: 1.8; color: rgba($pmry, 0.8); max-width: 200px; }
-  .method    { flex: 1;   color: rgba($pmry, 0.4); max-width: 90px; }
-  .message   {
-    flex: 4;
-    padding: 0 1em;
-    text-align: left;
-    font-weight: 300;
-  }
-    .warn  .message { color: $warn-text; font-weight: 400; }
-    .good  .message { color: $good-text; }
-    .error .message { color: $error-text; font-weight: 400; }
-
-
-
-
+%borderDefault {
+  border-left-color: $pmry-dark;
+  border-bottom-color: $pmry-dark;
+}
+%borderGood {
+  border-left-color: $good-high;
+  border-bottom-color: $good-high;
+}
+%borderSpecial {
+  border-left-color: $special-high;
+  border-bottom-color: $special-high;
+}
+%borderDebug {
+  border-left-color: $debug-high;
+  border-bottom-color: $debug-high;
+}
+%borderWarn {
+  border-left-color: $warn-high;
+  border-bottom-color:  $warn-high;
+}
+%borderError {
+  border-left-color: $error-high;
+  border-bottom-color: $error-high;
 }
 
-@media only screen and (max-width: 850px) {
-  .logs {
-    .ip { display: none !important; }
-    .log-data {
-      flex-direction: column;
-      text-align: left;
-      dd { padding: 5px 5px; }
-      dd::after { display: none; }
+
+
+.msel-container {
+  margin: 20px 10px;
+  width: 13em;
+  label {
+    padding: 5px 5px;
+    width: 100%;
+    font-size: 1.1em;
+    font-family: 'Fira Code';
+    font-weight: 400;
+    color: $pmry-dark;
+    background: $bg-lightest;
+    border: 3px solid $bg-darker;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+
+    &::after {
+      right: 10px;
+      top: 0.55em;
+      border-top-color: $pmry-dark;
     }
+  }
+
+  .my-select {
+    left: 0;
+    width: 100%;
+    background: $bg-darker;
+    border: 3px solid $bg-darker;
+    border-top: none;
+    &:last-child {
+      border-bottom-right-radius: 5px;
+      border-bottom-left-radius: 5px;
+    }
+  }
+
+  .sel-item {
+    padding: 3px 0 3px 5px;
+    background: $bg-lightest;
+    border-top: 1px solid $bg-dark;
+    &:hover {
+      background: $bg-lightultra;
+    }
+    &:last-child {
+      border-bottom-right-radius: 3px;
+      border-bottom-left-radius: 3px;
+    }
+  }
+}
+
+
+
+.log-display {
+  display: flex;
+  margin: 0 auto;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
+  padding: 0 7px 0 1.5em;
+}
+
+
+
+.log-scroll {
+  width: 100%;
+  height: 80%;
+  padding: 0 13px 6em 0;
+  overflow: auto;
+
+  &::-webkit-scrollbar { width: 0.5em; }
+  &::-webkit-scrollbar-thumb {
+    background: $bg-lightest;
+    border-radius: 5px;
+    &:hover { background: $bg-lightultra; }
+  }
+  &::-webkit-scrollbar-track {
+    border-radius: 5px;
+    background: $bg-darker;
+  }
+}
+
+
+
+.log-item {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  color: $pmry;
+  font-family: 'Fira Code';
+  font-weight: 300;
+  background: $bg-lighter;
+  border-bottom: 1px solid black;
+  transition: border .25s ease, background .25s ease;
+
+  &.open {
+    &.default { @extend %borderDefault; }
+    &.good    { @extend %borderGood;    }
+    &.special { @extend %borderSpecial; }
+    &.debug   { @extend %borderDebug;   }
+    &.warn    { @extend %borderWarn;    }
+    &.error   { @extend %borderError;   }
+  }
+
+  &.default {
+    border-left: 4px solid $pmry-darker;
+    &:hover { @extend %borderDefault; }
+  }
+  &.good {
+    border-left: 4px solid $good-accent;
+    &:hover { @extend %borderGood; }
+  }
+  &.special {
+    border-left: 4px solid $special-accent;
+    &:hover { @extend %borderSpecial; }
+  }
+  &.warn {
+    border-left: 4px solid $warn-accent;
+    &:hover { @extend %borderWarn; }
+  }
+  &.debug {
+    border-left: 4px solid $debug-accent;
+    &:hover { @extend %borderDebug; }
+  }
+  &.error {
+    border-left: 4px solid $error-accent;
+    &:hover { @extend %borderError; }
+  }
+}
+
+
+
+.log-infobar {
+  display: flex;
+  padding: 10px 0 10px 10px;
+  background: $bg-lighter;
+  border-bottom: 1px solid #000;
+  cursor: pointer;
+}
+
+
+.log-count {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0.27em 0.3em 0.23em 0.35em;
+  font-size: 1.45em;
+  background: $cmpt-darkest;
+  border-left: 2px solid black;
+  color: $pmry;
+  text-shadow: -1px -1px 0 black, -1px 0 0 black;
+  font-weight: 500;
+}
+
+
+.timestamp {
+  flex: 2;
+  color: rgba($pmry, 0.4);
+  text-align: center;
+  max-width: 215px;
+  &.large { min-width: 185px; }
+  &.small {
+    display: none;
+    min-width: 6.25em;
+    max-width: 7em;
+  }
+}
+.ip        { flex: 1; color: rgba($pmry, 0.8); max-width: 200px; }
+.method    { flex: 0.5;   color: rgba($pmry, 0.4); max-width: 90px; }
+.message   {
+  flex: 4;
+  padding: 0 1em;
+  text-align: left;
+  font-weight: 300;
+  &.good    { color: $good-text; }
+  &.warn    { color: $warn-text; font-weight: 400; }
+  &.special { color: $special-text}
+  &.error   { color: $error-text; font-weight: 400; }
+  &.debug   { color: $debug-text; }
+}
+
+
+@media only screen and (max-width: 850px) {
+  .log-infobar {
+    .ip { display: none !important; }
   }
 }
 
 
 
 @media only screen and (max-width: 690px) {
-  .logs {
 
-    .container {
-      padding-left: 2px;
-      padding-right: 2px;
-    }
-
-    .log {
-      padding-right: 2px;
-      overflow-x: hidden;
-    }
-
-    .timestamp.large { display: none; }
-    .timestamp.small { display: block; }
+  .timestamp.large { display: none; }
+  .timestamp.small { display: block; }
+  .log-infobar {
     .method {
       display: none !important;
     }
