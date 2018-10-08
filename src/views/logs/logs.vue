@@ -1,6 +1,6 @@
 <template>
   <div class="log-display">
-    <MySelect :options="files"></MySelect>
+    <MySelect :options="files" :title="selectTitle" @select="selectFile"></MySelect>
     <div class="log-scroll">
       <ul class="log-tray">
         <li v-for='log of logs'

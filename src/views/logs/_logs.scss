@@ -32,7 +32,7 @@
   margin: 20px 10px;
   width: 13em;
   label {
-    padding: 5px 5px;
+    padding: 10px 5px 10px 10px;
     width: 100%;
     font-size: 1.1em;
     font-family: 'Fira Code';
@@ -40,14 +40,20 @@
     color: $pmry-dark;
     background: $bg-lightest;
     border: 3px solid $bg-darker;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
 
     &::after {
       right: 10px;
-      top: 0.55em;
       border-top-color: $pmry-dark;
+      border-width: 8px;
     }
+
+    &.active::after {
+      border-bottom-color: $warn-text;
+    }
+
+
   }
 
   .my-select {

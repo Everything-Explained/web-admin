@@ -1,5 +1,10 @@
 module.exports = {
   css: {
+    loaderOptions: {
+      sass: {
+        outputStyle: 'compressed'
+      }
+    },
     sourceMap: true
   },
 

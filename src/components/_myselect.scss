@@ -1,0 +1,48 @@
+@import '../assets/styles/_dark-variables.scss';
+
+.msel-container {
+  position: relative;
+  font-family: 'Fira Code';
+  font-weight: 400;
+  color: $pmry-dark;
+
+  label {
+    position: relative;
+    display: block;
+    text-align: left;
+    user-select: none;
+    cursor: pointer;
+
+    // Arrow
+    &::after {
+      position: absolute;
+      top: 40%;
+      content: '';
+      width: 0;
+      height: 0;
+      border: 6px solid transparent;
+      border-color: #fff transparent transparent;
+    }
+
+    &.active::after {
+      top: 15%;
+      border-color: transparent transparent #fff transparent;
+    }
+
+  }
+
+  .my-select {
+    position: absolute;
+    top: 92%;
+    text-align: left;
+    line-height: 1.5em;
+    z-index: 5;
+  }
+
+  .hidden { display: none; }
+
+  .sel-item {
+    cursor: pointer;
+  }
+
+}

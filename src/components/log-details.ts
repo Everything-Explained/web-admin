@@ -8,10 +8,6 @@ import Logs, { ILog } from '@/views/logs/logs';
       type: Object,
       required: true,
     },
-    // parent: {
-    //   type: Object,
-    //   required: true,
-    // },
   },
 })
 export default class LogDetails extends Vue {
@@ -25,7 +21,6 @@ export default class LogDetails extends Vue {
     lls[30] = 'default';
     lls[40] = 'warn';
     lls[50] = 'error';
-
   }
 
 

@@ -1,9 +1,8 @@
 import { Vue } from 'vue-property-decorator';
 import Component from 'vue-class-component';
-import moment from '../../../node_modules/moment';
 import LogDetails from '../../components/LogDetails.vue';
 import MySelect from '../../components/MySelect.vue';
-const __logs = require('./tempdata.json') as ILog[];
+import { WebGet } from '@/utilities/web';
 
 export interface ILogData {
   uid: string;
@@ -50,28 +49,39 @@ export default class Logs extends Vue {
   public logs: ILog[] = [];
   public logLevels = [] as number[];
 
-  public files = [
-    'hello',
-    'this is a test',
-    'and one more',
-  ];
+  // From Global MIXIN
+  public webGet!: WebGet;
+
+  public files: string[] = [];
+  public selectTitle = 'Select a Log';
 
   public test = 'hello';
 
 
-  public created() {
-    const l = __logs.length - 2
-        , newLogs = [__logs[0]]
-        , logLevels = this.$data.logLevels
-    ;
+  public async created() {
+    const logLevels = this.$data.logLevels;
 
     logLevels[20] = 'debug';
     logLevels[30] = 'default';
     logLevels[40] = 'warn';
     logLevels[50] = 'error';
 
-    this.logs = this.filterLogs(__logs);
-    console.log(this.logs);
+    const params = 'type=request';
+    const files = await this.webGet(`https://localhost:5007/protected/logs?${params}`);
+    this.files = files;
+
+
+  }
+
+  public async selectFile(file: string) {
+    const logs = await this.webGet(`https://localhost:5007/protected/logger/${file}?length=500`) as string[]
+        , logObjs = []
+    ;
+    for (const log of logs) {
+      if (log)
+        logObjs.push(JSON.parse(log));
+    }
+    this.logs = this.filterLogs(logObjs);
   }
 
 
@@ -156,14 +166,22 @@ export default class Logs extends Vue {
       ;
 
       while (identLogs.length) {
-        const iLog = identLogs[0];
+        const iLog = identLogs[0]
+            , data1 =
+                iLog.data
+                  ? iLog.msg.split('?')[1]
+                  : null
+        ;
         if (iLog.level < 40) {
           tempLogs =
-            identLogs.filter(l =>
-                 iLog.type == l.type
-              && iLog.data == l.data
-              && l.level < 40
-            )
+            identLogs.filter(l => {
+              const data2 = l.data ? l.msg.split('?')[1] : null;
+              return (
+                    iLog.type == l.type
+                && data1 == data2
+                && l.level < 40
+              );
+            })
           ;
           this._deleteFilteredLogs(tempLogs, identLogs);
           tempLogs.splice(0, 1);
@@ -200,13 +218,25 @@ export default class Logs extends Vue {
     return newStack;
   }
 
-
+  // TODO: Refactor data parsing into own function
   private _isLogEqual(l1: ILog, l2: ILog) {
+    let msg1 = l1.msg
+      , msg2 = l2.msg
+      , data1 =
+          ~l1.msg.indexOf('?')
+            ? l1.msg.split('?')[1]
+            : null
+      , data2 =
+          ~l2.msg.indexOf('?')
+            ? l2.msg.split('?')[1]
+            : null
+    ;
+
     return (
          l1.identity == l2.identity
       && l1.type == l2.type
-      && l1.msg == l2.msg
-      && l1.url == l2.url
+      && msg1 == msg2
+      && data1 == data2
     );
   }
 

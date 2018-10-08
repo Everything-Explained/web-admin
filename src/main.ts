@@ -1,8 +1,19 @@
-import Vue from 'vue';
+import Vue, { ComponentOptions } from 'vue';
 import App from './App.vue';
 import router from '@/router';
+import { Web } from './utilities/web';
 
-Vue.config.productionTip = false;
+const WEB = new Web();
+Vue.mixin({
+  methods: {
+    webGet: (url, options) => {
+      return WEB.get(url, options || undefined);
+    },
+    webPost: (url, data, options) => {
+      return WEB.post(url, data, options || undefined);
+    }
+  }
+})
 
 new Vue({
   router,
