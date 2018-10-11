@@ -11,9 +11,12 @@ Vue.mixin({
     },
     webPost: (url, data, options) => {
       return WEB.post(url, data, options || undefined);
-    }
-  }
-})
+    },
+    webDelete: (url) => {
+      return WEB.delete(url);
+    },
+  },
+});
 
 new Vue({
   router,

@@ -2,7 +2,8 @@ import { Vue } from 'vue-property-decorator';
 import Component from 'vue-class-component';
 import LogDetails from '../../components/LogDetails.vue';
 import MySelect from '../../components/MySelect.vue';
-import { WebGet } from '@/utilities/web';
+import StatDisplay from '../../components/StatDisplay.vue';
+import { webGet, webPost, webDelete } from '@/utilities/web';
 
 export interface ILogData {
   uid: string;
@@ -27,6 +28,7 @@ export interface ILogData {
 export interface ILog extends ILogData {
   msgs: string[];
   time: string;
+  localeDateString: string;
   method: string;
   url: string;
   type: string;
@@ -40,9 +42,11 @@ export interface ILog extends ILogData {
 }
 
 
+const papiPath = `https://localhost:5007/protected/`;
+
 
 @Component({
-  components: { LogDetails, MySelect },
+  components: { LogDetails, MySelect, StatDisplay },
 })
 export default class Logs extends Vue {
 
@@ -50,13 +54,18 @@ export default class Logs extends Vue {
   public logLevels = [] as number[];
 
   // From Global MIXIN
-  public webGet!: WebGet;
+  public webGet!: webGet;
+  public webPost!: webPost;
+  public webDelete!: webDelete;
 
   public files: string[] = [];
   public selectTitle = 'Select a Log';
 
-  public test = 'hello';
-
+  public logLines = 0;
+  public logResponseLength = 0;
+  public requestPerf = '0ms';
+  public renderPerf = '0ms';
+  public selectedLog = '';
 
   public async created() {
     const logLevels = this.$data.logLevels;
@@ -67,21 +76,39 @@ export default class Logs extends Vue {
     logLevels[50] = 'error';
 
     const params = 'type=request';
-    const files = await this.webGet(`https://localhost:5007/protected/logs?${params}`);
+    const files = await this.webGet(`${papiPath}logs?${params}`);
     this.files = files;
-
-
   }
 
   public async selectFile(file: string) {
-    const logs = await this.webGet(`https://localhost:5007/protected/logger/${file}?length=500`) as string[]
-        , logObjs = []
-    ;
+    performance.mark('webGetBegin');
+    const logs = await this.webGet(`${papiPath}logger/${file}?length=500`) as string[];
+    performance.mark('webGetEnd');
+    performance.measure('webGet', 'webGetBegin', 'webGetEnd');
+    this.requestPerf = this._measure('webGet');
+
+    const logObjs = [];
+
     for (const log of logs) {
       if (log)
         logObjs.push(JSON.parse(log));
     }
+
+    performance.mark('logRenderStart');
     this.logs = this.filterLogs(logObjs);
+    performance.mark('logRenderEnd');
+    performance.measure('logRender', 'logRenderStart', 'logRenderEnd');
+    this.renderPerf = this._measure('logRender');
+
+    this.logResponseLength = logs.length;
+    this.logLines = this.logs.length;
+    this.selectedLog = file;
+  }
+
+
+  public async clearFile(file: string) {
+    let resp = await this.webDelete(`${papiPath}test/${file}`);
+    console.log(resp)
   }
 
 
@@ -99,6 +126,17 @@ export default class Logs extends Vue {
     return this._linkDuplicates(
       this._setLogType(LOGS),
     );
+  }
+
+  private _measure(name: string) {
+    let timing = performance.getEntriesByName(name)[0].duration;
+    const timingStr =
+      (timing > 1000)
+        ? (timing /= 1000).toFixed(2) + 's'
+        : timing.toFixed(0) + 'ms'
+    ;
+    performance.clearMeasures(name);
+    return timingStr;
   }
 
 
@@ -126,6 +164,15 @@ export default class Logs extends Vue {
       if (log.level > newLog.level) newLog.level = log.level;
       if (newLog.level < 30 && log.level < 30) newLog.level = log.level;
 
+      // Catch params data set within route request
+      if (log.data) {
+        newLog.data =
+          newLog.data
+            ? Object.assign(newLog.data, log.data)
+            : log.data
+        ;
+      }
+
       if (log.statusCode) {
         newLog.statusCode = log.statusCode;
         newLog.statusMsg = log.msg;
@@ -134,13 +181,14 @@ export default class Logs extends Vue {
         newLog.msgs.push(log.msg)
       ;
     }
-
+    newLog.localeDateString = new Date(newLog.time).toLocaleDateString();
     return newLog;
   }
 
 
   private _linkDuplicates(logs: ILog[]) {
     const LOGS = [] as ILog[];
+    let i = 0;
     let templogs = [];
 
     while (logs.length) {
@@ -166,19 +214,13 @@ export default class Logs extends Vue {
       ;
 
       while (identLogs.length) {
-        const iLog = identLogs[0]
-            , data1 =
-                iLog.data
-                  ? iLog.msg.split('?')[1]
-                  : null
-        ;
+        const iLog = identLogs[0];
         if (iLog.level < 40) {
           tempLogs =
             identLogs.filter(l => {
-              const data2 = l.data ? l.msg.split('?')[1] : null;
               return (
                     iLog.type == l.type
-                && data1 == data2
+                && this._isDataEqual(iLog, l)
                 && l.level < 40
               );
             })
@@ -218,26 +260,33 @@ export default class Logs extends Vue {
     return newStack;
   }
 
-  // TODO: Refactor data parsing into own function
+
   private _isLogEqual(l1: ILog, l2: ILog) {
-    let msg1 = l1.msg
-      , msg2 = l2.msg
-      , data1 =
-          ~l1.msg.indexOf('?')
-            ? l1.msg.split('?')[1]
-            : null
-      , data2 =
-          ~l2.msg.indexOf('?')
-            ? l2.msg.split('?')[1]
-            : null
-    ;
 
     return (
          l1.identity == l2.identity
       && l1.type == l2.type
-      && msg1 == msg2
-      && data1 == data2
+      && l1.msg == l2.msg
+      && l1.method == l2.method
+      && l1.statusCode == l2.statusCode
+      && l1.localeDateString == l2.localeDateString
+      && this._isDataEqual(l1, l2)
     );
+  }
+
+
+  private _isDataEqual(l1: ILog, l2: ILog) {
+    if (l1.data && l2.data) {
+      // Check data length
+      if (Object.keys(l1.data).length != Object.keys(l2.data).length) return false;
+
+      for (const key in l1.data) {
+        if (!l2.data[key]) return false;
+        if (l1.data[key] != l2.data[key]) return false;
+      }
+      return true;
+    }
+    return l1.data == l2.data;
   }
 
 

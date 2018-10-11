@@ -1,0 +1,14 @@
+.stat-display {
+  display: inline;
+  padding: 0 5px;
+  text-align: center;
+  .title {
+    display: block;
+    padding-bottom: 10px;
+  }
+  .display {
+    padding-bottom: 3px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+  }
+}

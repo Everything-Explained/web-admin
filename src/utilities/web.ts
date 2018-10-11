@@ -1,11 +1,12 @@
 
-export type WebGet = (url: string, options?: RequestInit) => Promise<any>;
-export type WebPost = (url: string, options?: RequestInit) => Promise<any>;
+export type webGet = (url: string, options?: RequestInit) => Promise<any>;
+export type webDelete = (url: string) => Promise<any>;
+export type webPost = (url: string, body: any, options?: RequestInit) => Promise<any>;
 
 
 export class Web {
 
-  constructor() {}
+  constructor() { }
 
   public get(url: string, options?: RequestInit) {
     const method = 'GET';
@@ -21,26 +22,37 @@ export class Web {
 
   public post(url: string, body: any, options?: RequestInit) {
 
-    const method = 'POST'
-    let contentType = '';
+    const method = 'POST';
+    let contentType = ''
+      , data = null
+    ;
 
-    if (typeof body != 'object') {
-      contentType = 'text/plain';
-    }
-    else {
-      contentType = 'application/json';
+    if (body) {
+      if (typeof body == 'object') {
+        contentType = 'application/json';
+        data = JSON.stringify(body);
+      }
+      else {
+        contentType = 'text/plain';
+        data = body;
+      }
     }
 
     options = Object.assign(
       {
         method,
-        headers: { 'Content-Type': contentType},
-        body,
+        headers: { 'Content-Type': contentType },
       },
       options,
     );
 
     return this._fetch(url, options);
+  }
+
+  public delete(url: string) {
+    return this.post(url, null, {
+      method: 'DELETE',
+    });
   }
 
   private async _fetch(url: string, options: RequestInit) {

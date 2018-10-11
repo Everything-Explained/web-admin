@@ -1,6 +1,10 @@
 <template>
   <div class="log-display">
-    <MySelect :options="files" :title="selectTitle" @select="selectFile"></MySelect>
+    <div class="log-controls">
+      <MySelect :options="files" :title="selectTitle" @select="selectFile"></MySelect>
+      <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Log Count'" :display="logResponseLength"></StatDisplay>
+      <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Lines'" :display="logLines"></StatDisplay>
+    </div>
     <div class="log-scroll">
       <ul class="log-tray">
         <li v-for='log of logs'
@@ -31,6 +35,12 @@
         </li>
 
       </ul>
+    </div>
+    <div class="log-controls">
+      <button class="standard">Start Poll</button>
+      <button class="dangerous" @click="clearFile(selectedLog)">clear</button>
+      <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Render'" :display="renderPerf"></StatDisplay>
+      <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Request'" :display="requestPerf"></StatDisplay>
     </div>
   </div>
 </template>

@@ -15,7 +15,7 @@ $cmpt-darkest: desaturate(darken($cmpt, 45%), 70%);
 $cmpt-darkturbo: desaturate(darken($cmpt, 61%), 75%);
 $cmpt-darkultra: desaturate(darken($cmpt, 65%), 75%);
 
-$bg: hsl(240, 20%, 13%);
+$bg: hsl(240, 20%, 14%);
 $bg-dark: darken($bg, 3%);
 $bg-darker: darken($bg, 5%);
 $bg-light: lighten($bg, 3%);
