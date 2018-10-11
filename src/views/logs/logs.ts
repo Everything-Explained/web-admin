@@ -76,20 +76,20 @@ export default class Logs extends Vue {
     logLevels[50] = 'error';
 
     const params = 'type=request';
-    const files = await this.webGet(`${papiPath}logs?${params}`);
-    this.files = files;
+    const {status, data} = await this.webGet(`${papiPath}logs?${params}`);
+    this.files = data;
   }
 
   public async selectFile(file: string) {
     performance.mark('webGetBegin');
-    const logs = await this.webGet(`${papiPath}logger/${file}?length=500`) as string[];
+    const {status, data} = await this.webGet(`${papiPath}logger/${file}?length=500`);
     performance.mark('webGetEnd');
     performance.measure('webGet', 'webGetBegin', 'webGetEnd');
     this.requestPerf = this._measure('webGet');
 
     const logObjs = [];
 
-    for (const log of logs) {
+    for (const log of data) {
       if (log)
         logObjs.push(JSON.parse(log));
     }
@@ -100,15 +100,18 @@ export default class Logs extends Vue {
     performance.measure('logRender', 'logRenderStart', 'logRenderEnd');
     this.renderPerf = this._measure('logRender');
 
-    this.logResponseLength = logs.length;
+    this.logResponseLength = data.length;
     this.logLines = this.logs.length;
     this.selectedLog = file;
   }
 
 
   public async clearFile(file: string) {
-    let resp = await this.webDelete(`${papiPath}test/${file}`);
-    console.log(resp)
+    const {status, data} = await this.webDelete(`${papiPath}logger/${file}`);
+    if (status == 200) {
+      this.selectFile(file);
+    }
+    else throw new Error(`Could not Clear File:: ${file} :: ${status}`);
   }
 
 
@@ -345,17 +348,14 @@ export default class Logs extends Vue {
     if (log.url == '/') {
       type = 'FILE';
     }
-    else if (~log.url.indexOf('/protected/')) {
-      type = 'PAPI';
-    }
-    else if (~log.url.indexOf('/internal/')) {
-      type = 'IAPI';
-    }
-    else if (log.data) {
+    else if (log.data && log.method == 'GET') {
       type = 'QUERY';
     }
-    else if (urlParts.length > 1 && !~urlParts.pop()!.indexOf('/')) {
+    else if (urlParts.length > 1 && !~urlParts.pop()!.indexOf('/') && log.method == 'GET') {
       type = 'FILE';
+    }
+    else {
+      type = log.method;
     }
 
     return type;

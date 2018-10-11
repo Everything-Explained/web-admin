@@ -2,10 +2,10 @@
   <div class="log-details-container" v-if="log.open">
 
     <div class="table log-details">
-      <div class="tr">
+      <!-- <div class="tr">
         <div class="cell">Date =></div>
-        <div class="cell">{{ log.time | dateTime('MMMM wo, YYYY') }}</div>
-      </div>
+        <div class="cell">{{ log.time | dateTime('MMMM Mo, YYYY') }}</div>
+      </div> -->
       <div class="tr">
         <div class="cell">UID =></div>
         <div class="cell">{{ log.uid }}</div>

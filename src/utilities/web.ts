@@ -1,6 +1,7 @@
+import { relativeTimeRounding } from 'moment';
 
-export type webGet = (url: string, options?: RequestInit) => Promise<any>;
-export type webDelete = (url: string) => Promise<any>;
+export type webGet = (url: string, options?: RequestInit) => Promise<{ status: number; data: any }>;
+export type webDelete = (url: string) => Promise<{ status: number; data: any }>;
 export type webPost = (url: string, body: any, options?: RequestInit) => Promise<any>;
 
 
@@ -59,15 +60,19 @@ export class Web {
     const resp = await fetch(url, options)
         , contentType = resp.headers.get('Content-Type') || ''
     ;
+    let data = null;
 
     if (~contentType.indexOf('application/json')) {
-      return resp.json();
+      data = resp.json();
     }
-    if (~contentType.indexOf('image/')) {
-      return resp.blob();
+    else if (~contentType.indexOf('image/')) {
+      data = resp.blob();
     }
     else {
-      return resp.text();
+      data = resp.text();
     }
+
+    return { status: resp.status, data: await data };
   }
 }
+
