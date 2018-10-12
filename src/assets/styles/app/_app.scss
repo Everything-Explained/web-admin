@@ -99,6 +99,25 @@ button {
     }
   }
 
+  &:disabled {
+    color: hsl(0, 0%, 50%);
+    box-shadow: none;
+    cursor: not-allowed;
+
+    &::before {
+      background-color: hsla(0, 0%, 60%, 0.3);
+    }
+
+    &::after {
+      border: 1px solid hsla(0, 0%, 60%, 0.5);
+      background-color: hsla(0, 0%, 60%, 0.1);
+    }
+
+    &:hover {
+      color: hsl(10, 60%, 60%);
+    }
+  }
+
   &:active {
     top: 2px;
     left: 2px;

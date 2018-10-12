@@ -62,10 +62,12 @@ export default class Logs extends Vue {
   public selectTitle = 'Select a Log';
 
   public logLines = 0;
-  public logResponseLength = 0;
+  public rawLogLength = 0;
   public requestPerf = '0ms';
   public renderPerf = '0ms';
   public selectedLog = '';
+
+  public logPollInterval: any = null;
 
   public async created() {
     const logLevels = this.$data.logLevels;
@@ -80,16 +82,28 @@ export default class Logs extends Vue {
     this.files = data;
   }
 
-  public async selectFile(file: string) {
-    performance.mark('webGetBegin');
-    const {status, data} = await this.webGet(`${papiPath}logger/${file}?length=500`);
-    performance.mark('webGetEnd');
-    performance.measure('webGet', 'webGetBegin', 'webGetEnd');
-    this.requestPerf = this._measure('webGet');
+  public async selectFile(file: string, data?: string[]) {
+
+    let logs: string[] = [];
+
+    if (!data) {
+      performance.mark('webGetBegin');
+      const {status, data} = await this.webGet(`${papiPath}logger/${file}?length=500`);
+      logs = data;
+      performance.mark('webGetEnd');
+      performance.measure('webGet', 'webGetBegin', 'webGetEnd');
+      this.requestPerf = this._measure('webGet');
+      this.rawLogLength = logs.length;
+    }
+    else {
+      if (data.length == this.rawLogLength) return;
+      logs = data;
+      this.rawLogLength = logs.length;
+    }
 
     const logObjs = [];
 
-    for (const log of data) {
+    for (const log of logs) {
       if (log)
         logObjs.push(JSON.parse(log));
     }
@@ -100,7 +114,6 @@ export default class Logs extends Vue {
     performance.measure('logRender', 'logRenderStart', 'logRenderEnd');
     this.renderPerf = this._measure('logRender');
 
-    this.logResponseLength = data.length;
     this.logLines = this.logs.length;
     this.selectedLog = file;
   }
@@ -112,6 +125,20 @@ export default class Logs extends Vue {
       this.selectFile(file);
     }
     else throw new Error(`Could not Clear File:: ${file} :: ${status}`);
+  }
+
+
+  public async togglePollLogs(file: string) {
+    if (this.logPollInterval) {
+      clearInterval(this.logPollInterval);
+      this.logPollInterval = null;
+    }
+    else {
+      this.logPollInterval = setInterval(async () => {
+        const {status, data} = await this.webGet(`${papiPath}logger/${file}?poll=true`);
+        this.selectFile(file, data);
+      }, 500);
+    }
   }
 
 
