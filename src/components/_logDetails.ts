@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import Logs, { ILog } from '@/views/logs/_logs';
+import { LogRequests } from '@/views/logs/_logRequests';
 
 @Component({
   props: {
@@ -13,6 +14,8 @@ import Logs, { ILog } from '@/views/logs/_logs';
 export default class LogDetails extends Vue {
 
   public logLevels = [] as number[];
+
+  public LogRequests = LogRequests;
 
   public created() {
     const lls = this.$data.logLevels;

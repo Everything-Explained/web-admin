@@ -72,6 +72,9 @@ export default class Logs extends Vue {
   public logPollInterval: any = null;
   private _logRequests!: LogRequests;
 
+
+
+
   get logPerf() {
     return (
       parseInt(this.requestPerf, 10) +
@@ -79,6 +82,9 @@ export default class Logs extends Vue {
       parseInt(this.renderPerf, 10) + 'ms'
     );
   }
+
+
+
 
   public async created() {
     const logLevels = this.$data.logLevels;
@@ -106,6 +112,7 @@ export default class Logs extends Vue {
     }
   }
 
+
   public async selectFile(file: string, poll = false) {
 
     const {changed, data} = await this._logRequests.getLogs(poll ? `${file}?poll=true` : file);
@@ -116,7 +123,6 @@ export default class Logs extends Vue {
       performance.measure('ApplyLogs', 'ApplyLogsStart', 'ApplyLogsEnd');
       this.renderPerf = Web.measure('ApplyLogs');
     }
-
 
     this.logLines = this.logs.length;
     this.requestPerf = this._logRequests.reqTime;
@@ -181,7 +187,7 @@ export default class Logs extends Vue {
 
   public getRequestCount(log: ILog) {
     const requests = log.requests
-        , children = this.countChildren(log)
+        , children = LogRequests.countChildren(log)
     ;
     let countStr = '';
 

@@ -18,7 +18,25 @@ export class LogRequests {
   public reqTime = '';
   public filterTime = '';
 
+
+
+
+  public static countChildren(log: ILog) {
+    if (log.children.length) {
+      return log.children.reduce((acc, cv) => {
+        return acc + cv.children.length;
+      }, log.children.length);
+    }
+    return 0;
+  }
+
+
+
+
   constructor(private _webGetter: webGet, private _basePath: string) {}
+
+
+
 
   public async getLogs(fileName: string) {
 
@@ -30,11 +48,11 @@ export class LogRequests {
     performance.measure('webGet', 'webGetBegin', 'webGetEnd');
     this.reqTime = Web.measure('webGet');
 
-    if (   this.lastFileName == fileName
-        && this.lastFileLength == data.length)
-    {
-      return {changed: false, data: this.lastFilteredFile };
-    }
+    // if (   this.lastFileName == fileName
+    //     && this.lastFileLength == data.length)
+    // {
+    //   return {changed: false, data: this.lastFilteredFile };
+    // }
 
     this.lastFileLength = data.length;
     this.lastFileName = fileName;
@@ -62,12 +80,16 @@ export class LogRequests {
   private _filterLogs(logs: ILog[]) {
     const LOGS: ILog[] = [];
     while (logs.length) {
-      let tempLogs = [];
-      const log = logs[0];
+      const log = logs[0]
+          , tempLogs: ILog[] = []
+      ;
       log.children = [];
       log.open = false;
-      tempLogs = logs.filter(l => l.uid == log.uid);
-      logs = logs.filter(l => l.uid != log.uid);
+      logs = logs.filter(l => {
+        if (l.uid != log.uid) return true;
+        tempLogs.push(l);
+        return false;
+      });
       LOGS.push(this._linkLogs(tempLogs));
     }
 
@@ -135,12 +157,16 @@ export class LogRequests {
    */
   private _linkDuplicates(logs: ILog[]) {
     const LOGS = [] as ILog[];
-    let templogs = [];
 
     while (logs.length) {
-      const log = logs[0];
-      templogs = logs.filter(l => this._isLogEqual(l, log));
-      this._deleteFilteredLogs(templogs, logs);
+      const log = logs[0]
+          , templogs: ILog[] = []
+      ;
+      logs = logs.filter(l => {
+        if (!this._isLogEqual(l, log)) return true;
+        templogs.push(l);
+        return false;
+      });
       templogs.splice(0, 1);
       log.children = (templogs.length) ? templogs : [];
       LOGS.push(log);
@@ -152,27 +178,32 @@ export class LogRequests {
 
   private _linkTypes(logs: ILog[]) {
     const LOGS = [] as ILog[];
-    let tempLogs = [] as ILog[];
 
     while (logs.length) {
       const log = logs[0]
           , tempILogs = [] as ILog[]
-          , identLogs = logs.filter(l => log.identity == l.identity)
       ;
+      let identLogs = [] as ILog[];
+
+      logs = logs.filter(l => {
+        if (log.identity != l.identity) return true;
+        identLogs.push(l);
+        return false;
+      });
 
       while (identLogs.length) {
         const iLog = identLogs[0];
+        let tempLogs: ILog[] = [];
+
         if (iLog.level < 40) {
-          tempLogs =
-            identLogs.filter(l => {
-              return (
-                    iLog.type == l.type
-                && this._isDataEqual(iLog, l)
-                && l.level < 40
-              );
-            })
-          ;
-          this._deleteFilteredLogs(tempLogs, identLogs);
+          identLogs = identLogs.filter(l => {
+            if (!(   iLog.type == l.type
+                  && this._isDataEqual(iLog, l)
+                  && l.level < 40)) return true
+            ;
+            tempLogs.push(l);
+            return false;
+          });
           tempLogs.splice(0, 1);
         }
         else {
@@ -184,25 +215,10 @@ export class LogRequests {
         iLog.children = (tempLogs.length) ? tempLogs : [];
         tempILogs.push(iLog);
       }
-      logs = logs.filter(l => log.identity != l.identity);
+
       LOGS.push(...tempILogs);
     }
     return LOGS;
-  }
-
-
-  /**
-   * Removes a filtered set of logs from the specified
-   * pool of logs.
-   *
-   * @param filtered Filtered logs
-   * @param pool Unfiltered pool of logs
-   */
-  private _deleteFilteredLogs(filtered: ILog[], pool: ILog[]) {
-    filtered.forEach(l => {
-      pool.splice(pool.findIndex(ll => ll.uid == l.uid), 1);
-    });
-    return pool;
   }
 
 
@@ -278,6 +294,9 @@ export class LogRequests {
       && this._isDataEqual(l1, l2)
     );
   }
+
+
+
 
 
 
