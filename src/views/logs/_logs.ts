@@ -3,7 +3,7 @@ import Component from 'vue-class-component';
 import LogDetails from '../../components/LogDetails.vue';
 import MySelect from '../../components/MySelect.vue';
 import StatDisplay from '../../components/StatDisplay.vue';
-import { webGet, webPost, webDelete } from '@/utilities/web';
+import { webGet, webPost, webDelete, Web } from '@/utilities/web';
 import { LogRequests } from './_logRequests';
 
 export interface ILogData {
@@ -65,12 +65,20 @@ export default class Logs extends Vue {
   public logLines = 0;
   public rawLogLength = 0;
   public requestPerf = '0ms';
+  public filterPerf = '0ms';
   public renderPerf = '0ms';
   public selectedLog = '';
 
   public logPollInterval: any = null;
-
   private _logRequests!: LogRequests;
+
+  get logPerf() {
+    return (
+      parseInt(this.requestPerf, 10) +
+      parseInt(this.filterPerf, 10) +
+      parseInt(this.renderPerf, 10) + 'ms'
+    );
+  }
 
   public async created() {
     const logLevels = this.$data.logLevels;
@@ -96,25 +104,30 @@ export default class Logs extends Vue {
         this.$emit('notify', err.message);
       }
     }
-
-
   }
 
   public async selectFile(file: string, poll = false) {
 
     const {changed, data} = await this._logRequests.getLogs(poll ? `${file}?poll=true` : file);
-    if (changed) this.logs = data;
+    if (changed) {
+      performance.mark('ApplyLogsStart');
+      this.logs = data;
+      performance.mark('ApplyLogsEnd');
+      performance.measure('ApplyLogs', 'ApplyLogsStart', 'ApplyLogsEnd');
+      this.renderPerf = Web.measure('ApplyLogs');
+    }
 
 
     this.logLines = this.logs.length;
     this.requestPerf = this._logRequests.reqTime;
     this.rawLogLength = this._logRequests.lastFileLength;
-    this.renderPerf = this._logRequests.processTime;
+    this.filterPerf = this._logRequests.filterTime;
+
     this.selectedLog = file;
   }
 
 
-  public async clearFile(file: string) {
+  public async eraseFile(file: string) {
     const {status, data} = await this.webDelete(`${papiPath}logger/${file}`);
     if (status == 200) {
       this.selectFile(file);

@@ -3,7 +3,7 @@
 <div class="log-display">
   <div class="log-controls">
     <MySelect :options="files" :title="selectTitle" @select="selectFile"></MySelect>
-    <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Log Count'" :display="rawLogLength"></StatDisplay>
+    <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Log Count'" :display="rawLogLength"></StatDisplay>
     <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Lines'" :display="logLines"></StatDisplay>
   </div>
   <div class="log-scroll"
@@ -51,8 +51,10 @@
             :disabled="!selectedLog"
       >clear
     </button>
+    <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Total'" :display="logPerf"></StatDisplay>
     <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Render'" :display="renderPerf"></StatDisplay>
-    <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Request'" :display="requestPerf"></StatDisplay>
+    <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Filter'" :display="filterPerf"></StatDisplay>
+    <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Request'" :display="requestPerf"></StatDisplay>
   </div>
 </div>
 

@@ -85,6 +85,7 @@
 .log-stat {
   float: right;
   width: 110px;
+  margin-right: 20px;
   .title {
     font-size: 0.9em;
     color: $pmry-dark;
@@ -94,18 +95,11 @@
     border-bottom-color: $pmry-darker;
   }
 }
-.log-stat-count, .log-stat-lines {
-  position: absolute;
-  top: -10px;
-}
-
 .log-stat-count {
-  right: 40px;
   color: $warn-accent;
 }
 .log-stat-lines {
   color: $good-accent;
-  right: 180px;
 }
 
 

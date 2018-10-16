@@ -16,7 +16,7 @@ export class LogRequests {
   public lastFileName = '';
 
   public reqTime = '';
-  public processTime = '';
+  public filterTime = '';
 
   constructor(private _webGetter: webGet, private _basePath: string) {}
 
@@ -44,7 +44,7 @@ export class LogRequests {
     this.lastFilteredFile = this._filterLogs(logs);
     performance.mark('filterProcessEnd');
     performance.measure('filterProc', 'filterProcessStart', 'filterProcessEnd');
-    this.processTime = Web.measure('filterProc');
+    this.filterTime = Web.measure('filterProc');
 
     return {changed: true, data: this.lastFilteredFile };
   }
