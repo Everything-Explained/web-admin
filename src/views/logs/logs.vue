@@ -6,7 +6,10 @@
     <StatDisplay v-if="logs.length" class="log-stat log-stat-count" :title="'Log Count'" :display="rawLogLength"></StatDisplay>
     <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Lines'" :display="logLines"></StatDisplay>
   </div>
-  <div class="log-scroll">
+  <div class="log-scroll"
+       :class="{watermark: logs.length == 0}"
+       data-text="Empty or Unselected File"
+  >
     <ul class="log-tray">
       <li v-for='log of logs'
           :key='log.uid'
@@ -24,7 +27,7 @@
           <span class="ip"
             >{{log.identity == '127.0.0.1' ? 'localhost' : log.identity}}
           </span>
-          <span class="method">{{ getLogType(log) }}</span>
+          <span class="method">{{ log.type }}</span>
           <span class="message" :class="getLevel(log)">{{ getMessage(log) }}</span>
           <span class="log-count"
                 :class="getLevel(log)"
@@ -39,7 +42,7 @@
   </div>
   <div class="log-controls">
     <button class="standard"
-            :disabled="!selectedLog"
+            :disabled="!selectedLog || selectedLog != 'requests.log'"
             @click="togglePollLogs(selectedLog)"
       > {{ logPollInterval ? 'Stop Polling' : 'Start Polling' }}
     </button>
@@ -57,5 +60,5 @@
 </template>
 
 
-<script lang="ts" src="./logs.ts"></script>
+<script lang="ts" src="./_logs.ts"></script>
 <style lang="scss" src="./_logs.scss"></style>

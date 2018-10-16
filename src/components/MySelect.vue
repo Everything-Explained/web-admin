@@ -19,5 +19,5 @@
 
 
 
-<script lang="ts" src="./myselect.ts"></script>
-<style lang="scss" src='./_myselect.scss'></style>
+<script lang="ts" src="./_mySelect.ts"></script>
+<style lang="scss" src='./_mySelect.scss'></style>

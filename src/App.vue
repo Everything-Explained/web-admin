@@ -4,6 +4,7 @@
       <router-link to="/">Chickens</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
+    <div class="error-note" :class="{active: !!noteText}" :data-text="noteText"></div>
     <input type="checkbox" id="MenuFlag" ref="flag" />
     <label id="MenuIcon" for="MenuFlag"></label>
     <nav id="MainMenu">
@@ -14,11 +15,11 @@
         <li><span class="material-icons">recent_actors</span> Users</li>
       </ul>
     </nav>
-    
+
     <header>
     </header>
 
-    <router-view id="RouterView" />
+    <router-view id="RouterView" @notify="setNote" />
   </div>
 </template>
 

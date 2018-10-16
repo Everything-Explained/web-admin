@@ -76,6 +76,6 @@
 
 </template>
 
-<script lang='ts' src='./log-details.ts'></script>
-<style lang='scss' src='./_log-details.scss'></style>
+<script lang='ts' src='./_logDetails.ts'></script>
+<style lang='scss' src='./_logDetails.scss'></style>
 

@@ -7,24 +7,28 @@ Vue.filter('dateTime', (date: string, format: string) => {
   return moment(date).format(format);
 });
 
-@Component({
-  created: function() {
+@Component
+export default class App extends Vue {
+
+  public noteText = '';
+
+  public created() {
     this.$data.MenuFlag = document.getElementById('MenuFlag');
-  },
-  methods: {
-    goTo: function(route) {
-      const router = this.$router
-        , el = this.$refs.flag as HTMLInputElement
-      ;
-
-      router.push(route);
-
-      // Wait for Vue router to replace div
+    this.$router.afterEach((to, from) => {
       setTimeout(() => {
-        el.checked = false;
-      }, 70);
-    },
-  },
-})
+        this.$refs.flag.checked = false;
+      }, 30);
+    });
+  }
 
-export default class App extends Vue {}
+  public goTo(route: string) {
+    const router = this.$router
+    ;
+    router.push(route);
+  }
+
+
+  public setNote(text: string) {
+    this.noteText = text;
+  }
+}

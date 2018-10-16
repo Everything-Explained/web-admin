@@ -74,5 +74,16 @@ export class Web {
 
     return { status: resp.status, data: await data };
   }
+
+  public static measure(name: string) {
+    let timing = performance.getEntriesByName(name)[0].duration;
+    const timingStr =
+      (timing > 1000)
+        ? (timing /= 1000).toFixed(2) + 's'
+        : timing.toFixed(0) + 'ms'
+    ;
+    performance.clearMeasures(name);
+    return timingStr;
+  }
 }
 
