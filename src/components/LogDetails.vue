@@ -66,7 +66,7 @@
         <span class="message" :class="$parent.getLevel(clog)">{{ $parent.getMessage(clog) }}</span>
         <span class="child-count"
               v-if="clog.children.length">
-          {{ $parent.countChildren(clog) + 1 }}
+          {{ clog.children.length }}
         </span>
       </li>
     </ul>
