@@ -21,7 +21,8 @@
         "prefer-for-of": false,
         "one-line": false,
         "forin": false,
-        "variable-name": false
+        "variable-name": false,
+        "trailing-comma": false,
     },
     "rulesDirectory": []
 }
