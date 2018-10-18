@@ -4,7 +4,7 @@
       <router-link to="/">Chickens</router-link> |
       <router-link to="/about">About</router-link>
     </div> -->
-    <div class="error-note" :class="{active: !!noteText}" :data-text="noteText"></div>
+    <div class="error-note" :class="{active: !!noteText}" @click="setNote('')" :data-text="noteText"></div>
     <input type="checkbox" id="MenuFlag" ref="flag" />
     <label id="MenuIcon" for="MenuFlag"></label>
     <nav id="MainMenu">
