@@ -44,10 +44,10 @@
     <button class="standard"
             :disabled="!selectedLog || selectedLog != 'requests.log'"
             @click="togglePollLogs(selectedLog)"
-      > {{ logPollInterval ? 'Stop Polling' : 'Start Polling' }}
+      >{{ logPollInterval ? 'Stop Polling' : 'Start Polling' }}
     </button>
     <button class="dangerous"
-            @click="clearFile(selectedLog)"
+            @click="eraseFile(selectedLog)"
             :disabled="!selectedLog"
       >clear
     </button>

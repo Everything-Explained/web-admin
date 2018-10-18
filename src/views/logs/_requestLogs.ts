@@ -1,13 +1,49 @@
-import { webGet, Web } from '@/utilities/web';
-import { ILog } from './_logs';
+import { Web } from '@/utilities/web';
+import { LogHelper } from './_logHelper';
 
-interface IRawLog {
+export interface IRawLog {
   status: number;
-  data: string[];
+  data: string;
+}
+
+export interface ILogData {
+  uid: string;
+  identity: string; // IP or Session Alias
+  browser: string;  // USER-AGENT String
+  msg: string;
+  level: number;
+  req?: {
+    method: string;
+    url: string;
+    type: string;
+    data: any;
+  };
+  time: string;
+  err?: {
+    msg: string;
+    name: string;
+    stack: string;
+  };
+}
+
+export interface ILog extends ILogData {
+  msgs: string[];
+  time: string;
+  localeDateString: string;
+  method: string;
+  url: string;
+  type: string;
+  data: any;
+  statusCode: number;
+  statusMsg: string;
+  priority: number;
+  children: ILog[];
+  requests: number;
+  open?: boolean;
 }
 
 
-export class LogRequests {
+export class RequestLogs {
 
   public rawLogs: string[] = [];
 
@@ -18,62 +54,44 @@ export class LogRequests {
   public reqTime = '';
   public filterTime = '';
 
+  public path = 'https://localhost:5007/protected/logs/requests';
 
 
-
-  public static countChildren(log: ILog) {
-    if (log.children.length) {
-      return log.children.reduce((acc, cv) => {
-        return acc + cv.children.length;
-      }, log.children.length);
-    }
-    return 0;
-  }
+  constructor(private _web: Web) {}
 
 
 
 
-  constructor(private _webGetter: webGet, private _basePath: string) {}
+  public async getLog(fileName: string) {
 
-
-
-
-  public async getLogs(fileName: string) {
-
-    performance.mark('webGetBegin');
-    const {status, data} =
-              await this._webGetter(`${this._basePath}/${fileName}`) as IRawLog
+    const { logReqTime, data } = await LogHelper.getLogData(`${this.path}/${fileName}`, this._web)
+        , logs = LogHelper.parseLogs(data)
     ;
-    performance.mark('webGetEnd');
-    performance.measure('webGet', 'webGetBegin', 'webGetEnd');
-    this.reqTime = Web.measure('webGet');
 
-    // if (   this.lastFileName == fileName
-    //     && this.lastFileLength == data.length)
-    // {
-    //   return {changed: false, data: this.lastFilteredFile };
-    // }
+    if (   this.lastFileName == fileName
+        && this.lastFileLength == logs.length)
+    {
+      return {changed: false, data: this.lastFilteredFile };
+    }
 
-    this.lastFileLength = data.length;
-    this.lastFileName = fileName;
+    Web.timeIt('filterLog', 'filter', () => {
+      this.lastFileLength = logs.length;
+      this.lastFileName = fileName;
+      this.lastFilteredFile = this._filterLogs(logs);
+    });
 
-    performance.mark('filterProcessStart');
-    const logs = this._parseLogs(data);
-    this.lastFilteredFile = this._filterLogs(logs);
-    performance.mark('filterProcessEnd');
-    performance.measure('filterProc', 'filterProcessStart', 'filterProcessEnd');
-    this.filterTime = Web.measure('filterProc');
+
+    setTimeout(() => {
+      this.reqTime = logReqTime;
+      this.filterTime = Web.measure('filterLog');
+    }, 10);
 
     return {changed: true, data: this.lastFilteredFile };
   }
 
 
-  private _parseLogs(logs: string[]) {
-    const logObjs = [];
-    for (const log of logs) {
-      if (log) logObjs.push(JSON.parse(log));
-    }
-    return logObjs;
+  public deleteLog(filename: string) {
+    return this._web.delete(`${this.path}/${filename}`);
   }
 
 
