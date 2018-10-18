@@ -1,13 +1,14 @@
 import { relativeTimeRounding } from 'moment';
 
-export type webGet = (url: string, options?: RequestInit) => Promise<{ status: number; data: any }>;
-export type webDelete = (url: string) => Promise<{ status: number; data: any }>;
-export type webPost = (url: string, body: any, options?: RequestInit) => Promise<any>;
-
-
 export class Web {
 
+
+
+
   constructor() { }
+
+
+
 
   public get(url: string, options?: RequestInit) {
     const method = 'GET';
@@ -20,6 +21,7 @@ export class Web {
 
     return this._fetch(url, options);
   }
+
 
   public post(url: string, body: any, options?: RequestInit) {
 
@@ -50,11 +52,13 @@ export class Web {
     return this._fetch(url, options);
   }
 
+
   public delete(url: string) {
     return this.post(url, null, {
       method: 'DELETE',
     });
   }
+
 
   private async _fetch(url: string, options: RequestInit) {
     const resp = await fetch(url, options)
@@ -75,15 +79,34 @@ export class Web {
     return { status: resp.status, data: await data };
   }
 
-  public static measure(name: string) {
-    let timing = performance.getEntriesByName(name)[0].duration;
+
+  public static measure(timeName: string) {
+    const entry = performance.getEntriesByName(timeName);
+    if (!entry.length) return '0ms';
+    let duration = entry[0].duration;
     const timingStr =
-      (timing > 1000)
-        ? (timing /= 1000).toFixed(2) + 's'
-        : timing.toFixed(0) + 'ms'
+      (duration > 1000)
+        ? (duration /= 1000).toFixed(2) + 's'
+        : duration.toFixed(0) + 'ms'
     ;
-    performance.clearMeasures(name);
+    performance.clearMeasures(timeName);
     return timingStr;
+  }
+
+
+  public static timeIt(name: string, prefix: string, cb: () => void) {
+    performance.mark(`${prefix}PerfStart`);
+    cb();
+    performance.mark(`${prefix}PerfEnd`);
+    performance.measure(name, `${prefix}PerfStart`, `${prefix}PerfEnd`);
+  }
+
+
+  public static async timeItAsync(name: string, prefix: string, cb: () => void) {
+    performance.mark(`${prefix}PerfStart`);
+    await cb();
+    performance.mark(`${prefix}PerfEnd`);
+    performance.measure(name, `${prefix}PerfStart`, `${prefix}PerfEnd`);
   }
 }
 
