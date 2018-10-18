@@ -6,15 +6,7 @@ import { Web } from './utilities/web';
 const WEB = new Web();
 Vue.mixin({
   methods: {
-    webGet: (url, options) => {
-      return WEB.get(url, options || undefined);
-    },
-    webPost: (url, data, options) => {
-      return WEB.post(url, data, options || undefined);
-    },
-    webDelete: (url) => {
-      return WEB.delete(url);
-    },
+    initWeb: () => WEB,
   },
 });
 

@@ -3,47 +3,11 @@ import Component from 'vue-class-component';
 import LogDetails from '../../components/LogDetails.vue';
 import MySelect from '../../components/MySelect.vue';
 import StatDisplay from '../../components/StatDisplay.vue';
-import { webGet, webPost, webDelete, Web } from '@/utilities/web';
-import { LogRequests } from './_logRequests';
-
-export interface ILogData {
-  uid: string;
-  identity: string; // IP or Session Alias
-  browser: string;  // USER-AGENT String
-  msg: string;
-  level: number;
-  req?: {
-    method: string;
-    url: string;
-    type: string;
-    data: any;
-  };
-  time: string;
-  err?: {
-    msg: string;
-    name: string;
-    stack: string;
-  };
-}
-
-export interface ILog extends ILogData {
-  msgs: string[];
-  time: string;
-  localeDateString: string;
-  method: string;
-  url: string;
-  type: string;
-  data: any;
-  statusCode: number;
-  statusMsg: string;
-  priority: number;
-  children: ILog[];
-  requests: number;
-  open?: boolean;
-}
+import { Web } from '@/utilities/web';
+import { RequestLogs, ILog } from './_requestLogs';
+import { ServerLogs } from './_serverLogs';
 
 
-const papiPath = `https://localhost:5007/protected/`;
 
 
 @Component({
@@ -55,9 +19,8 @@ export default class Logs extends Vue {
   public logLevels = [] as number[];
 
   // From Global MIXIN
-  public webGet!: webGet;
-  public webPost!: webPost;
-  public webDelete!: webDelete;
+  public initWeb!: () => Web;
+  public Web!: Web;
 
   public files: string[] = [];
   public selectTitle = 'Select a Log';
@@ -70,7 +33,8 @@ export default class Logs extends Vue {
   public selectedLog = '';
 
   public logPollInterval: any = null;
-  private _logRequests!: LogRequests;
+  private _logRequests!: RequestLogs;
+  private _serverLogs!: ServerLogs;
 
 
 
@@ -88,18 +52,19 @@ export default class Logs extends Vue {
 
   public async created() {
     const logLevels = this.$data.logLevels;
+    this.Web = this.initWeb();
 
     logLevels[20] = 'debug';
     logLevels[30] = 'default';
     logLevels[40] = 'warn';
     logLevels[50] = 'error';
 
-    this._logRequests = new LogRequests(this.webGet, `${papiPath}logger`);
+    this._logRequests = new RequestLogs(this.Web);
+    this._serverLogs = new ServerLogs(this.Web);
 
 
-    const params = 'type=request';
     try {
-      const {status, data} = await this.webGet(`${papiPath}logs?${params}`);
+      const {status, data} = await this.Web.get(`${papiPath}logs/list/requests`);
       this.files = data;
     }
     catch (err) {
@@ -115,30 +80,42 @@ export default class Logs extends Vue {
 
   public async selectFile(file: string, poll = false) {
 
-    const {changed, data} = await this._logRequests.getLogs(poll ? `${file}?poll=true` : file);
-    if (changed) {
-      performance.mark('ApplyLogsStart');
-      this.logs = data;
-      performance.mark('ApplyLogsEnd');
-      performance.measure('ApplyLogs', 'ApplyLogsStart', 'ApplyLogsEnd');
-      this.renderPerf = Web.measure('ApplyLogs');
+    this._serverLogs.getLog('noumenae.log');
+
+    try {
+      const {changed, data} = await this._logRequests.getLog(poll ? `${file}?poll=true` : file);
+      if (changed) {
+        Web.timeIt('applyLogs', 'applyLogs', () => {
+          this.logs = data;
+        });
+      }
+    }
+    catch (err) {
+      this.$emit('notify', err.message);
     }
 
-    this.logLines = this.logs.length;
-    this.requestPerf = this._logRequests.reqTime;
-    this.rawLogLength = this._logRequests.lastFileLength;
-    this.filterPerf = this._logRequests.filterTime;
 
-    this.selectedLog = file;
+
+    setTimeout(() => {
+      this.renderPerf = Web.measure('applyLogs');
+      this.logLines = this.logs.length;
+      this.requestPerf = this._logRequests.reqTime;
+      this.rawLogLength = this._logRequests.lastFileLength;
+      this.filterPerf = this._logRequests.filterTime;
+      this.selectedLog = file;
+    }, 10);
+
   }
 
 
-  public async eraseFile(file: string) {
-    const {status, data} = await this.webDelete(`${papiPath}logger/${file}`);
-    if (status == 200) {
-      this.selectFile(file);
-    }
-    else throw new Error(`Could not Clear File:: ${file} :: ${status}`);
+  public async eraseFile(filename: string) {
+    const { status, data } = await this._logRequests.deleteLog(filename);
+    if (status != 200)
+      throw new Error(`Could not Clear File:: ${filename} :: ${status}`)
+    ;
+    else
+      this.selectFile(filename)
+    ;
   }
 
 
@@ -187,7 +164,7 @@ export default class Logs extends Vue {
 
   public getRequestCount(log: ILog) {
     const requests = log.requests
-        , children = LogRequests.countChildren(log)
+        , children = log.children.length
     ;
     let countStr = '';
 
@@ -200,16 +177,6 @@ export default class Logs extends Vue {
     }
 
     return countStr;
-  }
-
-
-  public countChildren(log: ILog) {
-    if (log.children.length) {
-      return log.children.reduce((acc, cv) => {
-        return acc + cv.children.length;
-      }, log.children.length);
-    }
-    return 0;
   }
 
 
