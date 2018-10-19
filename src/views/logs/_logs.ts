@@ -64,12 +64,17 @@ export default class Logs extends Vue {
 
 
     try {
-      const {status, data} = await this.Web.get(`${papiPath}logs/list/requests`);
+      const {data} = await this._logRequests.listLogs();
       this.files = data;
     }
     catch (err) {
       if (~err.message.indexOf('Failed to fetch')) {
-        this.$emit('notify', "Cannot connect to server; make sure it's started.");
+        this.$emit('notify', `
+          Cannot connect to server;
+          make sure it's started and that you have the proper
+          cert for localhost.
+          Check the console for more details.
+        `);
       }
       else {
         this.$emit('notify', err.message);
@@ -80,7 +85,7 @@ export default class Logs extends Vue {
 
   public async selectFile(file: string, poll = false) {
 
-    this._serverLogs.getLog('noumenae.log');
+    // this._serverLogs.getLog('noumenae.log');
 
     try {
       const {changed, data} = await this._logRequests.getLog(poll ? `${file}?poll=true` : file);
