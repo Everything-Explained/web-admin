@@ -54,7 +54,7 @@ export class RequestLogs {
   public reqTime = '';
   public filterTime = '';
 
-  public path = 'https://localhost:5007/protected/logs/requests';
+  private _path = 'https://localhost:5007/protected/logs';
 
 
   constructor(private _web: Web) {}
@@ -64,7 +64,11 @@ export class RequestLogs {
 
   public async getLog(fileName: string) {
 
-    const { logReqTime, data } = await LogHelper.getLogData(`${this.path}/${fileName}`, this._web)
+    const { logReqTime, data }
+              = await LogHelper.getLogData(
+                  `${this._path}/requests/${fileName}`,
+                  this._web
+                )
         , logs = LogHelper.parseLogs(data)
     ;
 
@@ -89,9 +93,13 @@ export class RequestLogs {
     return {changed: true, data: this.lastFilteredFile };
   }
 
+  public listLogs() {
+    return this._web.get(`${this._path}/list/requests`)
+  }
+
 
   public deleteLog(filename: string) {
-    return this._web.delete(`${this.path}/${filename}`);
+    return this._web.delete(`${this._path}/requests/${filename}`);
   }
 
 
