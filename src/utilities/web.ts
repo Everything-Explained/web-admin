@@ -2,10 +2,26 @@ import { relativeTimeRounding } from 'moment';
 
 export class Web {
 
+  private _statusCodes: string[] = [];
 
 
 
-  constructor() { }
+  constructor() {
+    this._statusCodes[200] = 'Ok';
+    this._statusCodes[201] = 'Created';
+    this._statusCodes[202] = 'Accepted';
+    this._statusCodes[204] = 'No Content';
+    this._statusCodes[205] = 'Reset Content';
+    this._statusCodes[301] = 'Moved Permanently';
+    this._statusCodes[304] = 'Not Modified';
+    this._statusCodes[400] = 'Bad Request';
+    this._statusCodes[401] = 'Unauthorized';
+    this._statusCodes[403] = 'Forbidden';
+    this._statusCodes[404] = 'Not Found';
+    this._statusCodes[500] = 'Internal Server Error';
+    this._statusCodes[501] = 'Not Implemented';
+    this._statusCodes[503] = 'Service Unavailable';
+  }
 
 
 
@@ -61,10 +77,13 @@ export class Web {
 
 
   private async _fetch(url: string, options: RequestInit) {
+
     const resp = await fetch(url, options)
         , contentType = resp.headers.get('Content-Type') || ''
     ;
     let data = null;
+
+    this.isStatusError(resp.status, url);
 
     if (~contentType.indexOf('application/json')) {
       data = resp.json();
@@ -77,6 +96,15 @@ export class Web {
     }
 
     return { status: resp.status, data: await data };
+  }
+
+
+  private isStatusError(status: number, url: string) {
+    if (status >= 400) {
+      throw new Error(`
+          Fetch Error:: ${status} => ${this._statusCodes[status]}\n${url}
+      `)
+    }
   }
 
 
