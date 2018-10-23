@@ -14,7 +14,7 @@ import Component from 'vue-class-component';
   },
 })
 
-// TODO: Add active-arrow toggle
+
 export default class MySelect extends Vue {
 
   // from parent
@@ -22,11 +22,10 @@ export default class MySelect extends Vue {
 
   public selectedIndex = -1;
   public hidden = true;
+  public isActive = !this.hidden;
 
   // When user clicks anywhere else on the document
-  public _blur!: (ev: MouseEvent) => void;
-
-  public isActive = !this.hidden;
+  private _blur!: (ev: MouseEvent) => void;
 
 
   public created() {
@@ -48,6 +47,7 @@ export default class MySelect extends Vue {
   public select(i: number) {
     this.selectedIndex = i;
   }
+
 
   public toggle(ev: MouseEvent, state?: boolean) {
     ev.stopImmediatePropagation();

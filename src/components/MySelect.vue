@@ -6,7 +6,7 @@
            :class="{active: isActive}"
       >{{ selectedIndex < 0 ? title : options[selectedIndex] }}
     </label>
-    <ul class="my-select" v-if="!hidden">
+    <ul class="my-select" :class="{ hidden: hidden }">
       <li class='sel-item'
           v-for="(option,i) of options"
           :key="i"
