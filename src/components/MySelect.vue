@@ -2,7 +2,6 @@
 <template>
   <div class="msel-container" v-if="options.length">
     <label @click="toggle($event)"
-           @blur="toggle($event)"
            :class="{active: isActive}"
       >{{ selectedIndex < 0 ? title : options[selectedIndex] }}
     </label>

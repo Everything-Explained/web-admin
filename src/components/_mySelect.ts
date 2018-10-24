@@ -49,15 +49,16 @@ export default class MySelect extends Vue {
   }
 
 
-  public toggle(ev: MouseEvent, state?: boolean) {
-    ev.stopImmediatePropagation();
-    ev.stopPropagation();
+  public toggle(ev: MouseEvent, passive = false) {
 
-    if (state !== undefined)
-      this.hidden = state;
-    else
-      this.hidden = !this.hidden
-    ;
+    if (passive) this.hidden = true;
+
+    // Stop propogation with active toggle
+    else {
+      ev.stopImmediatePropagation();
+      ev.stopPropagation();
+      this.hidden = !this.hidden;
+    }
 
     this.isActive = !this.hidden;
 
