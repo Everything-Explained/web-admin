@@ -3,20 +3,33 @@ import { Web } from '@/utilities/web';
 import { IRawLog, ILog } from './_requestLogs';
 
 
+export enum LogType {
+  SERVER,
+  HTTP,
+  SOCKET,
+}
+
 
 
 export class LogHelper {
 
-  private _lastFileName = '';
-  private _lastLogUID = '';
-  private _lastFile: ILog[] = [];
+  public levels: string[] = [];
 
+
+  private _lastFileName = '';
+  private _lastLogUID   = '';
+  private _lastFile: ILog[] =  [];
   private _basePath = 'https://localhost:5007/protected/logs';
 
 
 
 
-  constructor(private _web: Web) {}
+  constructor(private _web: Web) {
+    this.levels[20] = 'debug';
+    this.levels[30] = 'default';
+    this.levels[40] = 'warn';
+    this.levels[50] = 'error';
+  }
 
 
 
@@ -42,7 +55,9 @@ export class LogHelper {
   public async getLogs(folder: string, filename: string) {
 
     const { requestTime, log } =
-        await this._getLogFile(`${this._basePath}/${folder}/${filename}`)
+        await this._getLogFile(
+          `${this._basePath}/${folder}/${filename}`
+        )
     ;
 
     let changed = true;
