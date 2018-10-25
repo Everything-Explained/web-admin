@@ -95,6 +95,7 @@ export class LogHelper {
     const { logReqTime, logFile } =
         await this._getLogFile(`${this._basePath}/${folder}/${filename}`)
     ;
+
     let changed = true;
 
     if (this._isSameFile(filename, logFile))
@@ -131,16 +132,19 @@ export class LogHelper {
     if (filename != this._lastFileName) return false;
 
     const logs = rawLogs.split('\n');
-    logs.pop(); // Remove empty line
 
     if (!logs.length && !this._lastFile.length) return true;
 
     const lastLog = JSON.parse(logs[logs.length - 2]) as ILog;
 
-    return (
-         filename == this._lastFileName
-      && lastLog.uid == this._lastLogUID
-    );
+    if (!this._lastLogUID) {
+      this._lastLogUID = lastLog.uid;
+      return true;
+    }
+    else {
+      return lastLog.uid == this._lastLogUID;
+    }
+
   }
 
 
