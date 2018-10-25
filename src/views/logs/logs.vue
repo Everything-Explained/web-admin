@@ -2,7 +2,8 @@
 
 <div class="log-display">
   <div class="log-controls">
-    <MySelect :options="files" :title="selectTitle" @select="selectFile"></MySelect>
+    <MySelect :options="logTypes" :title="'Select Log Type'"></MySelect>
+    <MySelect :options="files" :title="selectTitle" @select="selectLogFile"></MySelect>
     <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Log Count'" :display="rawLogLength"></StatDisplay>
     <StatDisplay v-if="logs.length" class="log-stat log-stat-lines" :title="'Lines'" :display="logLines"></StatDisplay>
   </div>
@@ -35,7 +36,7 @@
             >{{ getRequestCount(log) }}
           </span>
         </div>
-        <LogDetails :log=log></LogDetails>
+        <LogDetails :log=log v-if="log.open"></LogDetails>
       </li>
 
     </ul>
