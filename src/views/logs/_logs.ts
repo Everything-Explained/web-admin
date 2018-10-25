@@ -1,6 +1,6 @@
 import { Vue } from 'vue-property-decorator';
 import Component from 'vue-class-component';
-import LogDetails from '../../components/LogDetails.vue';
+import HttpLogDetails from '../../components/HTTPLogDetails.vue';
 import MySelect from '../../components/MySelect.vue';
 import StatDisplay from '../../components/StatDisplay.vue';
 import { Web } from '@/utilities/web';
@@ -14,7 +14,7 @@ import { LogHelper, LogType } from './_logHelper';
 
 
 @Component({
-  components: { LogDetails, MySelect, StatDisplay },
+  components: { HttpLogDetails, MySelect, StatDisplay },
 })
 export default class Logs extends Vue {
 
@@ -205,10 +205,10 @@ export default class Logs extends Vue {
   }
 
 
-  public getLevel(type: LogType, log: ILog) {
-    if (LogType.HTTP == type) {
+  public getLevel(log: ILog) {
+    // if (LogType.HTTP == type) {
       return this._httpLogs.getLevel(log);
-    }
+    // }
   }
 
 
