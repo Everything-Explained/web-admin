@@ -25,6 +25,11 @@ export class ServerLogs {
 
 
 
+  public getLevel(log: ILog) {
+    return this._logHelper.levels[log.level];
+  }
+
+
   public async getFilteredLogs(filename: string) {
     const { logReqTime, changed, logs } =
               await this._logHelper.getLogs(

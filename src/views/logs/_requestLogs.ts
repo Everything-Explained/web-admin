@@ -52,7 +52,6 @@ export class RequestLogs {
 
 
 
-
   get logs() {
     return this._logHelper.listLogs('requests');
   }
@@ -98,6 +97,27 @@ export class RequestLogs {
   public delete(filename: string) {
     return this._logHelper.deleteLog('requests', filename);
   }
+
+
+  public getLevel(log: ILog) {
+    const level = log.level
+        , url   = log.url
+    ;
+
+    if (url && level < 40) {
+      if (   ~url.indexOf('/protected')
+          || ~url.indexOf('/internal'))
+      {
+        return 'special';
+      }
+    }
+
+    return this._logHelper.levels[level];
+
+  }
+
+
+
 
 
   private _filterLogs(logs: ILog[]) {
@@ -199,6 +219,13 @@ export class RequestLogs {
   }
 
 
+  /**
+   * Assigns logs as children to parent logs of the
+   * same type; specifically by identity unless other
+   * significant identifires exist.
+   *
+   * @param logs The logs array
+   */
   private _linkTypes(logs: ILog[]) {
     const LOGS = [] as ILog[];
 
