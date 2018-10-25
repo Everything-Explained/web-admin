@@ -74,7 +74,10 @@ export class RequestLogs {
               )
     ;
 
-    if (!changed) return { changed, logs: this.lastFilteredLog };
+    if (!changed) {
+      this.reqTime = logReqTime;
+      return { changed, logs: this.lastFilteredLog };
+    }
 
     Web.timeIt('filterLog', 'filter', () => {
       this.lastFilteredLog = this._filterLogs(logs);
