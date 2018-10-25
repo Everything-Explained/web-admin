@@ -45,43 +45,39 @@ export interface ILog extends ILogData {
 
 export class RequestLogs {
 
-  public rawLogs: string[] = [];
-
-  public lastFileLength = 0;
-  public lastFilteredFile = [] as ILog[];
-  public lastFileName = '';
-
+  public lastRawLog: string[] = [];
+  public lastFilteredLog: ILog[] = [];
   public reqTime = '';
   public filterTime = '';
 
-  private _path = 'https://localhost:5007/protected/logs';
-
-
-  constructor(private _web: Web) {}
 
 
 
+  get logs() {
+    return this._logHelper.listLogs('requests');
+  }
 
-  public async getLog(fileName: string) {
 
-    const { logReqTime, data }
-              = await LogHelper.getLogData(
-                  `${this._path}/requests/${fileName}`,
-                  this._web
-                )
-        , logs = LogHelper.parseLogs(data)
+
+
+  constructor(private _web: Web, private _logHelper: LogHelper) {}
+
+
+
+
+  public async getFilteredLogs(filename: string) {
+
+    const { logReqTime, changed, logs } =
+              await this._logHelper.getLogs(
+                'requests',
+                filename
+              )
     ;
 
-    if (   this.lastFileName == fileName
-        && this.lastFileLength == logs.length)
-    {
-      return {changed: false, data: this.lastFilteredFile };
-    }
+    if (!changed) return { changed, logs: this.lastFilteredLog };
 
     Web.timeIt('filterLog', 'filter', () => {
-      this.lastFileLength = logs.length;
-      this.lastFileName = fileName;
-      this.lastFilteredFile = this._filterLogs(logs);
+      this.lastFilteredLog = this._filterLogs(logs);
     });
 
 
@@ -90,16 +86,12 @@ export class RequestLogs {
       this.filterTime = Web.measure('filterLog');
     }, 10);
 
-    return {changed: true, data: this.lastFilteredFile };
-  }
-
-  public listLogs() {
-    return this._web.get(`${this._path}/list/requests`)
+    return { changed: true, logs: this.lastFilteredLog };
   }
 
 
-  public deleteLog(filename: string) {
-    return this._web.delete(`${this._path}/requests/${filename}`);
+  public delete(filename: string) {
+    return this._logHelper.deleteLog('requests', filename);
   }
 
 

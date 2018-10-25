@@ -7,42 +7,47 @@ import { ILog } from './_requestLogs';
 export class ServerLogs {
 
   public lastFile: ILog[] = [];
-  public lastFileName = '';
-  public lastFileLength = 0;
 
-  private _path = 'https://localhost:5007/protected/logs/server';
-
+  private _lastFileName = '';
+  private _lastFileLength = 0;
 
 
 
-  constructor(private _web: Web) {}
+  get logs() {
+    return this._logHelper.listLogs('server');
+  }
 
 
 
 
-  public async getLog(filename: string) {
-    const { logReqTime, data } =
-              await LogHelper.getLogData(`${this._path}/${filename}`, this._web)
-        , logs = LogHelper.parseLogs(data);
+  constructor(private _web: Web, private _logHelper: LogHelper) {}
+
+
+
+
+  public async getFilteredLogs(filename: string) {
+    const { logReqTime, changed, logs } =
+              await this._logHelper.getLogs(
+                'requests',
+                filename
+              )
     ;
 
-    if (this.lastFileName == filename
-        && this.lastFileLength == logs.length)
+    if (this._lastFileName == filename
+        && this._lastFileLength == logs.length)
     {
-      return { changed: false, data: this.lastFile }
+      return { changed: false, logs: this.lastFile };
     }
 
     // Filter goes here
 
-    console.log(logs);
-
-    return { changed: true, data: this.lastFile };
+    return { changed: true, logs: this.lastFile };
 
   }
 
 
-  public listLogs() {
-    return this._web.get(`${this._path}/list/server`);
+  public delete(filename: string) {
+    return this._logHelper.deleteLog('server', filename);
   }
 
 
