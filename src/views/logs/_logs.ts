@@ -116,12 +116,13 @@ export default class Logs extends Vue {
       this.renderPerf = Web.measure('applyLogs');
       this.logLines = this.logs.length;
       this.requestPerf = this._logRequests.reqTime;
-      // this.rawLogLength = this._logRequests.lastFileLength;
+      this.rawLogLength = this._logRequests.logCount;
       this.filterPerf = this._logRequests.filterTime;
       this.selectedLog = file;
     }, 10);
 
   }
+
 
   public async selectLogType(type: string) {
 
@@ -129,6 +130,7 @@ export default class Logs extends Vue {
     if (type ==  'server') return await this._serverLogs.logs;
 
   }
+
 
   // TODO: Return proper 204 status code in Server
   public async eraseFile(filename: string) {

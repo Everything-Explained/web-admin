@@ -45,10 +45,10 @@ export interface ILog extends ILogData {
 
 export class RequestLogs {
 
-  public lastRawLog: string[] = [];
   public lastFilteredLog: ILog[] = [];
   public reqTime = '';
   public filterTime = '';
+  public logCount = 0;
 
 
 
@@ -67,7 +67,7 @@ export class RequestLogs {
 
   public async getFilteredLogs(filename: string) {
 
-    const { logReqTime, changed, logs } =
+    const { requestTime, changed, logs, logLength } =
               await this._logHelper.getLogs(
                 'requests',
                 filename
@@ -75,7 +75,8 @@ export class RequestLogs {
     ;
 
     if (!changed) {
-      this.reqTime = logReqTime;
+      this.reqTime = requestTime;
+      this.logCount = logLength;
       return { changed, logs: this.lastFilteredLog };
     }
 
@@ -85,7 +86,8 @@ export class RequestLogs {
 
 
     setTimeout(() => {
-      this.reqTime = logReqTime;
+      this.reqTime = requestTime;
+      this.logCount = logLength;
       this.filterTime = Web.measure('filterLog');
     }, 10);
 
