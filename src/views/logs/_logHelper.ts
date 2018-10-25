@@ -22,6 +22,66 @@ export class LogHelper {
 
 
   /**
+   * Lists the logs within a specified folder.
+   *
+   * @param folder Name of a folder
+   */
+  public async listLogs(folder: string) {
+    return this._web.get(`${this._basePath}/list/${folder}`);
+  }
+
+
+  /**
+   * Retrieves the logs from a specified folder and
+   * filename given, as well as the time it took
+   * to retrieve the file.
+   *
+   * @param folder Name of a folder
+   * @param filename Name of a file in the specified folder
+   */
+  public async getLogs(folder: string, filename: string) {
+
+    const { requestTime, log } =
+        await this._getLogFile(`${this._basePath}/${folder}/${filename}`)
+    ;
+
+    let changed = true;
+
+    if (this._isSameLog(filename, log))
+      changed = false;
+    else
+      this._lastFile = this._parseLogs(log)
+    ;
+
+    this._lastFileName = filename;
+
+    return {
+      requestTime,
+      logLength: log.split('\n').length - 1,
+      changed,
+      logs: this._lastFile
+    };
+
+  }
+
+
+  /**
+   * Deletes a specified file using the filename and
+   * folder given.
+   *
+   * @param folder Name of a folder
+   * @param filename Name of a file in the specified folder
+   */
+  public deleteLog(folder: string, filename: string) {
+    return this._web.delete(`${this._basePath}/${folder}/${filename}`);
+  }
+
+
+
+
+
+
+  /**
    * Converts raw log data from a string, to an array of
    * log objects.
    *
@@ -52,97 +112,49 @@ export class LogHelper {
   private async _getLogFile(path: string) {
 
     let status = 0
-      , logFile = ''
+      , log = ''
     ;
 
     await Web.timeItAsync('webDataGet', 'logData', async () => {
       const resp = await this._web.get(path) as IRawLog;
       status = resp.status;
-      logFile = resp.data;
+      log = resp.data;
     });
 
-    const logReqTime = Web.measure('webDataGet');
+    const requestTime = Web.measure('webDataGet');
 
     if (status == 200) {
-      return { logReqTime, logFile };
+      return { requestTime, log };
     }
 
-    throw new Error(`LogHelper::getLogData():: Failed to fetch path :: <${status}:${logFile}>`);
+    throw new Error(`LogHelper::getLogData():: Failed to fetch path :: <${status}:${log}>`);
 
   }
 
 
   /**
-   * Lists the logs within a specified folder.
+   * Checks if the specified log matches the last
+   * retrieved log.
    *
-   * @param folder Name of a folder
+   * @param filename Name of the file to check
+   * @param rawLogs Raw log file to check
    */
-  public async listLogs(folder: string) {
-    return this._web.get(`${this._basePath}/list/${folder}`);
-  }
+  private _isSameLog(filename: string, rawLogs: string) {
 
-
-  /**
-   * Retrieves the logs from a specified folder and
-   * filename given, as well as the time it took
-   * to retrieve the file.
-   *
-   * @param folder Name of a folder
-   * @param filename Name of a file in the specified folder
-   */
-  public async getLogs(folder: string, filename: string) {
-
-    const { logReqTime, logFile } =
-        await this._getLogFile(`${this._basePath}/${folder}/${filename}`)
+    const logs = rawLogs.split('\n')
+        , lastLog = JSON.parse(logs[logs.length - 2]) as ILog
     ;
 
-    let changed = true;
-
-    if (this._isSameFile(filename, logFile))
-      changed = false;
-    else
-      this._lastFile = this._parseLogs(logFile)
-    ;
-
-    this._lastFileName = filename;
-
-    return {
-      logReqTime,
-      changed,
-      logs: this._lastFile
-    };
-
-  }
-
-
-  /**
-   * Deletes a specified file using the filename and
-   * folder given.
-   *
-   * @param folder Name of a folder
-   * @param filename Name of a file in the specified folder
-   */
-  public deleteLog(folder: string, filename: string) {
-    return this._web.delete(`${this._basePath}/${folder}/${filename}`);
-  }
-
-
-  private _isSameFile(filename: string, rawLogs: string) {
-
-    if (filename != this._lastFileName) return false;
-
-    const logs = rawLogs.split('\n');
+    this._lastLogUID = lastLog.uid;
 
     if (!logs.length && !this._lastFile.length) return true;
 
-    const lastLog = JSON.parse(logs[logs.length - 2]) as ILog;
-
-    if (!this._lastLogUID) {
-      this._lastLogUID = lastLog.uid;
-      return true;
-    }
+    if (!this._lastLogUID) return true;
     else {
-      return lastLog.uid == this._lastLogUID;
+      return (
+        lastLog.uid == this._lastLogUID
+        && filename == this._lastFileName
+      );
     }
 
   }
