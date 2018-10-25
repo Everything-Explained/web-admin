@@ -4,9 +4,11 @@ import LogDetails from '../../components/LogDetails.vue';
 import MySelect from '../../components/MySelect.vue';
 import StatDisplay from '../../components/StatDisplay.vue';
 import { Web } from '@/utilities/web';
-import { RequestLogs, ILog } from './_requestLogs';
+import { HTTPLogs, ILog } from './_httpLogs';
 import { ServerLogs } from './_serverLogs';
-import { LogHelper } from './_logHelper';
+import { LogHelper, LogType } from './_logHelper';
+
+
 
 
 
@@ -17,7 +19,6 @@ import { LogHelper } from './_logHelper';
 export default class Logs extends Vue {
 
   public logs: ILog[] = [];
-  public logLevels = [] as number[];
 
   // From Global MIXIN
   public initWeb!: () => Web;
@@ -26,7 +27,7 @@ export default class Logs extends Vue {
   public files: string[] = [];
   public selectTitle = 'Select a Log';
 
-  public logTypes = ['requests', 'server', 'chat'];
+  public logTypes = ['http', 'server', 'chat'];
 
   public logLines = 0;
   public rawLogLength = 0;
@@ -39,9 +40,9 @@ export default class Logs extends Vue {
   public logPollInterval: any = null;
 
   // Initialized in created() lifecycle method
-  private _logRequests!: RequestLogs;
-  private _serverLogs!: ServerLogs;
-  private _logHelper!: LogHelper;
+  private _httpLogs!: HTTPLogs;
+  private _serverLogs!:  ServerLogs;
+  private _logHelper!:   LogHelper;
 
 
 
@@ -58,20 +59,14 @@ export default class Logs extends Vue {
 
 
   public async created() {
-    const logLevels = this.$data.logLevels;
     this.web = this.initWeb();
 
-    logLevels[20] = 'debug';
-    logLevels[30] = 'default';
-    logLevels[40] = 'warn';
-    logLevels[50] = 'error';
-
     this._logHelper = new LogHelper(this.web);
-    this._logRequests = new RequestLogs(this.web, this._logHelper);
+    this._httpLogs = new HTTPLogs(this.web, this._logHelper);
     this._serverLogs = new ServerLogs(this.web, this._logHelper);
 
     try {
-      const {data} = await this._logRequests.logs;
+      const {data} = await this._httpLogs.logs;
       this.files = data;
     }
     catch (err) {
@@ -97,7 +92,7 @@ export default class Logs extends Vue {
 
     try {
       const { changed, logs } =
-          await this._logRequests.getFilteredLogs(poll ? `${file}?poll=true` : file)
+          await this._httpLogs.getFilteredLogs(poll ? `${file}?poll=true` : file)
       ;
       if (changed) {
         Web.timeIt('applyLogs', 'applyLogs', () => {
@@ -115,26 +110,26 @@ export default class Logs extends Vue {
     setTimeout(() => {
       this.renderPerf = Web.measure('applyLogs');
       this.logLines = this.logs.length;
-      this.requestPerf = this._logRequests.reqTime;
-      this.rawLogLength = this._logRequests.logCount;
-      this.filterPerf = this._logRequests.filterTime;
+      this.requestPerf = this._httpLogs.reqTime;
+      this.rawLogLength = this._httpLogs.logCount;
+      this.filterPerf = this._httpLogs.filterTime;
       this.selectedLog = file;
     }, 10);
 
   }
 
 
-  public async selectLogType(type: string) {
+  public async selectLogType(type: LogType) {
 
-    if (type == 'request') return await this._logRequests.logs;
-    if (type ==  'server') return await this._serverLogs.logs;
+    if (LogType.HTTP   == type) return await this._httpLogs.logs;
+    if (LogType.SERVER == type) return await this._serverLogs.logs;
 
   }
 
 
   // TODO: Return proper 204 status code in Server
   public async eraseFile(filename: string) {
-    const { data } = await this._logRequests.delete(filename);
+    const { data } = await this._httpLogs.delete(filename);
   }
 
 
@@ -210,14 +205,10 @@ export default class Logs extends Vue {
   }
 
 
-  public getLevel(log: ILog) {
-    const level = log.level;
-
-    if (log.url && log.level < 40)
-      if (~log.url.indexOf('/protected') || ~log.url.indexOf('/internal')) return 'special'
-    ;
-
-    return this.$data.logLevels[level];
+  public getLevel(type: LogType, log: ILog) {
+    if (LogType.HTTP == type) {
+      return this._httpLogs.getLevel(log);
+    }
   }
 
 

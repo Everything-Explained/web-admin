@@ -1,6 +1,6 @@
 import { Web } from '@/utilities/web';
 import { LogHelper } from './_logHelper';
-import { ILog } from './_requestLogs';
+import { ILog } from './_httpLogs';
 
 
 

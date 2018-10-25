@@ -43,7 +43,7 @@ export interface ILog extends ILogData {
 }
 
 
-export class RequestLogs {
+export class HTTPLogs {
 
   public lastFilteredLog: ILog[] = [];
   public reqTime = '';

@@ -1,6 +1,6 @@
 
 import { Web } from '@/utilities/web';
-import { IRawLog, ILog } from './_requestLogs';
+import { IRawLog, ILog } from './_httpLogs';
 
 
 export enum LogType {
