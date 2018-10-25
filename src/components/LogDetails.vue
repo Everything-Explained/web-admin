@@ -1,5 +1,5 @@
 <template>
-  <div class="log-details-container" v-if="log.open">
+  <div class="log-details-container">
 
     <div class="table log-details">
       <!-- <div class="tr">

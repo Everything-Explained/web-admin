@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import Logs, { ILog } from '@/views/logs/_logs';
-import { RequestLogs } from '@/views/logs/_requestLogs';
+import { RequestLogs, ILog } from '@/views/logs/_requestLogs';
 
 @Component({
   props: {
