@@ -28,7 +28,7 @@
           <span class="ip"
             >{{log.identity == '127.0.0.1' ? 'localhost' : log.identity}}
           </span>
-          <span class="method">{{ log.type }}</span>
+          <span class="method">{{ log.kind }}</span>
           <span class="message" :class="getLevel(log)">{{ getMessage(log) }}</span>
           <span class="log-count"
                 :class="getLevel(log)"
@@ -36,7 +36,7 @@
             >{{ getRequestCount(log) }}
           </span>
         </div>
-        <LogDetails :log=log v-if="log.open"></LogDetails>
+        <HttpLogDetails :log=log v-if="log.open"></HttpLogDetails>
       </li>
 
     </ul>

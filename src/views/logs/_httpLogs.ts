@@ -1,5 +1,5 @@
 import { Web } from '@/utilities/web';
-import { LogHelper } from './_logHelper';
+import { LogHelper, LogType } from './_logHelper';
 
 export interface IRawLog {
   status: number;
@@ -32,7 +32,8 @@ export interface ILog extends ILogData {
   localeDateString: string;
   method: string;
   url: string;
-  type: string;
+  kind: string;
+  type: LogType;
   data: any;
   statusCode: number;
   statusMsg: string;
@@ -43,6 +44,8 @@ export interface ILog extends ILogData {
 }
 
 
+
+
 export class HTTPLogs {
 
   public lastFilteredLog: ILog[] = [];
@@ -50,10 +53,12 @@ export class HTTPLogs {
   public filterTime = '';
   public logCount = 0;
 
+  private _folder = 'http';
+
 
 
   get logs() {
-    return this._logHelper.listLogs('requests');
+    return this._logHelper.listLogs(this._folder);
   }
 
 
@@ -68,7 +73,7 @@ export class HTTPLogs {
 
     const { requestTime, changed, logs, logLength } =
               await this._logHelper.getLogs(
-                'requests',
+                this._folder,
                 filename
               )
     ;
@@ -95,7 +100,7 @@ export class HTTPLogs {
 
 
   public delete(filename: string) {
-    return this._logHelper.deleteLog('requests', filename);
+    return this._logHelper.deleteLog(this._folder, filename);
   }
 
 
@@ -133,7 +138,7 @@ export class HTTPLogs {
         tempLogs.push(l);
         return false;
       });
-      LOGS.push(this._linkLogs(tempLogs));
+      LOGS.push(this._linkLogParts(tempLogs));
     }
 
     return this._linkDuplicates(
@@ -148,7 +153,7 @@ export class HTTPLogs {
    *
    * @param logParts Logs with the same UID
    */
-  private _linkLogs(logParts: ILog[]) {
+  private _linkLogParts(logParts: ILog[]) {
     const LOG = logParts[0];
 
     for (const log of logParts) {
@@ -188,6 +193,7 @@ export class HTTPLogs {
       ;
     }
     LOG.localeDateString = new Date(LOG.time).toLocaleDateString();
+    LOG.type = LogType.HTTP;
     return LOG;
   }
 
@@ -215,18 +221,18 @@ export class HTTPLogs {
       LOGS.push(log);
     }
 
-    return this._linkTypes(LOGS);
+    return this._combineLogs(LOGS);
   }
 
 
   /**
    * Assigns logs as children to parent logs of the
-   * same type; specifically by identity unless other
+   * same kind; specifically by identity unless other
    * significant identifires exist.
    *
    * @param logs The logs array
    */
-  private _linkTypes(logs: ILog[]) {
+  private _combineLogs(logs: ILog[]) {
     const LOGS = [] as ILog[];
 
     while (logs.length) {
@@ -247,7 +253,7 @@ export class HTTPLogs {
 
         if (iLog.level < 40) {
           identLogs = identLogs.filter(l => {
-            if (!(   iLog.type == l.type
+            if (!(   iLog.kind == l.kind
                   && this._isDataEqual(iLog, l)
                   && l.level < 40)) return true
             ;
@@ -295,7 +301,7 @@ export class HTTPLogs {
                && (~log.url.indexOf('/login')
                || ~log.url.indexOf('/logout')))    type = 'AUTH';
 
-      log.type = type;
+      log.kind = type;
     }
 
     return logs;
@@ -336,7 +342,7 @@ export class HTTPLogs {
 
     return (
          l1.identity == l2.identity
-      && l1.type == l2.type
+      && l1.kind == l2.kind
       && l1.msg == l2.msg
       && l1.method == l2.method
       && l1.statusCode == l2.statusCode

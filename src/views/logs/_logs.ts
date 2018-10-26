@@ -206,9 +206,9 @@ export default class Logs extends Vue {
 
 
   public getLevel(log: ILog) {
-    // if (LogType.HTTP == type) {
+    if (LogType.HTTP == log.type) {
       return this._httpLogs.getLevel(log);
-    // }
+    }
   }
 
 

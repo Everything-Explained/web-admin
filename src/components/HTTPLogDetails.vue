@@ -62,7 +62,7 @@
         <span class="timestamp small">
           {{ clog.time | dateTime('h:mm:ssa') }}
         </span>
-        <span class="method">{{ clog.type }}</span>
+        <span class="method">{{ clog.kind }}</span>
         <span class="message" :class="$parent.getLevel(clog)">{{ $parent.getMessage(clog) }}</span>
         <span class="child-count"
               v-if="clog.children.length">
