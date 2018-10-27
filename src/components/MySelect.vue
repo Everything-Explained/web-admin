@@ -7,7 +7,7 @@
     </label>
     <ul class="my-select" :class="{ hidden: hidden }">
       <li class='sel-item'
-          v-for="(option,i) of options"
+          v-for="(option,i) of watchOptions"
           :key="i"
           @click="select(i), $emit('select', option)"
         >{{ option }}

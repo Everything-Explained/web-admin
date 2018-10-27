@@ -1,16 +1,17 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 
+
 @Component({
-    props: {
-      options: {
-        type: Array,
-        required: true,
-      },
-      title: {
-        type: String,
-        required: true,
-      },
+  props: {
+    options: {
+      type: Array,
+      required: true,
+    },
+    title: {
+      type: String,
+      required: true,
+    },
   },
 })
 
@@ -18,17 +19,28 @@ import Component from 'vue-class-component';
 export default class MySelect extends Vue {
 
   // from parent
+  public title!: string;
   public options!: string[];
 
   public selectedIndex = -1;
   public hidden = true;
   public isActive = !this.hidden;
 
+
+
+  get watchOptions() {
+    // When options change, reset index
+    this.selectedIndex = -1;
+    return this.options;
+  }
+
   // When user clicks anywhere else on the document
   private _blur!: (ev: MouseEvent) => void;
 
 
+
   public created() {
+
     this._blur = ((_this: MySelect) => {
       return (ev: MouseEvent) => {
         _this.toggle(ev, true);
