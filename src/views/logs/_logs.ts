@@ -7,6 +7,8 @@ import { Web } from '@/utilities/web';
 import { HTTPLogs, ILog } from './_httpLogs';
 import { ServerLogs } from './_serverLogs';
 import { LogHelper, LogType } from './_logHelper';
+import { SocketLogs } from './_socketLogs';
+import { ISelectConfig } from '@/components/_mySelect';
 
 
 
@@ -22,27 +24,28 @@ export default class Logs extends Vue {
 
   // From Global MIXIN
   public initWeb!: () => Web;
+
+  // Initialized in vue created() lifecycle method
   public web!: Web;
 
-  public files: string[] = [];
-  public selectTitle = 'Select a Log';
+  // For MySelect components
+  public selectLogOptions: string[] = [];
+  public selectTypeOptions = ['http', 'server', 'socket'];
 
-  public logTypes = ['http', 'server', 'chat'];
-
-  public logLines = 0;
+  public logLines     = 0;
   public rawLogLength = 0;
-  public requestPerf = '0ms';
-  public filterPerf = '0ms';
-  public renderPerf = '0ms';
-  public selectedLog = '';
-  public selectedLogType = '';
-
+  public requestPerf  = '0ms';
+  public filterPerf   = '0ms';
+  public renderPerf   = '0ms';
+  public selectedLog  =  '';
+  public selectedLogType = LogType.NULL;
   public logPollInterval: any = null;
 
   // Initialized in created() lifecycle method
-  private _httpLogs!: HTTPLogs;
-  private _serverLogs!:  ServerLogs;
-  private _logHelper!:   LogHelper;
+  private _httpLogs!:   HTTPLogs;
+  private _serverLogs!: ServerLogs;
+  private _socketLogs!: SocketLogs;
+  private _logHelper!:  LogHelper;
 
 
 
@@ -64,48 +67,21 @@ export default class Logs extends Vue {
     this._logHelper = new LogHelper(this.web);
     this._httpLogs = new HTTPLogs(this.web, this._logHelper);
     this._serverLogs = new ServerLogs(this.web, this._logHelper);
-
-    try {
-      const {data} = await this._httpLogs.logs;
-      this.files = data;
-    }
-    catch (err) {
-      if (~err.message.indexOf('Failed to fetch')) {
-        this.$emit('notify', `
-          Cannot connect to server;
-          make sure it's started and that you have the proper
-          cert for localhost.
-          Check the console for more details.
-        `);
-      }
-      else {
-        this.$emit('notify', err.message);
-        console.error(err);
-      }
-    }
+    this._socketLogs = new SocketLogs(this.web, this._logHelper);
   }
 
 
-  public async selectLogFile(file: string, poll = false) {
+  public async selectLogFile(selection: { index: number; name: string }, poll = false) {
 
-    // this._serverLogs.getLog('noumenae.log');
-
-    try {
-      const { changed, logs } =
-          await this._httpLogs.getFilteredLogs(poll ? `${file}?poll=true` : file)
-      ;
-      if (changed) {
-        Web.timeIt('applyLogs', 'applyLogs', () => {
-          this.logs = logs;
-        });
-      }
+    const file = selection.name
+        , resp =
+            await this._readLogsByFile(poll ? `${file}?poll=true` : file)
+    ;
+    if (resp && resp.changed) {
+      Web.timeIt('applyLogs', 'applyLogs', () => {
+        this.logs = resp.logs;
+      });
     }
-    catch (err) {
-      this.$emit('notify', err.message);
-      console.error(err);
-    }
-
-
 
     setTimeout(() => {
       this.renderPerf = Web.measure('applyLogs');
@@ -117,13 +93,66 @@ export default class Logs extends Vue {
     }, 10);
 
   }
+  private async _readLogsByFile(filePath: string) {
+
+    let logs;
+
+    try {
+      if (LogType.HTTP == this.selectedLogType)
+        logs = await this._httpLogs.getFilteredLogs(filePath)
+      ;
+
+      if (LogType.SERVER == this.selectedLogType)
+        throw new Error('_readLogsByFile():: SERVER :: Not Implimented')
+      ;
+
+      if (LogType.SOCKET == this.selectedLogType)
+        throw new Error('_readLogsByFile():: SERVER :: Not Implimented')
+      ;
+
+      return logs;
+    }
+    catch (err) {
+      this.$emit('notify', err.message);
+      console.error(err);
+    }
+  }
 
 
-  public async selectLogType(type: LogType) {
+  public async selectLogType(selection: { index: number; name: string }) {
 
-    if (LogType.HTTP   == type) return await this._httpLogs.logs;
-    if (LogType.SERVER == type) return await this._serverLogs.logs;
+    const selectedIndex = selection.index + 1
+        , logs = await this._getLogsByType(selectedIndex)
+    ;
 
+    this.selectedLogType = selectedIndex;
+    this.selectLogOptions = logs ? logs : [];
+    this.logs = [];
+
+  }
+  private async _getLogsByType(index: number): Promise<string[]|undefined> {
+
+    let resp;
+
+    try {
+      resp =
+        LogType.HTTP == index
+        ? (await this._httpLogs.logs).data
+        : LogType.SERVER == index
+          ? (await this._serverLogs.logs).data
+          : LogType.SOCKET == index
+            ? (await this._socketLogs.logs).data
+            : resp
+      ;
+      return resp;
+    }
+    catch (err) {
+      this.$emit('notify', err.message);
+      console.error(err);
+    }
+    finally {
+      if (!resp) return resp;
+    }
   }
 
 
@@ -133,14 +162,14 @@ export default class Logs extends Vue {
   }
 
 
-  public async togglePollLogs(file: string) {
+  public async togglePollLogs(selection: { index: number; name: string; }) {
     if (this.logPollInterval) {
       clearInterval(this.logPollInterval);
       this.logPollInterval = null;
     }
     else {
       this.logPollInterval = setInterval(() => {
-        this.selectLogFile(file, true);
+        this.selectLogFile(selection, true);
       }, 500);
     }
   }
@@ -206,9 +235,13 @@ export default class Logs extends Vue {
 
 
   public getLevel(log: ILog) {
-    if (LogType.HTTP == log.type) {
-      return this._httpLogs.getLevel(log);
-    }
+    if (LogType.HTTP == log.type)
+      return this._httpLogs.getLevel(log)
+    ;
+
+    if (LogType.SERVER == log.type)
+      return this._serverLogs.getLevel(log)
+    ;
   }
 
 
