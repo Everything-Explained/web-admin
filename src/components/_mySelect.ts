@@ -28,7 +28,7 @@ export default class MySelect extends Vue {
 
 
 
-  get watchOptions() {
+  get watchedOptions() {
     // When options change, reset index
     this.selectedIndex = -1;
     return this.options;
