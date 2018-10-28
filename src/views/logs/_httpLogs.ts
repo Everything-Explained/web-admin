@@ -69,12 +69,12 @@ export class HTTPLogs {
 
 
 
-  public async getFilteredLogs(filename: string) {
+  public async getFilteredLogs(filePath: string) {
 
     const { requestTime, changed, logs, logLength } =
               await this._logHelper.getLogs(
                 this._folder,
-                filename
+                filePath
               )
     ;
 
@@ -166,7 +166,7 @@ export class HTTPLogs {
       if (log.err) {
         LOG.err = log.err;
         // Force error message to be main message.
-        LOG.msg = log.msg;
+        log.msg = log.err.msg;
       }
 
       // Make sure higher levels get priority
