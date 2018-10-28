@@ -3,9 +3,11 @@ import { Web } from '@/utilities/web';
 import { IRawLog, ILog } from './_httpLogs';
 
 
+// Log types IN ORDER of Logs{}.logTypes
 export enum LogType {
-  SERVER,
+  NULL,
   HTTP,
+  SERVER,
   SOCKET,
 }
 
