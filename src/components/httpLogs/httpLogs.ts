@@ -1,5 +1,5 @@
 import { Web } from '@/utilities/web';
-import { LogHelper, LogType } from './_logHelper';
+import { LogHelper, LogType } from '../../views/logs/_logHelper';
 
 export interface IRawLog {
   status: number;
