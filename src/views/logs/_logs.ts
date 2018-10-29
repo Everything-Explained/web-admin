@@ -8,7 +8,7 @@ import { HTTPLogs, ILog } from './_httpLogs';
 import { ServerLogs } from './_serverLogs';
 import { LogHelper, LogType } from './_logHelper';
 import { SocketLogs } from './_socketLogs';
-import { ISelectConfig } from '@/components/_mySelect';
+import { ISelection } from '@/components/_mySelect';
 
 
 
@@ -71,7 +71,7 @@ export default class Logs extends Vue {
   }
 
 
-  public async selectLogFile(selection: { index: number; name: string }, poll = false) {
+  public async selectLogFile(selection: ISelection, poll = false) {
 
     const file = selection.name
         , resp =
@@ -119,7 +119,7 @@ export default class Logs extends Vue {
   }
 
 
-  public async selectLogType(selection: { index: number; name: string }) {
+  public async selectLogType(selection: ISelection) {
 
     const selectedIndex = selection.index + 1
         , logs = await this._getLogsByType(selectedIndex)
@@ -162,7 +162,7 @@ export default class Logs extends Vue {
   }
 
 
-  public async togglePollLogs(selection: { index: number; name: string; }) {
+  public async togglePollLogs(selection: ISelection) {
     if (this.logPollInterval) {
       clearInterval(this.logPollInterval);
       this.logPollInterval = null;

@@ -2,6 +2,12 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 
+export interface ISelection {
+  name: string;
+  index: number;
+}
+
+
 @Component({
   props: {
     options: {
