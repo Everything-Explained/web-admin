@@ -49,9 +49,7 @@ export interface ILog extends ILogData {
 export class HTTPLogs {
 
   public lastFilteredLog: ILog[] = [];
-  public reqTime = '';
   public filterTime = '';
-  public logCount = 0;
 
   private _folder = 'http';
 
@@ -71,7 +69,7 @@ export class HTTPLogs {
 
   public async getFilteredLogs(filePath: string) {
 
-    const { requestTime, changed, logs, logLength } =
+    const { changed, logs } =
               await this._logHelper.getLogs(
                 this._folder,
                 filePath
@@ -79,8 +77,6 @@ export class HTTPLogs {
     ;
 
     if (!changed) {
-      this.reqTime = requestTime;
-      this.logCount = logLength;
       return { changed, logs: this.lastFilteredLog };
     }
 
@@ -90,8 +86,6 @@ export class HTTPLogs {
 
 
     setTimeout(() => {
-      this.reqTime = requestTime;
-      this.logCount = logLength;
       this.filterTime = Web.measure('filterLog');
     }, 10);
 

@@ -64,8 +64,8 @@ export default class Logs extends Vue {
   public async created() {
     this.web = this.initWeb();
 
-    this._logHelper = new LogHelper(this.web);
-    this._httpLogs = new HTTPLogs(this.web, this._logHelper);
+    this._logHelper  = new LogHelper(this.web);
+    this._httpLogs   = new HTTPLogs(this.web, this._logHelper);
     this._serverLogs = new ServerLogs(this.web, this._logHelper);
     this._socketLogs = new SocketLogs(this.web, this._logHelper);
   }
@@ -86,8 +86,8 @@ export default class Logs extends Vue {
     setTimeout(() => {
       this.renderPerf = Web.measure('applyLogs');
       this.logLines = this.logs.length;
-      this.requestPerf = this._httpLogs.reqTime;
-      this.rawLogLength = this._httpLogs.logCount;
+      this.requestPerf = this._logHelper.lastRequestTime;
+      this.rawLogLength = this._logHelper.lastLogCount;
       this.filterPerf = this._httpLogs.filterTime;
       this.selectedLog = file;
     }, 10);

@@ -17,6 +17,9 @@ export class LogHelper {
 
   public levels: string[] = [];
 
+  public lastRequestTime = '0ms';
+  public lastLogCount = 0;
+
 
   private _lastFileName = '';
   private _lastLogUID   = '';
@@ -71,10 +74,10 @@ export class LogHelper {
     ;
 
     this._lastFileName = filename;
+    this.lastLogCount = log.split('\n').length - 1;
+    this.lastRequestTime = requestTime;
 
     return {
-      requestTime,
-      logLength: log.split('\n').length - 1,
       changed,
       logs: this._lastFile
     };
