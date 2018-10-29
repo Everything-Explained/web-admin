@@ -83,14 +83,12 @@ export default class Logs extends Vue {
       });
     }
 
-    setTimeout(() => {
-      this.renderPerf = Web.measure('applyLogs');
-      this.logLines = this.logs.length;
-      this.requestPerf = this._logHelper.lastRequestTime;
-      this.rawLogLength = this._logHelper.lastLogCount;
-      this.filterPerf = this._httpLogs.filterTime;
-      this.selectedLog = file;
-    }, 10);
+    this.renderPerf = Web.measure('applyLogs');
+    this.logLines = this.logs.length;
+    this.requestPerf = this._logHelper.lastRequestTime;
+    this.rawLogLength = this._logHelper.lastLogCount;
+    this.filterPerf = this._httpLogs.filterTime;
+    this.selectedLog = file;
 
   }
   private async _readLogsByFile(filePath: string) {

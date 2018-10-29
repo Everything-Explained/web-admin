@@ -84,10 +84,7 @@ export class HTTPLogs {
       this.lastFilteredLog = this._filterLogs(logs);
     });
 
-
-    setTimeout(() => {
-      this.filterTime = Web.measure('filterLog');
-    }, 10);
+    this.filterTime = Web.measure('filterLog');
 
     return { changed: true, logs: this.lastFilteredLog };
   }
