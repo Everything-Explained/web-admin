@@ -1,5 +1,6 @@
 import { Web } from '@/utilities/web';
 import { LogHelper, LogType } from '../../views/logs/_logHelper';
+import Component from 'vue-class-component';
 
 export interface IRawLog {
   status: number;
@@ -45,7 +46,6 @@ export interface ILog extends ILogData {
 
 
 
-
 export class HTTPLogs {
 
   public lastFilteredLog: ILog[] = [];
@@ -58,11 +58,6 @@ export class HTTPLogs {
   get logs() {
     return this._logHelper.listLogs(this._folder);
   }
-
-
-
-
-  constructor(private _web: Web, private _logHelper: LogHelper) {}
 
 
 
