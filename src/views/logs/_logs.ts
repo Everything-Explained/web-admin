@@ -20,7 +20,10 @@ import { ISelection } from '@/components/_mySelect';
 })
 export default class Logs extends Vue {
 
-  public selectedFilePath = '';
+  public logSelection = {
+    name: '',
+    churn: 0
+  };
   public updateLog = 0;
 
   // From Global MIXIN
@@ -66,23 +69,10 @@ export default class Logs extends Vue {
 
   public async selectLogFile(selection: ISelection, poll = false) {
 
-
-
     const file = selection.name;
     ++this.updateLog;
-    this.selectedFilePath = file;
-    // if (resp && resp.changed) {
-      // Web.timeIt('applyLogs', 'applyLogs', () => {
-    // this.logData = resp.logs;
-      // });
-    // }
-
-    // this.renderPerf = Web.measure('applyLogs');
-    // this.logLines = this.logs.length;
-    // this.requestPerf = this._logHelper.lastRequestTime;
-    // this.rawLogLength = this._logHelper.lastLogCount;
-    // this.filterPerf = this._httpLogs.filterTime;
-    // this.selectedLog = file;
+    this.logSelection.name = file;
+    ++this.logSelection.churn;
 
   }
 
@@ -103,7 +93,7 @@ export default class Logs extends Vue {
 
     this.selectedLogType = selectedIndex;
     this.selectLogOptions = logs ? logs : [];
-    this.logs = [];
+    this.logSelection.name = '';
 
   }
   private async _getLogsByType(index: number): Promise<string[]|undefined> {

@@ -18,8 +18,7 @@
        :class="{watermark: logLength == 0}"
        data-text="Empty or Unselected File"
   >
-    <HttpLogs :logFilePath="selectedFilePath"
-              :updatedLog="updateLog"
+    <HttpLogs :selectedLog="logSelection"
               @updated="logUpdated"
     ></HttpLogs>
   </div>

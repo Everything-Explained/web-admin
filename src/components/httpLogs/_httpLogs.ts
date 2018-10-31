@@ -50,21 +50,19 @@ export interface ILog extends ILogData {
 @Component({
   components: { HttpLogDetails },
   props: {
-    logFilePath: {
-      type: String,
+    selectedLog: {
+      type: Object,
       required: true
     },
-    updatedLog: {
-      type: Number,
-      required: false
-    }
   }
 })
 export default class HttpLogs extends Vue {
 
   // From component attribute
-  public logFilePath!: string;
-  public updatedLog!: number;
+  public selectedLog!: {
+    name: string;
+    churn: number; // Should increment to force an update
+  };
 
   public logs: ILog[] = [];
   public lastFilteredLogs: ILog[] = [];
@@ -105,24 +103,23 @@ export default class HttpLogs extends Vue {
   }
 
 
-  @Watch('updatedLog')
+  @Watch('selectedLog', {deep: true})
   private async _selectFile() {
 
-    if (!this.logFilePath) return;
+    if (!this.selectedLog.name) {
+      this.logs = [];
+      this._logFileLength = 0;
+      this.$emit('updated', this.logDetails);
+      return;
+    }
 
-    const { changed, logs } = await this._logHelper.getLogs('http', this.logFilePath);
-
-    console.log(changed);
+    const { changed, logs } = await this._logHelper.getLogs('http', this.selectedLog.name);
 
     if (!changed) return;
 
-
-
-    Web.timeIt('filterLogs', 'filter', () => {
+    Web.timeIt('filterLogs', 'filterLogs', () => {
       this.lastFilteredLogs = this._filterLogs(logs);
     });
-
-    console.log(this.lastFilteredLogs);
 
     this.filterTime = Web.measure('filterLogs');
 
