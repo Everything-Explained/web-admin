@@ -1,6 +1,9 @@
 import { Web } from '@/utilities/web';
 import { LogHelper, LogType } from '../../views/logs/_logHelper';
+import HttpLogDetails from '../../components/httpLogs/HttpLogDetails.vue';
 import Component from 'vue-class-component';
+import Vue from 'vue';
+import { Watch } from 'vue-property-decorator';
 
 export interface IRawLog {
   status: number;
@@ -44,45 +47,75 @@ export interface ILog extends ILogData {
   open?: boolean;
 }
 
+@Component({
+  components: { HttpLogDetails },
+  props: {
+    logFilePath: {
+      type: String,
+      required: true
+    }
+  }
+})
+export default class HttpLogs extends Vue {
 
+  // From component attribute
+  public logFilePath!: string;
 
-export class HTTPLogs {
+  public logs: ILog[] = [];
+  public lastFilteredLogs: ILog[] = [];
 
-  public lastFilteredLog: ILog[] = [];
+  // Performance measurements
   public filterTime = '';
+  public renderTime = '';
+  public requestTime = '';
+
+  // Global Mixin
+  public initWeb!: () => Web;
+  public initLogHelper!: () => LogHelper;
+
+  // Initialized in beforeCreate() lifecycle method
+  private _web!: Web;
+  private _logHelper!: LogHelper;
 
   private _folder = 'http';
 
 
 
-  get logs() {
-    return this._logHelper.listLogs(this._folder);
+
+
+
+
+  public created() {
+    this._web = this.initWeb();
+    this._logHelper = this.initLogHelper();
   }
 
 
+  @Watch('logFilePath')
+  private async _selectFile() {
 
+    if (!this.logFilePath) return;
 
-  public async getFilteredLogs(filePath: string) {
+    const { changed, logs } = await this._logHelper.getLogs('http', this.logFilePath);
 
-    const { changed, logs } =
-              await this._logHelper.getLogs(
-                this._folder,
-                filePath
-              )
-    ;
+    console.log(changed);
 
-    if (!changed) {
-      return { changed, logs: this.lastFilteredLog };
-    }
+    if (!changed) return;
 
-    Web.timeIt('filterLog', 'filter', () => {
-      this.lastFilteredLog = this._filterLogs(logs);
+    Web.timeIt('filterLogs', 'filter', () => {
+      this.lastFilteredLogs = this._filterLogs(logs);
     });
 
-    this.filterTime = Web.measure('filterLog');
+    this.filterTime = Web.measure('filterLogs');
 
-    return { changed: true, logs: this.lastFilteredLog };
+
+    Web.timeIt('renderLogs', 'render', () => {
+      this.logs = this.lastFilteredLogs;
+    });
+
+    this.renderTime = Web.measure('renderLogs');
   }
+
 
 
   public delete(filename: string) {
@@ -105,6 +138,45 @@ export class HTTPLogs {
 
     return this._logHelper.levels[level];
 
+  }
+
+
+  public getMessage(log: ILog) {
+    let msg = log.url;
+
+    if (log.msgs.length > 1) {
+      msg = `${log.statusCode} => ${log.msgs[0]}`;
+    }
+
+    return msg;
+  }
+
+
+  public getRequestCount(log: ILog) {
+    const requests = log.requests
+        , children = log.children.length
+    ;
+    let countStr = '';
+
+    if (requests > 1) {
+      countStr += `${requests}`;
+    }
+
+    if (children) {
+      countStr += `+${children}`;
+    }
+
+    return countStr;
+  }
+
+
+  public toggle(ev: MouseEvent, log: ILog) {
+    // TODO: Uncomment to hide all, on toggle
+    // this.logs.forEach(l => {
+    //   if (log.identity == l.identity) return;
+    //   l.open = false;
+    // });
+    log.open = !log.open;
   }
 
 

@@ -1,10 +1,10 @@
 import { Vue } from 'vue-property-decorator';
 import Component from 'vue-class-component';
-import HttpLogDetails from '../../components/HTTPLogDetails.vue';
 import MySelect from '../../components/MySelect.vue';
 import StatDisplay from '../../components/StatDisplay.vue';
+import HttpLogs from '../../components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
-import { HTTPLogs, ILog } from './_httpLogs';
+import { ILog } from '../../components/httpLogs/_httpLogs';
 import { ServerLogs } from './_serverLogs';
 import { LogHelper, LogType } from './_logHelper';
 import { SocketLogs } from './_socketLogs';
@@ -16,17 +16,16 @@ import { ISelection } from '@/components/_mySelect';
 
 
 @Component({
-  components: { HttpLogDetails, MySelect, StatDisplay },
+  components: { HttpLogs, MySelect, StatDisplay },
 })
 export default class Logs extends Vue {
 
-  public logs: ILog[] = [];
+  public logLength = 0;
+  public selectedFilePath = '';
 
   // From Global MIXIN
   public initWeb!: () => Web;
-
-  // Initialized in vue created() lifecycle method
-  public web!: Web;
+  public initLogHelper!: () => LogHelper;
 
   // For MySelect components
   public selectLogOptions: string[] = [];
@@ -42,9 +41,7 @@ export default class Logs extends Vue {
   public logPollInterval: any = null;
 
   // Initialized in created() lifecycle method
-  private _httpLogs!:   HTTPLogs;
-  private _serverLogs!: ServerLogs;
-  private _socketLogs!: SocketLogs;
+  private _web!: Web;
   private _logHelper!:  LogHelper;
 
 
@@ -62,58 +59,58 @@ export default class Logs extends Vue {
 
 
   public async created() {
-    this.web = this.initWeb();
-
-    this._logHelper  = new LogHelper(this.web);
-    this._httpLogs   = new HTTPLogs(this.web, this._logHelper);
-    this._serverLogs = new ServerLogs(this.web, this._logHelper);
-    this._socketLogs = new SocketLogs(this.web, this._logHelper);
+    this._web = this.initWeb();
+    this._logHelper = this.initLogHelper();
   }
 
 
   public async selectLogFile(selection: ISelection, poll = false) {
 
+
+
     const file = selection.name
         , resp =
-            await this._readLogsByFile(poll ? `${file}?poll=true` : file)
+            await this._logHelper.getLogs('http', poll ? `${file}?poll=true` : file)
     ;
-    if (resp && resp.changed) {
-      Web.timeIt('applyLogs', 'applyLogs', () => {
-        this.logs = resp.logs;
-      });
-    }
+    this.logLength = resp.logs.length;
+    this.selectedFilePath = file;
+    // if (resp && resp.changed) {
+      // Web.timeIt('applyLogs', 'applyLogs', () => {
+    // this.logData = resp.logs;
+      // });
+    // }
 
-    this.renderPerf = Web.measure('applyLogs');
-    this.logLines = this.logs.length;
-    this.requestPerf = this._logHelper.lastRequestTime;
-    this.rawLogLength = this._logHelper.lastLogCount;
-    this.filterPerf = this._httpLogs.filterTime;
-    this.selectedLog = file;
+    // this.renderPerf = Web.measure('applyLogs');
+    // this.logLines = this.logs.length;
+    // this.requestPerf = this._logHelper.lastRequestTime;
+    // this.rawLogLength = this._logHelper.lastLogCount;
+    // this.filterPerf = this._httpLogs.filterTime;
+    // this.selectedLog = file;
 
   }
   private async _readLogsByFile(filePath: string) {
 
-    let logs;
+    // let logs;
 
-    try {
-      if (LogType.HTTP == this.selectedLogType)
-        logs = await this._httpLogs.getFilteredLogs(filePath)
-      ;
+    // try {
+    //   if (LogType.HTTP == this.selectedLogType)
+    //     logs = await this._httpLogs.getFilteredLogs(filePath)
+    //   ;
 
-      if (LogType.SERVER == this.selectedLogType)
-        throw new Error('_readLogsByFile():: SERVER :: Not Implimented')
-      ;
+    //   if (LogType.SERVER == this.selectedLogType)
+    //     this._serverLogs.getFilteredLogs(filePath)
+    //   ;
 
-      if (LogType.SOCKET == this.selectedLogType)
-        throw new Error('_readLogsByFile():: SERVER :: Not Implimented')
-      ;
+    //   if (LogType.SOCKET == this.selectedLogType)
+    //     throw new Error('_readLogsByFile():: SERVER :: Not Implimented')
+    //   ;
 
-      return logs;
-    }
-    catch (err) {
-      this.$emit('notify', err.message);
-      console.error(err);
-    }
+    //   return logs;
+    // }
+    // catch (err) {
+    //   this.$emit('notify', err.message);
+    //   console.error(err);
+    // }
   }
 
 
@@ -135,11 +132,11 @@ export default class Logs extends Vue {
     try {
       resp =
         LogType.HTTP == index
-        ? (await this._httpLogs.logs).data
+        ? (await this._logHelper.listLogs('http')).data
         : LogType.SERVER == index
-          ? (await this._serverLogs.logs).data
+          ? (await this._logHelper.listLogs('server')).data
           : LogType.SOCKET == index
-            ? (await this._socketLogs.logs).data
+            ? (await this._logHelper.listLogs('socket')).data
             : resp
       ;
       return resp;
@@ -203,54 +200,23 @@ export default class Logs extends Vue {
   }
 
 
-  public getRequestCount(log: ILog) {
-    const requests = log.requests
-        , children = log.children.length
-    ;
-    let countStr = '';
-
-    if (requests > 1) {
-      countStr += `${requests}`;
-    }
-
-    if (children) {
-      countStr += `+${children}`;
-    }
-
-    return countStr;
-  }
 
 
-  public getMessage(log: ILog) {
-    let msg = log.url;
 
-    if (log.msgs.length > 1) {
-      msg = `${log.statusCode} => ${log.msgs[0]}`;
-    }
-
-    return msg;
-  }
 
 
   public getLevel(log: ILog) {
-    if (LogType.HTTP == log.type)
-      return this._httpLogs.getLevel(log)
-    ;
+    // if (LogType.HTTP == log.type)
+    //   return this._httpLogs.getLevel(log)
+    // ;
 
-    if (LogType.SERVER == log.type)
-      return this._serverLogs.getLevel(log)
-    ;
+    // if (LogType.SERVER == log.type)
+    //   return this._serverLogs.getLevel(log)
+    // ;
   }
 
 
-  public toggle(ev: MouseEvent, log: ILog) {
-    // TODO: Uncomment to hide all, on toggle
-    // this.logs.forEach(l => {
-    //   if (log.identity == l.identity) return;
-    //   l.open = false;
-    // });
-    log.open = !log.open;
-  }
+
 
 
 }

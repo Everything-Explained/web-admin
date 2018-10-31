@@ -2,11 +2,12 @@
   <ul class="log-tray">
     <li v-for='log of logs'
         :key='log.uid'
-        :class="[{ 'has-count': log.children, open: log.open }, getLevel(log)]"
+        :class="[{ 'has-count': log.children.length, open: log.open }, getLevel(log)]"
         class="log-item"
     >
       <div class="log-infobar"
-            @click='toggle($event, log)'>
+           @click='toggle($event, log)'
+      >
         <span class="timestamp large"
           >{{ log.time | dateTime('D/M => h:mm:ssa') }}
         </span>
@@ -31,5 +32,5 @@
 
 
 <script lang="ts" src="./_httpLogs.ts"></script>
-<script lang="scss" src="./_httpLogs.scss"></script>
+<style lang="scss" src="./_httpLogs.scss"></style>
 
