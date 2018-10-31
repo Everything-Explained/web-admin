@@ -1,6 +1,6 @@
 
 import { Web } from '@/utilities/web';
-import { IRawLog, ILog } from './_httpLogs';
+import { ILog, IRawLog } from '@/components/httpLogs/_httpLogs';
 
 
 // Log types IN ORDER of Logs{}.logTypes
@@ -73,8 +73,8 @@ export class LogHelper {
       this._lastFile = this._parseLogs(log)
     ;
 
-    this._lastFileName = filename;
-    this.lastLogCount = log.split('\n').length - 1;
+    this._lastFileName   = filename;
+    this.lastLogCount    = log.split('\n').length - 1;
     this.lastRequestTime = requestTime;
 
     return {
@@ -165,11 +165,12 @@ export class LogHelper {
         , lastLog = JSON.parse(logs[logs.length - 2]) as ILog
     ;
 
-    this._lastLogUID = lastLog.uid;
-
     if (!logs.length && !this._lastFile.length) return true;
 
-    if (!this._lastLogUID) return true;
+    if (!this._lastLogUID || this._lastLogUID != lastLog.uid) {
+      this._lastLogUID = lastLog.uid;
+      return false;
+    }
     else {
       return (
         lastLog.uid == this._lastLogUID
