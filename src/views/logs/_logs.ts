@@ -1,14 +1,13 @@
 import { Vue } from 'vue-property-decorator';
 import Component from 'vue-class-component';
-import MySelect from '../../components/MySelect.vue';
-import StatDisplay from '../../components/StatDisplay.vue';
-import HttpLogs from '../../components/httpLogs/HttpLogs.vue';
+import MySelect from '@/components/MySelect.vue';
+import StatDisplay from '@/components/StatDisplay.vue';
+import HttpLogs from '@/components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
-import { IHttpLog } from '../../components/httpLogs/_httpLogs';
-import { ServerLogs } from '../../components/serverLogs/_serverLogs';
+import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 import { LogHelper, LogType } from './_logHelper';
-import { SocketLogs } from './_socketLogs';
 import { ISelection } from '@/components/_mySelect';
+import ServerLogs from '@/components/serverLogs/_serverLogs';
 
 
 
@@ -16,7 +15,12 @@ import { ISelection } from '@/components/_mySelect';
 
 
 @Component({
-  components: { HttpLogs, MySelect, StatDisplay },
+  components: {
+    ServerLogs,
+    HttpLogs,
+    MySelect,
+    StatDisplay
+  },
 })
 export default class Logs extends Vue {
 
@@ -24,7 +28,6 @@ export default class Logs extends Vue {
     name: '',
     churn: 0
   };
-  public updateLog = 0;
 
   // From Global MIXIN
   public initWeb!: () => Web;
@@ -35,7 +38,7 @@ export default class Logs extends Vue {
   public selectTypeOptions = ['http', 'server', 'socket'];
 
   public logLines     = 0;
-  public logLength     = 0;
+  public logLength    = 0;
   public requestPerf  = '0ms';
   public filterPerf   = '0ms';
   public renderPerf   = '0ms';
@@ -70,12 +73,17 @@ export default class Logs extends Vue {
   public async selectLogFile(selection: ISelection, poll = false) {
 
     const file = selection.name;
-    ++this.updateLog;
     this.logSelection.name = file;
     ++this.logSelection.churn;
 
   }
 
+  /**
+   * Executed by all of the Log components when an
+   * update has been performed on a set of logs.
+   *
+   * @param details Log details
+   */
   public logUpdated(details: any) {
     this.logLength = details.length;
     this.logLines = details.lines;
@@ -124,7 +132,7 @@ export default class Logs extends Vue {
 
   // TODO: Return proper 204 status code in Server
   public async eraseFile(filename: string) {
-    const { data } = await this._httpLogs.delete(filename);
+    // const { data } = await this._httpLogs.delete(filename);
   }
 
 
