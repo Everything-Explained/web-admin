@@ -5,7 +5,7 @@ import StatDisplay from '../../components/StatDisplay.vue';
 import HttpLogs from '../../components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
 import { IHttpLog } from '../../components/httpLogs/_httpLogs';
-import { ServerLogs } from './_serverLogs';
+import { ServerLogs } from '../../components/serverLogs/_serverLogs';
 import { LogHelper, LogType } from './_logHelper';
 import { SocketLogs } from './_socketLogs';
 import { ISelection } from '@/components/_mySelect';
