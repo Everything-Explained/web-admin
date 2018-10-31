@@ -18,9 +18,14 @@
        :class="{watermark: logLength == 0}"
        data-text="Empty or Unselected File"
   >
-    <HttpLogs :selectedLog="logSelection"
+    <HttpLogs v-if="selectedLogType == getLogType('HTTP')"
+              :selectedLog="logSelection"
               @updated="logUpdated"
     ></HttpLogs>
+    <ServerLogs v-if="selectedLogType == getLogType('SERVER')"
+                :selectedLog="logSelection"
+                @updated="logUpdated"
+    ></ServerLogs>
   </div>
   <div class="log-controls">
     <button class="standard"

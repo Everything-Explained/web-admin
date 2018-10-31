@@ -7,7 +7,7 @@ import { Web } from '@/utilities/web';
 import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 import { LogHelper, LogType } from './_logHelper';
 import { ISelection } from '@/components/_mySelect';
-import ServerLogs from '@/components/serverLogs/_serverLogs';
+import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
 
 
 
@@ -52,7 +52,6 @@ export default class Logs extends Vue {
 
 
 
-
   get logPerf() {
     return (
       parseInt(this.requestPerf, 10) +
@@ -93,6 +92,11 @@ export default class Logs extends Vue {
   }
 
 
+  public getLogType(type: 'SERVER'|'HTTP'|'NULL'|'SOCKET') {
+    return LogType[type];
+  }
+
+
   public async selectLogType(selection: ISelection) {
 
     const selectedIndex = selection.index + 1
@@ -101,6 +105,7 @@ export default class Logs extends Vue {
 
     this.selectedLogType = selectedIndex;
     this.selectLogOptions = logs ? logs : [];
+    this.logLength = 0;
     this.logSelection.name = '';
 
   }

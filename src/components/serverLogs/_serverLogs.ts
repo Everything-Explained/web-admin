@@ -31,7 +31,7 @@ export default class ServerLogs extends Vue {
   private _requestTime = '';
   private _renderTime = '';
 
-  // Initialized in create() vue lifecycle
+  // Initialized in created() vue lifecycle
   private _logHelper!: LogHelper;
 
 
@@ -48,12 +48,12 @@ export default class ServerLogs extends Vue {
 
 
 
-  public create() {
+  public created() {
     this._logHelper = this.initLogHelper();
   }
 
 
-  @Watch('selectedLog')
+  @Watch('selectedLog', { deep: true })
   private async _selectFile() {
     if (!this.selectedLog.name) {
       this.logs = [];
