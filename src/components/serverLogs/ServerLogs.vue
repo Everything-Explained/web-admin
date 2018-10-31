@@ -14,11 +14,10 @@
         <span class="timestamp small"
           >{{ log.time | dateTime('h:mm:ssa') }}
         </span>
-        <!-- <span class="ip"
-          >{{log.identity == '127.0.0.1' ? 'localhost' : log.identity}}
-        </span> -->
-        <!-- <span class="method">{{ log.kind }}</span> -->
-        <span class="message" :class="getLevel(log)">{{ getMessage(log) }}</span>
+        <span class="ip"
+          >{{ log.pid }}
+        </span>
+        <span class="message" :class="getLevel(log)">{{ log.msg}}</span>
       </div>
       <!-- <HttpLogDetails :log=log v-if="log.open"></HttpLogDetails> -->
     </li>
