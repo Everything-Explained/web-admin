@@ -1,6 +1,6 @@
 
 import { Web } from '@/utilities/web';
-import { ILog, IRawLog } from '@/components/httpLogs/_httpLogs';
+import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 
 
 // Log types IN ORDER of Logs{}.logTypes
@@ -9,6 +9,14 @@ export enum LogType {
   HTTP,
   SERVER,
   SOCKET,
+}
+
+
+export interface ILog {
+  uid: string;
+  msg: string;
+  level: number;
+  time: string;
 }
 
 
@@ -51,15 +59,14 @@ export class LogHelper {
 
   /**
    * Retrieves the logs from a specified folder and
-   * filename given, as well as the time it took
-   * to retrieve the file.
+   * filename given.
    *
    * @param folder Name of a folder
    * @param filename Name of a file in the specified folder
    */
   public async getLogs(folder: string, filename: string) {
 
-    const { requestTime, log } =
+    const log =
         await this._getLogFile(
           `${this._basePath}/${folder}/${filename}`
         )
@@ -75,7 +82,6 @@ export class LogHelper {
 
     this._lastFileName   = filename;
     this.lastLogCount    = log.split('\n').length - 1;
-    this.lastRequestTime = requestTime;
 
     return {
       changed,
@@ -123,8 +129,7 @@ export class LogHelper {
 
 
   /**
-   * Retrieves the raw log data from the path specified
-   * and the time it took to retrieve the file.
+   * Retrieves the raw log data from the path specified.
    *
    * @param path The log file path to retrieve
    * @param web The web wrapper to fetch the file
@@ -136,15 +141,15 @@ export class LogHelper {
     ;
 
     await Web.timeItAsync('webDataGet', 'logData', async () => {
-      const resp = await this._web.get(path) as IRawLog;
+      const resp = await this._web.get(path);
       status = resp.status;
-      log = resp.data;
+      log = resp.data as string;
     });
 
-    const requestTime = Web.measure('webDataGet');
+    this.lastRequestTime = Web.measure('webDataGet');
 
     if (status == 200) {
-      return { requestTime, log };
+      return log;
     }
 
     throw new Error(`LogHelper::getLogData():: Failed to fetch path :: <${status}:${log}>`);

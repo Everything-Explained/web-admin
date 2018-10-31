@@ -4,7 +4,7 @@ import MySelect from '../../components/MySelect.vue';
 import StatDisplay from '../../components/StatDisplay.vue';
 import HttpLogs from '../../components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
-import { ILog } from '../../components/httpLogs/_httpLogs';
+import { IHttpLog } from '../../components/httpLogs/_httpLogs';
 import { ServerLogs } from './_serverLogs';
 import { LogHelper, LogType } from './_logHelper';
 import { SocketLogs } from './_socketLogs';
@@ -144,7 +144,7 @@ export default class Logs extends Vue {
 
 
 
-  public getData(log: ILog) {
+  public getData(log: IHttpLog) {
     const data = [];
 
     for (const key in log.data) {
@@ -162,7 +162,7 @@ export default class Logs extends Vue {
 
 
 
-  public getLevel(log: ILog) {
+  public getLevel(log: IHttpLog) {
     // if (LogType.HTTP == log.type)
     //   return this._httpLogs.getLevel(log)
     // ;

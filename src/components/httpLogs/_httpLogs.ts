@@ -1,28 +1,21 @@
 import { Web } from '@/utilities/web';
-import { LogHelper, LogType } from '../../views/logs/_logHelper';
+import { LogHelper, LogType, ILog } from '../../views/logs/_logHelper';
 import HttpLogDetails from '../../components/httpLogs/HttpLogDetails.vue';
 import Component from 'vue-class-component';
 import Vue from 'vue';
 import { Watch } from 'vue-property-decorator';
 
-export interface IRawLog {
-  status: number;
-  data: string;
-}
 
-export interface ILogData {
-  uid: string;
+
+export interface IHttpLogData extends ILog {
   identity: string; // IP or Session Alias
   browser: string;  // USER-AGENT String
-  msg: string;
-  level: number;
   req?: {
     method: string;
     url: string;
     type: string;
     data: any;
   };
-  time: string;
   err?: {
     msg: string;
     name: string;
@@ -30,9 +23,8 @@ export interface ILogData {
   };
 }
 
-export interface ILog extends ILogData {
+export interface IHttpLog extends IHttpLogData {
   msgs: string[];
-  time: string;
   localeDateString: string;
   method: string;
   url: string;
@@ -42,7 +34,7 @@ export interface ILog extends ILogData {
   statusCode: number;
   statusMsg: string;
   priority: number;
-  children: ILog[];
+  children: IHttpLog[];
   requests: number;
   open?: boolean;
 }
@@ -64,8 +56,8 @@ export default class HttpLogs extends Vue {
     churn: number; // Should increment to force an update
   };
 
-  public logs: ILog[] = [];
-  public lastFilteredLogs: ILog[] = [];
+  public logs: IHttpLog[] = [];
+  public lastFilteredLogs: IHttpLog[] = [];
 
   // Performance measurements
   public filterTime = '';
@@ -118,7 +110,7 @@ export default class HttpLogs extends Vue {
     if (!changed) return;
 
     Web.timeIt('filterLogs', 'filterLogs', () => {
-      this.lastFilteredLogs = this._filterLogs(logs);
+      this.lastFilteredLogs = this._filterLogs(logs as IHttpLog[]);
     });
 
     this.filterTime = Web.measure('filterLogs');
@@ -141,7 +133,7 @@ export default class HttpLogs extends Vue {
   }
 
 
-  public getLevel(log: ILog) {
+  public getLevel(log: IHttpLog) {
     const level = log.level
         , url   = log.url
     ;
@@ -159,7 +151,7 @@ export default class HttpLogs extends Vue {
   }
 
 
-  public getMessage(log: ILog) {
+  public getMessage(log: IHttpLog) {
     let msg = log.url;
 
     if (log.msgs.length > 1) {
@@ -170,7 +162,7 @@ export default class HttpLogs extends Vue {
   }
 
 
-  public getRequestCount(log: ILog) {
+  public getRequestCount(log: IHttpLog) {
     const requests = log.requests
         , children = log.children.length
     ;
@@ -205,7 +197,7 @@ export default class HttpLogs extends Vue {
   }
 
 
-  public toggle(ev: MouseEvent, log: ILog) {
+  public toggle(ev: MouseEvent, log: IHttpLog) {
     // TODO: Uncomment to hide all, on toggle
     // this.logs.forEach(l => {
     //   if (log.identity == l.identity) return;
@@ -218,11 +210,11 @@ export default class HttpLogs extends Vue {
 
 
 
-  private _filterLogs(logs: ILog[]) {
-    const LOGS: ILog[] = [];
+  private _filterLogs(logs: IHttpLog[]) {
+    const LOGS: IHttpLog[] = [];
     while (logs.length) {
       const log = logs[0]
-          , tempLogs: ILog[] = []
+          , tempLogs: IHttpLog[] = []
       ;
       log.children = [];
       log.open = false;
@@ -246,7 +238,7 @@ export default class HttpLogs extends Vue {
    *
    * @param logParts Logs with the same UID
    */
-  private _linkLogParts(logParts: ILog[]) {
+  private _linkLogParts(logParts: IHttpLog[]) {
     const LOG = logParts[0];
 
     for (const log of logParts) {
@@ -297,12 +289,12 @@ export default class HttpLogs extends Vue {
    *
    * @param logs An array of logs.
    */
-  private _linkDuplicates(logs: ILog[]) {
-    const LOGS = [] as ILog[];
+  private _linkDuplicates(logs: IHttpLog[]) {
+    const LOGS = [] as IHttpLog[];
 
     while (logs.length) {
       const log = logs[0]
-          , templogs: ILog[] = []
+          , templogs: IHttpLog[] = []
       ;
       logs = logs.filter(l => {
         if (!this._isLogEqual(l, log)) return true;
@@ -325,14 +317,14 @@ export default class HttpLogs extends Vue {
    *
    * @param logs The logs array
    */
-  private _combineLogs(logs: ILog[]) {
-    const LOGS = [] as ILog[];
+  private _combineLogs(logs: IHttpLog[]) {
+    const LOGS = [] as IHttpLog[];
 
     while (logs.length) {
       const log = logs[0]
-          , tempILogs = [] as ILog[]
+          , tempILogs = [] as IHttpLog[]
       ;
-      let identLogs = [] as ILog[];
+      let identLogs = [] as IHttpLog[];
 
       logs = logs.filter(l => {
         if (log.identity != l.identity) return true;
@@ -342,7 +334,7 @@ export default class HttpLogs extends Vue {
 
       while (identLogs.length) {
         const iLog = identLogs[0];
-        let tempLogs: ILog[] = [];
+        let tempLogs: IHttpLog[] = [];
 
         if (iLog.level < 40) {
           identLogs = identLogs.filter(l => {
@@ -377,7 +369,7 @@ export default class HttpLogs extends Vue {
    *
    * @param logs Filtered logs
    */
-  private _setLogType(logs: ILog[]) {
+  private _setLogType(logs: IHttpLog[]) {
     for (const log of logs) {
       let type = log.method;
       const urlParts = log.url.split('.');
@@ -408,7 +400,7 @@ export default class HttpLogs extends Vue {
    * @param l1 First log to test
    * @param l2 Second log to test against the first
    */
-  private _isDataEqual(l1: ILog, l2: ILog) {
+  private _isDataEqual(l1: IHttpLog, l2: IHttpLog) {
     if (l1.data && l2.data) {
       // Check data length
       if (Object.keys(l1.data).length != Object.keys(l2.data).length) return false;
@@ -431,7 +423,7 @@ export default class HttpLogs extends Vue {
    * @param l1 Frist log to test
    * @param l2 Second log to test against the first
    */
-  private _isLogEqual(l1: ILog, l2: ILog) {
+  private _isLogEqual(l1: IHttpLog, l2: IHttpLog) {
 
     return (
          l1.identity == l2.identity
