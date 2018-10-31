@@ -53,6 +53,10 @@ export interface ILog extends ILogData {
     logFilePath: {
       type: String,
       required: true
+    },
+    updatedLog: {
+      type: Number,
+      required: false
     }
   }
 })
@@ -60,6 +64,7 @@ export default class HttpLogs extends Vue {
 
   // From component attribute
   public logFilePath!: string;
+  public updatedLog!: number;
 
   public logs: ILog[] = [];
   public lastFilteredLogs: ILog[] = [];
@@ -78,10 +83,19 @@ export default class HttpLogs extends Vue {
   private _logHelper!: LogHelper;
 
   private _folder = 'http';
+  private _logFileLength = 0;
 
 
 
-
+  get logDetails() {
+    return {
+      filterTime: this.filterTime,
+      renderTime: this.renderTime,
+      requestTime: this.requestTime,
+      lines: this.logs.length,
+      length: this._logFileLength,
+    };
+  }
 
 
 
@@ -91,7 +105,7 @@ export default class HttpLogs extends Vue {
   }
 
 
-  @Watch('logFilePath')
+  @Watch('updatedLog')
   private async _selectFile() {
 
     if (!this.logFilePath) return;
@@ -102,18 +116,25 @@ export default class HttpLogs extends Vue {
 
     if (!changed) return;
 
+
+
     Web.timeIt('filterLogs', 'filter', () => {
       this.lastFilteredLogs = this._filterLogs(logs);
     });
 
-    this.filterTime = Web.measure('filterLogs');
+    console.log(this.lastFilteredLogs);
 
+    this.filterTime = Web.measure('filterLogs');
 
     Web.timeIt('renderLogs', 'render', () => {
       this.logs = this.lastFilteredLogs;
     });
 
     this.renderTime = Web.measure('renderLogs');
+    this._logFileLength = logs.length;
+    this.requestTime = this._logHelper.lastRequestTime;
+
+    this.$emit('updated', this.logDetails);
   }
 
 
@@ -167,6 +188,23 @@ export default class HttpLogs extends Vue {
     }
 
     return countStr;
+  }
+
+
+  public filterStack(stack: string) {
+    const stackLines = stack.split('\n');
+    let newStack = '';
+    newStack = stackLines.filter((line, i) => {
+      if (~line.indexOf('node_modules')) return false;
+      return true;
+    })
+    .map((line, i) => {
+      if (i == 0) return ` ${line.trim()}`;
+      return `    ${line.trim()}`;
+    })
+    .join('\n');
+
+    return newStack;
   }
 
 

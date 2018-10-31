@@ -11,14 +11,17 @@
               :options="selectLogOptions"
               @select="selectLogFile"
     ></MySelect>
-    <StatDisplay class="log-stat log-stat-lines" :title="'Log Count'" :display="rawLogLength"></StatDisplay>
+    <StatDisplay class="log-stat log-stat-lines" :title="'Log Count'" :display="logLength"></StatDisplay>
     <StatDisplay class="log-stat log-stat-lines" :title="'Lines'" :display="logLines"></StatDisplay>
   </div>
   <div class="log-scroll"
        :class="{watermark: logLength == 0}"
        data-text="Empty or Unselected File"
   >
-    <HttpLogs :logFilePath="selectedFilePath"></HttpLogs>
+    <HttpLogs :logFilePath="selectedFilePath"
+              :updatedLog="updateLog"
+              @updated="logUpdated"
+    ></HttpLogs>
   </div>
   <div class="log-controls">
     <button class="standard"

@@ -20,8 +20,8 @@ import { ISelection } from '@/components/_mySelect';
 })
 export default class Logs extends Vue {
 
-  public logLength = 0;
   public selectedFilePath = '';
+  public updateLog = 0;
 
   // From Global MIXIN
   public initWeb!: () => Web;
@@ -32,7 +32,7 @@ export default class Logs extends Vue {
   public selectTypeOptions = ['http', 'server', 'socket'];
 
   public logLines     = 0;
-  public rawLogLength = 0;
+  public logLength     = 0;
   public requestPerf  = '0ms';
   public filterPerf   = '0ms';
   public renderPerf   = '0ms';
@@ -68,11 +68,8 @@ export default class Logs extends Vue {
 
 
 
-    const file = selection.name
-        , resp =
-            await this._logHelper.getLogs('http', poll ? `${file}?poll=true` : file)
-    ;
-    this.logLength = resp.logs.length;
+    const file = selection.name;
+    ++this.updateLog;
     this.selectedFilePath = file;
     // if (resp && resp.changed) {
       // Web.timeIt('applyLogs', 'applyLogs', () => {
@@ -88,29 +85,13 @@ export default class Logs extends Vue {
     // this.selectedLog = file;
 
   }
-  private async _readLogsByFile(filePath: string) {
 
-    // let logs;
-
-    // try {
-    //   if (LogType.HTTP == this.selectedLogType)
-    //     logs = await this._httpLogs.getFilteredLogs(filePath)
-    //   ;
-
-    //   if (LogType.SERVER == this.selectedLogType)
-    //     this._serverLogs.getFilteredLogs(filePath)
-    //   ;
-
-    //   if (LogType.SOCKET == this.selectedLogType)
-    //     throw new Error('_readLogsByFile():: SERVER :: Not Implimented')
-    //   ;
-
-    //   return logs;
-    // }
-    // catch (err) {
-    //   this.$emit('notify', err.message);
-    //   console.error(err);
-    // }
+  public logUpdated(details: any) {
+    this.logLength = details.length;
+    this.logLines = details.lines;
+    this.renderPerf = details.renderTime;
+    this.filterPerf = details.filterTime;
+    this.requestPerf = details.requestTime;
   }
 
 
@@ -170,21 +151,7 @@ export default class Logs extends Vue {
   }
 
 
-  public filterStack(stack: string) {
-    const stackLines = stack.split('\n');
-    let newStack = '';
-    newStack = stackLines.filter((line, i) => {
-      if (~line.indexOf('node_modules')) return false;
-      return true;
-    })
-    .map((line, i) => {
-      if (i == 0) return ` ${line.trim()}`;
-      return `    ${line.trim()}`;
-    })
-    .join('\n');
 
-    return newStack;
-  }
 
 
   public getData(log: ILog) {
