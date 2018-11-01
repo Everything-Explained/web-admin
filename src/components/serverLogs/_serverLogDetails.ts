@@ -1,6 +1,6 @@
 import Vue from 'vue';
-import Component from 'vue-class-component';
 import { ILog } from '@/views/logs/_logHelper';
+import Component from 'vue-class-component';
 
 @Component({
   props: {
@@ -10,7 +10,7 @@ import { ILog } from '@/views/logs/_logHelper';
     },
   },
 })
-export default class HTTPLogDetails extends Vue {
+export default class ServerLogDetails extends Vue {
 
   public getStatusColor(log: ILog) {
     if (log.level == 30) return 'good';
@@ -21,3 +21,4 @@ export default class HTTPLogDetails extends Vue {
   }
 
 }
+

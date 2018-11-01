@@ -4,9 +4,11 @@ import Component from 'vue-class-component';
 import Vue from 'vue';
 import { Watch } from 'vue-property-decorator';
 import { NoCache } from '@/decorators/nocache';
+import ServerLogDetails from './ServerLogDetails.vue';
 
 
 @Component({
+  components: { ServerLogDetails },
   props: {
     selectedLog: {
       type: Object,
@@ -79,12 +81,18 @@ export default class ServerLogs extends Vue {
 
   }
 
-
+  public toggle(ev: MouseEvent, log: ILog) {
+    log.open = !log.open;
+  }
 
 
   public getLevel(log: ILog) {
     return this._logHelper.levels[log.level];
   }
+
+
+
+
 
 
 

@@ -2,7 +2,7 @@
   <ul class="log-tray">
     <li v-for='log of logs'
         :key='log.uid'
-        :class="[{ open: log.open }, getLevel(log)]"
+        :class="[{ open: log.open && log.data }, getLevel(log)]"
         class="log-item"
     >
       <div class="log-infobar"
@@ -19,7 +19,7 @@
         </span>
         <span class="message" :class="getLevel(log)">{{ log.msg}}</span>
       </div>
-      <!-- <HttpLogDetails :log=log v-if="log.open"></HttpLogDetails> -->
+      <ServerLogDetails :log=log v-if="log.open && log.data"></ServerLogDetails>
     </li>
   </ul>
 </template>
