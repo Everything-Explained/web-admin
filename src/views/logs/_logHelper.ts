@@ -74,14 +74,21 @@ export class LogHelper {
 
     let changed = true;
 
-    if (this._isSameLog(filename, log))
-      changed = false;
-    else
-      this._lastFile = this._parseLogs(log)
-    ;
+    if (log.length) {
+      if (this._isSameLog(filename, log))
+        changed = false;
+      else
+        this._lastFile = this._parseLogs(log)
+      ;
+    }
+    else {
+      changed = this._lastFile.length != log.length;
+      this._lastFile = [];
+    }
 
-    this._lastFileName   = filename;
-    this.lastLogCount    = log.split('\n').length - 1;
+
+    this._lastFileName = filename;
+    this.lastLogCount  = log.split('\n').length - 1;
 
     return {
       changed,
