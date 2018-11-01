@@ -16,27 +16,20 @@ export interface IHttpLogData extends ILog {
     type: string;
     data: any;
   };
-  err?: {
-    msg: string;
-    name: string;
-    stack: string;
-  };
 }
 
 export interface IHttpLog extends IHttpLogData {
-  msgs: string[];
-  localeDateString: string;
-  method: string;
-  url: string;
-  kind: string;
-  type: LogType;
-  data: any;
-  statusCode: number;
-  statusMsg: string;
-  priority: number;
-  children: IHttpLog[];
-  requests: number;
-  open?: boolean;
+  method:           string;
+  url:              string;
+  statusCode?:      number;
+  statusMsg?:       string;
+
+  // TODO: This is a message map and should be named as such
+  msgs:             string[];   // INIT::_linkLogParts()
+  localeDateString: string;     // INIT::_linkLogs()
+  kind:             string;     // INIT::_setLogType()
+  children:         IHttpLog[]; // INIT::_filterLogs()
+  requests:         number;     // INIT::_combineLogs()
 }
 
 @Component({
@@ -217,7 +210,6 @@ export default class HttpLogs extends Vue {
           , tempLogs: IHttpLog[] = []
       ;
       log.children = [];
-      log.open = false;
       logs = logs.filter(l => {
         if (l.uid != log.uid) return true;
         tempLogs.push(l);
@@ -250,7 +242,6 @@ export default class HttpLogs extends Vue {
 
       if (log.err) {
         LOG.err = log.err;
-        // Force error message to be main message.
         log.msg = log.err.msg;
       }
 
@@ -278,7 +269,6 @@ export default class HttpLogs extends Vue {
       ;
     }
     LOG.localeDateString = new Date(LOG.time).toLocaleDateString();
-    LOG.type = LogType.HTTP;
     return LOG;
   }
 
