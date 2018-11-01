@@ -1,6 +1,5 @@
 
 import { Web } from '@/utilities/web';
-import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 
 
 // Log types IN ORDER of Logs{}.logTypes
@@ -17,6 +16,13 @@ export interface ILog {
   msg: string;
   level: number;
   time: string;
+  data?: any;
+  err?: {
+    msg: string;
+    name?: string;
+    stack: string;
+  };
+  open: boolean; // INIT::_parseLogs()
 }
 
 
@@ -121,7 +127,7 @@ export class LogHelper {
    * @param rawLogs String of log data separated by a new line
    */
   private _parseLogs(rawLogs: string) {
-    const logObjs = []
+    const logObjs = [] as ILog[]
         , logs = rawLogs.split('\n')
     ;
 
@@ -129,7 +135,9 @@ export class LogHelper {
     logs.pop();
 
     for (const log of logs) {
-      logObjs.push(JSON.parse(log));
+      const pLog = JSON.parse(log) as ILog;
+      pLog.open = false;
+      logObjs.push(pLog);
     }
     return logObjs;
   }
