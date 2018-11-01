@@ -3,6 +3,7 @@ import { LogHelper, ILog } from '../../views/logs/_logHelper';
 import Component from 'vue-class-component';
 import Vue from 'vue';
 import { Watch } from 'vue-property-decorator';
+import { NoCache } from '@/decorators/nocache';
 
 
 @Component({
@@ -27,7 +28,6 @@ export default class ServerLogs extends Vue {
   public logs: ILog[] = [];
   public lastFilteredLog: ILog[] = [];
 
-  private _logFileLength = 0;
   private _requestTime = '';
   private _renderTime = '';
 
@@ -35,17 +35,16 @@ export default class ServerLogs extends Vue {
   private _logHelper!: LogHelper;
 
 
-
+  @NoCache
   get logDetails() {
     return {
       filterTime: '0ms',
       renderTime: this._renderTime,
       requestTime: this._requestTime,
       lines: this.logs.length,
-      length: this._logFileLength
+      length: this.logs.length
     };
   }
-
 
 
   public created() {
@@ -57,23 +56,25 @@ export default class ServerLogs extends Vue {
   private async _selectFile() {
     if (!this.selectedLog.name) {
       this.logs = [];
-      this._logFileLength = 0;
       this.$emit('updated', this.logDetails);
       return;
     }
 
     const { changed, logs } = await this._logHelper.getLogs('server', this.selectedLog.name);
 
-    if (!changed) return;
+    this._requestTime = this._logHelper.lastRequestTime;
+
+    if (!changed) {
+      this._renderTime = '0ms';
+      this.$emit('updated', this.logDetails);
+      return;
+    }
 
     Web.timeIt('renderLogs', 'render', () => {
       this.logs = logs;
     });
 
     this._renderTime = Web.measure('render');
-    this._requestTime = this._logHelper.lastRequestTime;
-    this._logFileLength = logs.length;
-
     this.$emit('updated', this.logDetails);
 
   }
