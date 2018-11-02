@@ -34,8 +34,8 @@
       >{{ logPollInterval ? 'Stop Polling' : 'Start Polling' }}
     </button>
     <button class="dangerous"
-            @click="eraseFile(selectedLog)"
-            :disabled="!selectedLog"
+            @click="eraseFile(logSelection.name)"
+            :disabled="!logSelection.name"
       >clear
     </button>
     <StatDisplay class="log-stat log-stat-count" :title="'Total'" :display="logPerf"></StatDisplay>

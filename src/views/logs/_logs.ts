@@ -42,7 +42,6 @@ export default class Logs extends Vue {
   public requestPerf  = '0ms';
   public filterPerf   = '0ms';
   public renderPerf   = '0ms';
-  public selectedLog  =  '';
   public selectedLogType = LogType.NULL;
   public logPollInterval: any = null;
 
@@ -135,9 +134,13 @@ export default class Logs extends Vue {
   }
 
 
-  // TODO: Return proper 204 status code in Server
   public async eraseFile(filename: string) {
-    // const { data } = await this._httpLogs.delete(filename);
+    const folder = LogType[this.selectedLogType].toLowerCase();
+    const { status } = await this._logHelper.deleteLog(folder, filename);
+    this.selectLogFile({ name: this.logSelection.name, index: 0 });
+    if (status != 204) {
+      this.$emit('notify', `Could not Erase '${folder}/${filename}'`);
+    }
   }
 
 
