@@ -24,14 +24,14 @@ import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
 })
 export default class Logs extends Vue {
 
-  public logSelection: ISelectedLog = null;
+  public selectedLog: ISelectedLog = null;
 
   // From Global MIXIN
   public initWeb!: () => Web;
   public initLogHelper!: () => LogHelper;
 
   // For MySelect components
-  public selectLogOptions: string[] = [];
+  public selectedLogOptions: string[] = [];
   public selectTypeOptions = ['http', 'server', 'socket'];
 
   public logLines     = 0;
@@ -62,7 +62,7 @@ export default class Logs extends Vue {
   public async created() {
     this._web = this.initWeb();
     this._logHelper = this.initLogHelper();
-    this.logSelection = {
+    this.selectedLog = {
       name: '',
       churn: 0,
       polling: false,
@@ -73,9 +73,9 @@ export default class Logs extends Vue {
   public async selectLogFile(selection: ISelection, poll = false) {
 
     const file = selection.name;
-    this.logSelection.name = file;
-    this.logSelection.polling = poll;
-    ++this.logSelection.churn;
+    this.selectedLog.name = file;
+    this.selectedLog.polling = poll;
+    ++this.selectedLog.churn;
 
   }
 
@@ -106,9 +106,9 @@ export default class Logs extends Vue {
     ;
 
     this.selectedLogType = selectedIndex;
-    this.selectLogOptions = logs ? logs : [];
+    this.selectedLogOptions = logs ? logs : [];
     this.logLength = 0;
-    this.logSelection.name = '';
+    this.selectedLog.name = '';
 
   }
   private async _getLogsByType(index: number): Promise<string[]|undefined> {
@@ -140,7 +140,7 @@ export default class Logs extends Vue {
   public async eraseFile(filename: string) {
     const folder = LogType[this.selectedLogType].toLowerCase();
     const { status } = await this._logHelper.deleteLog(folder, filename);
-    this.selectLogFile({ name: this.logSelection.name, index: 0 });
+    this.selectLogFile({ name: this.selectedLog.name, index: 0 });
     if (status != 204) {
       this.$emit('notify', `Could not Erase '${folder}/${filename}'`);
     }
@@ -151,7 +151,7 @@ export default class Logs extends Vue {
     if (this.logPollInterval) {
       clearInterval(this.logPollInterval);
       this.logPollInterval = null;
-      this.logSelection.polling = false;
+      this.selectedLog.polling = false;
     }
     else {
       this.logPollInterval = setInterval(() => {

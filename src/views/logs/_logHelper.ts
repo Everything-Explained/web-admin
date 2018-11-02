@@ -26,6 +26,20 @@ export interface ILog {
 }
 
 
+export interface ISelectedLog {
+
+  /** Selected Log Name */
+  name: string;
+
+  /** Increment to churn out an update */
+  churn: number;
+
+  /** Will request the logs silently */
+  polling: boolean;
+
+}
+
+
 
 export class LogHelper {
 
@@ -113,6 +127,20 @@ export class LogHelper {
    */
   public deleteLog(folder: string, filename: string) {
     return this._web.delete(`${this._basePath}/${folder}/${filename}`);
+  }
+
+
+  /**
+   * Return the path of the selection with polling if necessary.
+   *
+   * @param selection Selected log object
+   */
+  public getFilePath(selection: ISelectedLog) {
+    return (
+      selection.polling
+        ? `${selection.name}?poll=true`
+        : selection.name
+    );
   }
 
 

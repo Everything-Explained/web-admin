@@ -8,7 +8,7 @@
     ></MySelect>
     <MySelect v-if="selectedLogType"
               :title="'Select a Log'"
-              :options="selectLogOptions"
+              :options="selectedLogOptions"
               @select="selectLogFile"
     ></MySelect>
     <StatDisplay class="log-stat log-stat-lines" :title="'Log Count'" :display="logLength"></StatDisplay>
@@ -19,23 +19,23 @@
        data-text="Empty or Unselected File"
   >
     <HttpLogs v-if="selectedLogType == getLogType('HTTP')"
-              :selectedLog="logSelection"
+              :selectedLog="selectedLog"
               @updated="logUpdated"
     ></HttpLogs>
     <ServerLogs v-if="selectedLogType == getLogType('SERVER')"
-                :selectedLog="logSelection"
+                :selectedLog="selectedLog"
                 @updated="logUpdated"
     ></ServerLogs>
   </div>
   <div class="log-controls">
     <button class="standard"
-            :disabled="!logSelection.name || !!~logSelection.name.indexOf('.log.')"
-            @click="togglePollLogs(logSelection)"
+            :disabled="!selectedLog.name || !!~selectedLog.name.indexOf('.log.')"
+            @click="togglePollLogs(selectedLog)"
       >{{ logPollInterval ? 'Stop Polling' : 'Start Polling' }}
     </button>
     <button class="dangerous"
-            @click="eraseFile(logSelection.name)"
-            :disabled="!logSelection.name"
+            @click="eraseFile(selectedLog.name)"
+            :disabled="!selectedLog.name"
       >clear
     </button>
     <StatDisplay class="log-stat log-stat-count" :title="'Total'" :display="logPerf"></StatDisplay>

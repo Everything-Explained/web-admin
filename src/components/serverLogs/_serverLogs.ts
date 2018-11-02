@@ -1,5 +1,5 @@
 import { Web } from '@/utilities/web';
-import { LogHelper, ILog } from '../../views/logs/_logHelper';
+import { LogHelper, ILog, ISelectedLog } from '../../views/logs/_logHelper';
 import Component from 'vue-class-component';
 import Vue from 'vue';
 import { Watch } from 'vue-property-decorator';
@@ -19,10 +19,7 @@ import ServerLogDetails from './ServerLogDetails.vue';
 export default class ServerLogs extends Vue {
 
   // From component attribute
-  public selectedLog!: {
-    name: string;
-    churn: number;
-  };
+  public selectedLog!: ISelectedLog;
 
   // From Global Mixin
   public initLogHelper!: () => LogHelper;
@@ -62,7 +59,10 @@ export default class ServerLogs extends Vue {
       return;
     }
 
-    const { changed, logs } = await this._logHelper.getLogs('server', this.selectedLog.name);
+
+    const filepath = this._logHelper.getFilePath(this.selectedLog)
+        , { changed, logs } = await this._logHelper.getLogs('server', filepath)
+    ;
 
     this._requestTime = this._logHelper.lastRequestTime;
 

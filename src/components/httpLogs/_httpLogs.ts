@@ -1,5 +1,5 @@
 import { Web } from '@/utilities/web';
-import { LogHelper, LogType, ILog } from '../../views/logs/_logHelper';
+import { LogHelper, LogType, ILog, ISelectedLog } from '../../views/logs/_logHelper';
 import HttpLogDetails from '../../components/httpLogs/HttpLogDetails.vue';
 import Component from 'vue-class-component';
 import Vue from 'vue';
@@ -44,10 +44,7 @@ export interface IHttpLog extends IHttpLogData {
 export default class HttpLogs extends Vue {
 
   // From component attribute
-  public selectedLog!: {
-    name: string;
-    churn: number; // Should increment to force an update
-  };
+  public selectedLog!: ISelectedLog;
 
   public logs: IHttpLog[] = [];
   public lastFilteredLogs: IHttpLog[] = [];
@@ -98,7 +95,9 @@ export default class HttpLogs extends Vue {
       return;
     }
 
-    const { changed, logs } = await this._logHelper.getLogs('http', this.selectedLog.name);
+    const filepath = this._logHelper.getFilePath(this.selectedLog)
+        , { changed, logs } = await this._logHelper.getLogs('http', filepath)
+    ;
 
     if (!changed) return;
 
