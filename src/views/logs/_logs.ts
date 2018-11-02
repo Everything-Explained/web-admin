@@ -5,7 +5,7 @@ import StatDisplay from '@/components/StatDisplay.vue';
 import HttpLogs from '@/components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
 import { IHttpLog } from '@/components/httpLogs/_httpLogs';
-import { LogHelper, LogType } from './_logHelper';
+import { LogHelper, LogType, ISelectedLog } from './_logHelper';
 import { ISelection } from '@/components/_mySelect';
 import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
 
@@ -24,10 +24,7 @@ import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
 })
 export default class Logs extends Vue {
 
-  public logSelection = {
-    name: '',
-    churn: 0
-  };
+  public logSelection: ISelectedLog = null;
 
   // From Global MIXIN
   public initWeb!: () => Web;
@@ -65,6 +62,11 @@ export default class Logs extends Vue {
   public async created() {
     this._web = this.initWeb();
     this._logHelper = this.initLogHelper();
+    this.logSelection = {
+      name: '',
+      churn: 0,
+      polling: false,
+    };
   }
 
 
@@ -72,6 +74,7 @@ export default class Logs extends Vue {
 
     const file = selection.name;
     this.logSelection.name = file;
+    this.logSelection.polling = poll;
     ++this.logSelection.churn;
 
   }
@@ -148,6 +151,7 @@ export default class Logs extends Vue {
     if (this.logPollInterval) {
       clearInterval(this.logPollInterval);
       this.logPollInterval = null;
+      this.logSelection.polling = false;
     }
     else {
       this.logPollInterval = setInterval(() => {

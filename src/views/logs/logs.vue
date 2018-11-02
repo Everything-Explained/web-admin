@@ -29,8 +29,8 @@
   </div>
   <div class="log-controls">
     <button class="standard"
-            :disabled="!selectedLog || selectedLog != 'requests.log'"
-            @click="togglePollLogs(selectedLog)"
+            :disabled="!logSelection.name || !!~logSelection.name.indexOf('.log.')"
+            @click="togglePollLogs(logSelection)"
       >{{ logPollInterval ? 'Stop Polling' : 'Start Polling' }}
     </button>
     <button class="dangerous"
