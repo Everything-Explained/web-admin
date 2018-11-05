@@ -1,4 +1,4 @@
-<template>
+<template lang="html">
   <div id="app">
     <!-- <div id="nav">
       <router-link to="/">Chickens</router-link> |
@@ -19,10 +19,15 @@
     <header>
     </header>
 
-    <router-view id="RouterView" @notify="setNote" />
+    <transition appear name="fade">
+      <router-view id="RouterView" @notify="setNote" />
+    </transition>
   </div>
 </template>
 
+<style>
+  @import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css';
+</style>
 <style lang="scss" src="./assets/styles/app/_app.scss"></style>
 <script lang='ts' src='./app.ts'></script>
 
