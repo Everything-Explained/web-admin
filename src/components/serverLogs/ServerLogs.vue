@@ -19,7 +19,7 @@
         </span>
         <span class="message" :class="getLevel(log)">{{ log.msg}}</span>
       </div>
-      <ServerLogDetails :log=log v-if="log.open && log.data"></ServerLogDetails>
+      <ServerLogDetails :log=log v-if="log.open && (log.data || log.err)"></ServerLogDetails>
     </li>
   </ul>
 </template>

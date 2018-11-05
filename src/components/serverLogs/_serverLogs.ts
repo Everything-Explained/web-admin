@@ -81,6 +81,7 @@ export default class ServerLogs extends Vue {
 
   }
 
+
   public toggle(ev: MouseEvent, log: ILog) {
     log.open = !log.open;
   }
@@ -88,6 +89,23 @@ export default class ServerLogs extends Vue {
 
   public getLevel(log: ILog) {
     return this._logHelper.levels[log.level];
+  }
+
+
+  public filterStack(stack: string) {
+    const stackLines = stack.split('\n');
+    let newStack = '';
+    newStack = stackLines.filter((line, i) => {
+      if (~line.indexOf('node_modules')) return false;
+      return true;
+    })
+    .map((line, i) => {
+      if (i == 0) return ` ${line.trim()}`;
+      return `    ${line.trim()}`;
+    })
+    .join('\n');
+
+    return newStack;
   }
 
 
@@ -99,3 +117,5 @@ export default class ServerLogs extends Vue {
 
 
 }
+
+
