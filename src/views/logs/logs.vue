@@ -4,6 +4,7 @@
   <div class="log-controls">
     <MySelect :title="'Select Log Type'"
               :options="selectTypeOptions"
+              class="log-type-selection"
               @select="selectLogType"
     ></MySelect>
     <MySelect v-if="selectedLogType"

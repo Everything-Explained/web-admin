@@ -32,7 +32,7 @@ export default class Logs extends Vue {
 
   // For MySelect components
   public selectedLogOptions: string[] = [];
-  public selectTypeOptions = ['http', 'server', 'socket'];
+  public selectTypeOptions = ['http', 'server'];
 
   public logLines     = 0;
   public logLength    = 0;

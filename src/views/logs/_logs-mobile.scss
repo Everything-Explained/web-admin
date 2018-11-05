@@ -1,0 +1,33 @@
+@media only screen and (max-width: 900px) {
+  .stat-display {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .log-infobar {
+    .ip { display: none !important; }
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .log-controls:last-child {
+    display: none;
+  }
+}
+
+
+
+@media only screen and (max-width: 690px) {
+
+  .timestamp.large { display: none; }
+  .timestamp.small { display: block; }
+  .log-infobar {
+    .method {
+      display: none !important;
+    }
+  }
+  .log-count {
+    display: none;
+  }
+}
