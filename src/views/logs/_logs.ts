@@ -1,12 +1,12 @@
 import { Vue } from 'vue-property-decorator';
 import Component from 'vue-class-component';
-import MySelect from '@/components/MySelect.vue';
-import StatDisplay from '@/components/StatDisplay.vue';
+import MySelect from '@/components/elements/MySelect.vue';
+import StatDisplay from '@/components/elements/StatDisplay.vue';
 import HttpLogs from '@/components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
 import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 import { LogHelper, LogType, ISelectedLog } from './_logHelper';
-import { ISelection } from '@/components/_mySelect';
+import { ISelection } from '@/components/elements/_mySelect';
 import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
 
 

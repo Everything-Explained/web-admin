@@ -11,7 +11,7 @@
       <ul>
         <li @mousedown='goTo("/")'><span class="material-icons">home</span> Home</li>
         <li @mousedown='goTo("logs")'><span class="material-icons">subject</span> Logs</li>
-        <li><span class="material-icons">card_giftcard</span> Invites</li>
+        <li @mousedown="goTo('invites')"><span class="material-icons">card_giftcard</span> Invites</li>
         <li><span class="material-icons">recent_actors</span> Users</li>
       </ul>
     </nav>
