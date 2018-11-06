@@ -1,19 +1,31 @@
 .fade-enter-active {
-  animation: fadeIn .2s;
-  animation-delay: .4s;
+  animation: fadeIn .4s;
+  animation-delay: .2s;
   opacity: 0;
 }
 .fade-leave-active {
-  animation: fadeIn .3s;
-  animation-direction: reverse;
+  animation: fadeOut .4s;
 }
 
 @keyframes fadeIn {
   from {
     opacity: 0;
+    transform: translateX(250px);
   }
   to {
+    transform: translateX(0);
     opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  from {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(-150px);
   }
 }
 
