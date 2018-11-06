@@ -1,0 +1,65 @@
+.msel-container {
+  display: inline-block;
+  width: 13em;
+  label {
+    padding: 0 5px 8px 10px;
+    width: 100%;
+    font-size: 1.1em;
+    font-family: 'Fira Code';
+    font-weight: 400;
+    color: $pmry-dark;
+    border-bottom: 1px solid $cmpt-darkest;
+    transition: all .3s ease;
+
+    &:hover, &.active {
+      color: $good-text;
+    }
+
+    &::after {
+      right: 10px;
+      border-top-color: $pmry-dark;
+      border-width: 8px;
+    }
+
+    &.active::after {
+      border-bottom-color: $warn-text;
+    }
+
+
+  }
+
+  .my-select {
+    width: 100%;
+    max-height: 10em;
+    overflow: auto;
+    &::-webkit-scrollbar { position: relative; width: 12px; left: -100px; }
+    &::-webkit-scrollbar-thumb {
+      background: $cmpt-darkest;
+      border-left: 3px solid $bg;
+      border-top: 1px solid $bg;
+      border-right: 1px solid $bg;
+      &:hover { background: $cmpt-dark; }
+    }
+    &::-webkit-scrollbar-track {
+      border-radius: 5px;
+      background: hsla(240, 20%, 14%, 0.85);
+    }
+  }
+
+  .sel-item {
+    padding: 3px 0 3px 5px;
+    background: hsla(240, 20%, 14%, 0.85);
+    border-top: 1px solid $cmpt-darkest;
+    border-left: 1px solid $cmpt-darkest;
+    &:hover {
+      background: $cmpt-darkultra;
+    }
+    &:first-child {
+      border-top: none;
+    }
+    &:last-child {
+      margin-bottom: 6px;
+      border-bottom: 1px solid $cmpt-darkest;
+    }
+  }
+}

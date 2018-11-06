@@ -28,74 +28,7 @@
 
 
 
-.msel-container {
-  display: inline-block;
-  width: 13em;
-  label {
-    padding: 10px 5px 10px 10px;
-    width: 100%;
-    font-size: 1.1em;
-    font-family: 'Fira Code';
-    font-weight: 400;
-    color: $pmry-dark;
-    background: $bg-lightest;
-    border: 3px solid $bg-darker;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
 
-    &::after {
-      right: 10px;
-      border-top-color: $pmry-dark;
-      border-width: 8px;
-    }
-
-    &.active::after {
-      border-bottom-color: $warn-text;
-    }
-
-
-  }
-
-  .my-select {
-    left: 0;
-    width: 100%;
-    max-height: 10em;
-    padding-bottom: 2px;
-    background: $bg-darker;
-    border: 3px solid $bg-darker;
-    border-top: none;
-    overflow: auto;
-    &:last-child {
-      border-bottom-right-radius: 5px;
-      border-bottom-left-radius: 5px;
-    }
-    &::-webkit-scrollbar { position: relative; width: 12px; left: -100px; }
-    &::-webkit-scrollbar-thumb {
-      background: $cmpt-darkest;
-      border-left: 3px solid $bg;
-      border-top: 1px solid $bg;
-      border-right: 1px solid $bg;
-      &:hover { background: $cmpt-dark; }
-    }
-    &::-webkit-scrollbar-track {
-      border-radius: 5px;
-      background: $bg;
-    }
-  }
-
-  .sel-item {
-    padding: 3px 0 3px 5px;
-    background: $bg-lightest;
-    border-top: 1px solid $bg-dark;
-    &:hover {
-      background: $bg-lightultra;
-    }
-    &:last-child {
-      border-bottom-right-radius: 3px;
-      border-bottom-left-radius: 3px;
-    }
-  }
-}
 
 .log-type-selection {
   margin-right: 20px;
