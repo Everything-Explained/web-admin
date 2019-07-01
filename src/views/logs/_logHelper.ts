@@ -1,5 +1,6 @@
 
 import { Web } from '@/utilities/web';
+import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 
 
 // Log types IN ORDER of Logs{}.logTypes
@@ -13,7 +14,6 @@ export enum LogType {
 
 export interface ILog {
   uid: string;
-  msg: string;
   level: number;
   time: string;
   data?: any;
@@ -51,8 +51,8 @@ export class LogHelper {
 
   private _lastFileName = '';
   private _lastLogUID   = '';
-  private _lastFile: ILog[] =  [];
-  private _basePath = 'https://localhost:5007/protected/logs';
+  private _lastFile: any[];
+  private _basePath = 'https://localhost:3003/protected/logs';
 
 
 
@@ -73,7 +73,7 @@ export class LogHelper {
    * @param folder Name of a folder
    */
   public async listLogs(folder: string) {
-    return this._web.get(`${this._basePath}/list/${folder}`);
+    return this._web.get(`${this._basePath}/list`);
   }
 
 
@@ -84,11 +84,11 @@ export class LogHelper {
    * @param folder Name of a folder
    * @param filename Name of a file in the specified folder
    */
-  public async getLogs(folder: string, filename: string) {
+  public async getLogs(filename: string) {
 
     const log =
         await this._getLogFile(
-          `${this._basePath}/${folder}/${filename}`
+          `${this._basePath}/${filename}`
         )
     ;
 
@@ -155,16 +155,16 @@ export class LogHelper {
    * @param rawLogs String of log data separated by a new line
    */
   private _parseLogs(rawLogs: string) {
-    const logObjs = [] as ILog[]
+    const logObjs = []
         , logs = rawLogs.split('\n')
     ;
 
+    // TODO: trim() instead of pop()
     // Last line will always be an empty string
     logs.pop();
 
     for (const log of logs) {
-      const pLog = JSON.parse(log) as ILog;
-      pLog.open = false;
+      const pLog = JSON.parse(log);
       logObjs.push(pLog);
     }
     return logObjs;
@@ -210,18 +210,18 @@ export class LogHelper {
   private _isSameLog(filename: string, rawLogs: string) {
 
     const logs = rawLogs.split('\n')
-        , lastLog = JSON.parse(logs[logs.length - 2]) as ILog
+        , lastLog = JSON.parse(logs[logs.length - 2]) as IHttpLog
     ;
 
     if (!logs.length && !this._lastFile.length) return true;
 
-    if (!this._lastLogUID || this._lastLogUID != lastLog.uid) {
-      this._lastLogUID = lastLog.uid;
+    if (!this._lastLogUID || this._lastLogUID != lastLog.id) {
+      this._lastLogUID = lastLog.id;
       return false;
     }
     else {
       return (
-        lastLog.uid == this._lastLogUID
+        lastLog.id == this._lastLogUID
         && filename == this._lastFileName
       );
     }

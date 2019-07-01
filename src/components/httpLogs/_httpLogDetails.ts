@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { ILog } from '@/views/logs/_logHelper';
+import { IHttpLog } from './_httpLogs';
 
 @Component({
   props: {
@@ -12,10 +12,11 @@ import { ILog } from '@/views/logs/_logHelper';
 })
 export default class HTTPLogDetails extends Vue {
 
-  public getStatusColor(log: ILog) {
-    if (log.level == 30) return 'good';
-    if (log.level == 40) return 'warn';
-    if (log.level == 50) return 'error';
+  public getStatusColor(log: IHttpLog) {
+    if (log.level == 'default' || log.level == 'special') return 'good';
+    if (log.level == 'forbidden') return 'forbidden';
+    if (log.level == 'warn') return 'warn';
+    if (log.level == 'error') return 'error';
 
     return '';
   }

@@ -8,15 +8,15 @@
       </div> -->
       <div class="tr">
         <div class="cell">UID =></div>
-        <div class="cell">{{ log.uid }}</div>
+        <div class="cell">{{ log.id }}</div>
       </div>
       <div class="tr">
         <div class="cell ident">Identity =></div>
-        <div class="cell">{{ log.identity }}</div>
+        <div class="cell">{{ log.identity || log.address }}</div>
       </div>
       <div class="tr">
         <div class="cell">Agent =></div>
-        <div class="cell">{{ log.browser }}</div>
+        <div class="cell">{{ log.agent }}</div>
       </div>
       <div class="tr">
         <div class="cell">Requests =></div>
@@ -35,18 +35,17 @@
         </div>
       </div>
 
-      <div class="log-map-container" v-if="log.statusCode">
-        <div class="log-map" :class="getStatusColor(log)">{{ log.method }}</div>
-        <div class="log-map" :class="getStatusColor(log)" v-for="(msg, i) of log.msgs" :key=i
-          >{{ msg }}
+      <div class="log-map-container" v-if="log.req.status">
+        <div class="log-map" :class="getStatusColor(log)">{{ log.req.method }}</div>
+        <div class="log-map" :class="getStatusColor(log)">{{ log.req.url }}
         </div>
-        <div class="log-map" :class="getStatusColor(log)">{{ log.statusCode }}</div>
+        <div class="log-map" :class="getStatusColor(log)">{{ log.req.status }}</div>
       </div>
     </div>
 
     <pre v-if="log.err"
-         class="log-stack-container child-log-list"
-      ><div class="log-stack">{{ $parent.filterStack(log.err.stack) }}</div>
+      class="log-stack-container child-log-list"
+    ><div class="log-stack">{{ $parent.filterStack(log.err.stack) }}</div>
     </pre>
 
 
@@ -57,13 +56,13 @@
           :class="$parent.getLevel(clog)"
       >
         <span class="timestamp large">
-          {{ clog.time | dateTime('D/M => h:mm:ssa') }}
+          {{ clog.date | dateTime('D/M => h:mm:ssa') }}
         </span>
         <span class="timestamp small">
-          {{ clog.time | dateTime('h:mm:ssa') }}
+          {{ clog.date | dateTime('h:mm:ssa') }}
         </span>
         <span class="method">{{ clog.kind }}</span>
-        <span class="message" :class="$parent.getLevel(clog)">{{ $parent.getMessage(clog) }}</span>
+        <span class="message" :class="$parent.getLevel(clog)">{{ clog.req.url }}</span>
         <span class="child-count"
               v-if="clog.children.length">
           {{ clog.children.length }}

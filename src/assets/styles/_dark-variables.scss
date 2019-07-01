@@ -28,6 +28,7 @@ $good-c: hsl(155, 100%, 70%);
 $good-text: desaturate(darken($good-c, 3.3%), 48%);
 $good-accent: desaturate(darken($good-text, 9%), 20%);
 $good-bg: desaturate(darken($good-c, 50%), 75%);
+$good-bg-light: desaturate(darken($good-c, 47%), 40%);
 $good-high: $good-text;
 
 $special-c: hsl(240, 100%, 80%);
@@ -45,10 +46,16 @@ $debug-high: $debug-text;
 $warn-c: hsl(53, 100%, 70%);
 $warn-text: desaturate(darken($warn-c, 3.3%), 33%);
 $warn-accent: desaturate(darken($warn-c, 15%), 55%);
+$warn-bg: desaturate(darken($warn-c, 50%), 75%);
 $warn-high: $warn-text;
 
+$forbidden-c: hsl(10, 100%, 75%);
+$forbidden-text: desaturate($forbidden-c, 40%);
+$forbidden-accent: desaturate(darken($forbidden-text, 8%), 10%);
+$forbidden-high: $forbidden-text;
+
 $error-c: hsl(320, 100%, 80%);
-$error-text: desaturate(darken($error-c, 3.7%), 65%);
+$error-text: desaturate(darken($error-c, 3.7%), 45%);
 $error-accent: desaturate(darken($error-c, 12%), 70%);
 $debug-bg: desaturate(darken($error-c, 60%), 90%);
 $error-high: $error-text;

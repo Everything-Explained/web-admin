@@ -1,5 +1,6 @@
+
 import { Web } from '@/utilities/web';
-import { LogHelper, LogType, ILog, ISelectedLog } from '../../views/logs/_logHelper';
+import { LogHelper, LogType, ISelectedLog } from '../../views/logs/_logHelper';
 import HttpLogDetails from '../../components/httpLogs/HttpLogDetails.vue';
 import Component from 'vue-class-component';
 import Vue from 'vue';
@@ -7,30 +8,39 @@ import { Watch } from 'vue-property-decorator';
 
 
 
-export interface IHttpLogData extends ILog {
-  identity: string; // IP or Session Alias
-  browser: string;  // USER-AGENT String
-  req?: {
+
+export interface IHttpLogData {
+  id       : string;  // Unique
+  date     : number;  // ISO format
+  address  : string;  // IP
+  identity?: string;  // Session Alias
+  referrer : string;  //
+  agent    : string;  // User-Agent
+  req: {
     method: string;
+    status: number;
     url: string;
-    type: string;
-    data: any;
+    data: {
+      query: { [key: string]: string }
+      params: { [key: string]: string }
+      body: { [key: string]: string }
+    };
   };
+  data: { [key: string]: string };
 }
+
 
 export interface IHttpLog extends IHttpLogData {
-  method:           string;
-  url:              string;
-  statusCode?:      number;
-  statusMsg?:       string;
-
   // TODO: This is a message map and should be named as such
-  msgs:             string[];   // INIT::_linkLogParts()
-  localeDateString: string;     // INIT::_linkLogs()
-  kind:             string;     // INIT::_setLogType()
-  children:         IHttpLog[]; // INIT::_filterLogs()
-  requests:         number;     // INIT::_combineLogs()
+  // msgs:             string[];   // INIT::_linkLogParts()
+  // localeDateString: string;     // INIT::_linkLogs()
+  open    : boolean;
+  level   : string;
+  type    : string;      // INIT::_setLogType()
+  children: IHttpLog[];  // INIT::_filterLogs()
+  requests: number;      // INIT::_combineLogs()
 }
+
 
 @Component({
   components: { HttpLogDetails },
@@ -96,7 +106,7 @@ export default class HttpLogs extends Vue {
     }
 
     const filepath = this._logHelper.getFilePath(this.selectedLog)
-        , { changed, logs } = await this._logHelper.getLogs('http', filepath)
+        , { changed, logs } = await this._logHelper.getLogs(filepath)
     ;
 
     if (!changed) return;
@@ -126,32 +136,43 @@ export default class HttpLogs extends Vue {
 
 
   public getLevel(log: IHttpLog) {
-    const level = log.level
-        , url   = log.url
-    ;
+    const url = log.req.url;
+    const status = log.req.status;
 
-    if (url && level < 40) {
-      if (   ~url.indexOf('/protected')
-          || ~url.indexOf('/internal'))
-      {
-        return 'special';
-      }
+    if (status == 403) {
+      return 'forbidden';
     }
 
-    return this._logHelper.levels[level];
+    if (~url.indexOf('/protected')) {
+      return 'special';
+    }
 
+    if (status >= 200 && status < 400) {
+      return 'default';
+    }
+
+    if (status >= 400 && status < 500) {
+      return 'warn';
+    }
+
+    if (status >= 500) {
+      return 'error';
+    }
+
+    console.error('getLevel()::Invalid Status', log);
+    return 'error';
   }
 
 
-  public getMessage(log: IHttpLog) {
-    let msg = log.url;
+  // public getMessage(log: IHttpLog) {
+  //   let msg = log.url;
 
-    if (log.msgs.length > 1) {
-      msg = `${log.statusCode} => ${log.msgs[0]}`;
-    }
+  //   if (log.msgs.length > 1) {
+  //     msg = `${log.statusCode} => ${log.msgs[0]}`;
+  //   }
 
-    return msg;
-  }
+  //   return msg;
+  // }
 
 
   public getRequestCount(log: IHttpLog) {
@@ -203,72 +224,60 @@ export default class HttpLogs extends Vue {
 
 
   private _filterLogs(logs: IHttpLog[]) {
-    const LOGS: IHttpLog[] = [];
-    while (logs.length) {
-      const log = logs[0]
-          , tempLogs: IHttpLog[] = []
-      ;
-      log.children = [];
-      logs = logs.filter(l => {
-        if (l.uid != log.uid) return true;
-        tempLogs.push(l);
-        return false;
-      });
-      LOGS.push(this._linkLogParts(tempLogs));
-    }
+    const parsedLogs: IHttpLog[] = [];
 
-    return this._linkDuplicates(
-      this._setLogType(LOGS),
-    );
+    for (const log of logs) {
+      log.address = (~log.address.indexOf('::1')) ? '127.0.0.1' : log.address;
+      log.address = log.address.replace('::ffff:', '');
+      log.agent = this.getBrowser(log.agent);
+      log.req.url = log.req.url.replace(/\?.+$/, '');
+      log.type = this.getLogType(log);
+      log.level = this.getLevel(log);
+      log.open = false; // Default
+      const data = log.req.data;
+      if (data) {
+        log.data = Object.assign({}, data.query, data.params, data.body);
+      }
+      log.children = [];
+      parsedLogs.push(log);
+    }
+    // console.debug(LOGS);
+
+    return this._linkDuplicates(parsedLogs).reverse();
+    // return this._linkDuplicates(
+    //   this.getLogType(LOGS),
+    // );
   }
 
 
-  /**
-   * Links log parts (identical log UIDs) together as
-   * one individual log. This includes merging data.
-   *
-   * @param logParts Logs with the same UID
-   */
-  private _linkLogParts(logParts: IHttpLog[]) {
-    const LOG = logParts[0];
+  private getBrowser(agentStr: string) {
+    const getBrowserVersion =
+      (platform: string) => {
+        return agentStr.match(`${platform}\/[0-9]+\.[0-9]`)[0].split('/')[1];
+      }
+    ;
 
-    for (const log of logParts) {
-      if (log.req) {
-        Object.assign(LOG, log.req);
-        LOG.msgs = [LOG.url]; // URL is only available here
-        continue;
+    if (agentStr) {
+      if (~agentStr.indexOf('Firefox')) {
+        return 'FireFox: ' + getBrowserVersion('Firefox');
       }
 
-      if (log.err) {
-        LOG.err = log.err;
-        log.msg = log.err.msg;
+      else if (~agentStr.indexOf('Chrome')) {
+        return 'Chrome: ' + getBrowserVersion('Chrome');
       }
 
-      // Make sure higher levels get priority
-      if (log.level > LOG.level) LOG.level = log.level;
-
-      // Allow debug messages to get priority over normal
-      if (LOG.level < 30 && log.level < 30) LOG.level = log.level;
-
-      // Catch params data set within route request
-      if (log.data) {
-        LOG.data =
-          LOG.data
-            ? Object.assign(LOG.data, log.data)
-            : log.data
-        ;
+      else if (~agentStr.indexOf('Safari')) {
+        return 'Safari: ' + getBrowserVersion('Safari');
       }
 
-      if (log.statusCode) {
-        LOG.statusCode = log.statusCode;
-        LOG.statusMsg = log.msg;
+      else if (~agentStr.indexOf('Netcraft')) {
+        return 'Netcraft SSL Survey';
       }
-      else
-        LOG.msgs.push(log.msg)
-      ;
+
+      else {
+        return `UNKNOWN:  [${agentStr}]`;
+      }
     }
-    LOG.localeDateString = new Date(LOG.time).toLocaleDateString();
-    return LOG;
   }
 
 
@@ -282,19 +291,23 @@ export default class HttpLogs extends Vue {
     const LOGS = [] as IHttpLog[];
 
     while (logs.length) {
-      const log = logs[0]
-          , templogs: IHttpLog[] = []
-      ;
+      const log = logs.shift();
+      const templogs: IHttpLog[] = [];
+
       logs = logs.filter(l => {
         if (!this._isLogEqual(l, log)) return true;
         templogs.push(l);
         return false;
       });
-      templogs.splice(0, 1);
+
       log.children = (templogs.length) ? templogs : [];
+      log.date =
+        (templogs.length)
+          ? log.children[templogs.length - 1].date
+          : log.date
+      ;
       LOGS.push(log);
     }
-
     return this._combineLogs(LOGS);
   }
 
@@ -310,43 +323,35 @@ export default class HttpLogs extends Vue {
     const LOGS = [] as IHttpLog[];
 
     while (logs.length) {
-      const log = logs[0]
-          , tempILogs = [] as IHttpLog[]
-      ;
-      let identLogs = [] as IHttpLog[];
+      const log = logs.shift();
+      const similarLogs = [] as IHttpLog[];
 
       logs = logs.filter(l => {
-        if (log.identity != l.identity) return true;
-        identLogs.push(l);
+        if (!(   log.address == l.address
+              && log.type == l.type
+              && log.req.status == l.req.status
+              && this._isDataEqual(log, l)
+              && this.isWithinHour(log, l)
+              && l.level == 'default')) return true;
+        similarLogs.push(l);
         return false;
       });
 
-      while (identLogs.length) {
-        const iLog = identLogs[0];
-        let tempLogs: IHttpLog[] = [];
-
-        if (iLog.level < 40) {
-          identLogs = identLogs.filter(l => {
-            if (!(   iLog.kind == l.kind
-                  && this._isDataEqual(iLog, l)
-                  && l.level < 40)) return true
-            ;
-            tempLogs.push(l);
-            return false;
-          });
-          tempLogs.splice(0, 1);
-        }
-        else {
-          identLogs.splice(0, 1);
-          tempLogs = [];
-        }
-
-        iLog.requests = iLog.children.length + 1; // +1 for the actual log itself
-        iLog.children = (tempLogs.length) ? tempLogs : [];
-        tempILogs.push(iLog);
+      if (similarLogs.length) {
+        log.requests = log.children.length || 1;
+        log.children = similarLogs;
+        log.date = log.children[log.children.length - 1].date;
+      }
+      else if (log.children.length) {
+        log.requests = log.children.length + 1; // +1 for the log itself
+        log.date = log.children[log.children.length - 1].date;
+        log.children = [];
+      }
+      else {
+        log.requests = 1;
       }
 
-      LOGS.push(...tempILogs);
+      LOGS.push(log);
     }
     return LOGS;
   }
@@ -356,29 +361,25 @@ export default class HttpLogs extends Vue {
    * Apply more descriptive types to logs than just
    * using the default method type.
    *
-   * @param logs Filtered logs
+   * @param log Filtered logs
    */
-  private _setLogType(logs: IHttpLog[]) {
-    for (const log of logs) {
-      let type = log.method;
-      const urlParts = log.url.split('.');
+  private getLogType(log: IHttpLog) {
+    const req = log.req;
 
-      if      (log.url == '/')                    type = 'FILE';
+    if (req.url.match(/\.\w+$/g))
+      return 'FILE'
+    ;
 
-      else if (    urlParts.length > 1
-                && !~urlParts.pop()!.indexOf('/')
-                && log.method == 'GET')           type = 'FILE';
-
-      else if (log.data && log.method == 'GET')   type = 'QUERY';
-
-      else if (   log.data
-               && (~log.url.indexOf('/login')
-               || ~log.url.indexOf('/logout')))    type = 'AUTH';
-
-      log.kind = type;
+    if (req.data) {
+      if (req.data.query)
+        return 'QUERY'
+      ;
+      if (req.data.body && req.method == 'POST')
+        return 'SUBMIT'
+      ;
     }
 
-    return logs;
+    return req.method;
   }
 
 
@@ -413,16 +414,19 @@ export default class HttpLogs extends Vue {
    * @param l2 Second log to test against the first
    */
   private _isLogEqual(l1: IHttpLog, l2: IHttpLog) {
-
     return (
-         l1.identity == l2.identity
-      && l1.kind == l2.kind
-      && l1.msg == l2.msg
-      && l1.method == l2.method
-      && l1.statusCode == l2.statusCode
-      && l1.localeDateString == l2.localeDateString
+         l1.address == l2.address
+      && l1.type == l2.type
+      && l1.req.url == l2.req.url
+      && this.isWithinHour(l1, l2)
+      && l1.req.method == l2.req.method
+      && l1.req.status == l2.req.status
       && this._isDataEqual(l1, l2)
     );
+  }
+
+  private isWithinHour(l1: IHttpLog, l2: IHttpLog) {
+    return Math.abs(l1.date - l2.date) <= 3600000;
   }
 
 

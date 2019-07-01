@@ -113,6 +113,7 @@
   line-height: 26px;
   &.good::before  { color: $good-text;  }
   &.warn::before  { color: $warn-text;  }
+  &.forbidden:before { color: $forbidden-text; }
   &.error::before { color: $error-text; }
   &::before {
     position: relative;

@@ -25,6 +25,10 @@
   border-left-color: $error-high;
   border-bottom-color: $error-high;
 }
+%borderForbidden {
+  border-left-color: $forbidden-high;
+  border-bottom-color: $forbidden-high;
+}
 
 
 
@@ -32,6 +36,10 @@
 
 .log-type-selection {
   margin-right: 20px;
+}
+
+.log-selector {
+  width: 245px
 }
 
 .log-stat {
@@ -142,12 +150,13 @@
   transition: border .25s ease, background .25s ease;
 
   &.open {
-    &.default { @extend %borderDefault; }
-    &.good    { @extend %borderGood;    }
-    &.special { @extend %borderSpecial; }
-    &.debug   { @extend %borderDebug;   }
-    &.warn    { @extend %borderWarn;    }
-    &.error   { @extend %borderError;   }
+    &.default   { @extend %borderDefault;  }
+    &.good      { @extend %borderGood;     }
+    &.special   { @extend %borderSpecial;  }
+    &.debug     { @extend %borderDebug;    }
+    &.warn      { @extend %borderWarn;     }
+    &.forbidden { @extend %borderForbidden }
+    &.error     { @extend %borderError;    }
   }
 
   &.default {
@@ -169,6 +178,10 @@
   &.debug {
     border-left: 4px solid $debug-accent;
     &:hover { @extend %borderDebug; }
+  }
+  &.forbidden {
+    border-left: 4px solid $forbidden-accent;
+    &:hover { @extend %borderForbidden }
   }
   &.error {
     border-left: 4px solid $error-accent;
@@ -224,6 +237,7 @@
   &.warn    { color: $warn-text; font-weight: 400; }
   &.special { color: $special-text}
   &.error   { color: $error-text; font-weight: 400; }
+  &.forbidden { color: $forbidden-text; font-weight: 400 }
   &.debug   { color: $debug-text; }
 }
 

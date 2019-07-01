@@ -1,24 +1,25 @@
 <template>
   <ul class="log-tray">
-    <li v-for='log of logs'
-        :key='log.uid'
-        :class="[{ 'has-count': log.children.length, open: log.open }, getLevel(log)]"
-        class="log-item"
+    <li
+      v-for='log of logs'
+      :key='log.uid'
+      :class="[{ 'has-count': log.children.length, open: log.open }, getLevel(log)]"
+      class="log-item"
     >
       <div class="log-infobar"
-           @click='toggle($event, log)'
+        @click='toggle($event, log)'
       >
         <span class="timestamp large"
-          >{{ log.time | dateTime('D/M => h:mm:ssa') }}
+          >{{ log.date | dateTime('D/M => h:mm:ssa') }}
         </span>
         <span class="timestamp small"
-          >{{ log.time | dateTime('h:mm:ssa') }}
+          >{{ log.date | dateTime('h:mm:ssa') }}
         </span>
         <span class="ip"
-          >{{log.identity == '127.0.0.1' ? 'localhost' : log.identity}}
+          >{{log.identity || log.address}}
         </span>
-        <span class="method">{{ log.kind }}</span>
-        <span class="message" :class="getLevel(log)">{{ getMessage(log) }}</span>
+        <span class="method">{{ log.type }}</span>
+        <span class="message" :class="getLevel(log)">{{ log.req.url }}</span>
         <span class="log-count"
               :class="getLevel(log)"
               v-if="log.requests > 1 || log.children.length"

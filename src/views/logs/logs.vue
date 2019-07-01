@@ -7,17 +7,19 @@
               class="log-type-selection"
               @select="selectLogType"
     ></MySelect>
-    <MySelect v-if="selectedLogType"
-              :title="'Select a Log'"
-              :options="selectedLogOptions"
-              @select="selectLogFile"
+    <MySelect
+      v-if="selectedLogType"
+      class="log-selector"
+      :title="'Select a Log'"
+      :options="selectedLogOptions"
+      @select="selectLogFile"
     ></MySelect>
     <StatDisplay class="log-stat log-stat-lines" :title="'Log Count'" :display="logLength"></StatDisplay>
     <StatDisplay class="log-stat log-stat-lines" :title="'Lines'" :display="logLines"></StatDisplay>
   </div>
   <div class="log-scroll"
-       :class="{watermark: logLength == 0}"
-       data-text="Empty or Unselected File"
+    :class="{watermark: logLength == 0}"
+    data-text="Empty or Unselected File"
   >
     <HttpLogs v-if="selectedLogType == getLogType('HTTP')"
               :selectedLog="selectedLog"

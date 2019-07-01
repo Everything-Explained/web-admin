@@ -112,7 +112,6 @@ export default class Logs extends Vue {
 
   }
   private async _getLogsByType(index: number): Promise<string[]|undefined> {
-
     let resp;
 
     try {
@@ -156,12 +155,9 @@ export default class Logs extends Vue {
     else {
       this.logPollInterval = setInterval(() => {
         this.selectLogFile(selection, true);
-      }, 500);
+      }, 1000);
     }
   }
-
-
-
 
 
   public getData(log: IHttpLog) {
