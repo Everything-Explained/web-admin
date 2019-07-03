@@ -6,7 +6,6 @@ import HttpLogs from '@/components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
 import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 import { LogHelper, LogType, ISelectedLog } from './_logHelper';
-import { ISelection } from '@/components/elements/_mySelect';
 import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
 
 
@@ -70,10 +69,9 @@ export default class Logs extends Vue {
   }
 
 
-  public async selectLogFile(selection: ISelection, poll = false) {
+  public async selectLogFile(name: string, index: number, poll = false) {
 
-    const file = selection.name;
-    this.selectedLog.name = file;
+    this.selectedLog.name = name;
     this.selectedLog.polling = poll;
     ++this.selectedLog.churn;
 
@@ -99,9 +97,9 @@ export default class Logs extends Vue {
   }
 
 
-  public async selectLogType(selection: ISelection) {
+  public async selectLogType(name: string, index: number) {
 
-    const selectedIndex = selection.index + 1
+    const selectedIndex = index + 1
         , logs = await this._getLogsByType(selectedIndex)
     ;
 
@@ -139,14 +137,14 @@ export default class Logs extends Vue {
   public async eraseFile(filename: string) {
     const folder = LogType[this.selectedLogType].toLowerCase();
     const { status } = await this._logHelper.deleteLog(folder, filename);
-    this.selectLogFile({ name: this.selectedLog.name, index: 0 });
+    this.selectLogFile(this.selectedLog.name, 0);
     if (status != 204) {
       this.$emit('notify', `Could not Erase '${folder}/${filename}'`);
     }
   }
 
 
-  public async togglePollLogs(selection: ISelection) {
+  public async togglePollLogs(name: string) {
     if (this.logPollInterval) {
       clearInterval(this.logPollInterval);
       this.logPollInterval = null;
@@ -154,7 +152,7 @@ export default class Logs extends Vue {
     }
     else {
       this.logPollInterval = setInterval(() => {
-        this.selectLogFile(selection, true);
+        this.selectLogFile(name, null, true);
       }, 1000);
     }
   }

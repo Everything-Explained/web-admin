@@ -33,7 +33,7 @@
   <div class="log-controls">
     <button class="standard"
             :disabled="!selectedLog.name || !!~selectedLog.name.indexOf('.log.')"
-            @click="togglePollLogs(selectedLog)"
+            @click="togglePollLogs(selectedLog.name)"
       >{{ logPollInterval ? 'Stop Polling' : 'Start Polling' }}
     </button>
     <button class="dangerous"
