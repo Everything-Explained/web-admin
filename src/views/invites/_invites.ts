@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import MySelect from '@/components/elements/MySelect.vue';
+import { Web } from '@/utilities/web';
 
 @Component({
   components: {
@@ -9,11 +10,71 @@ import MySelect from '@/components/elements/MySelect.vue';
 })
 export default class Invites extends Vue {
 
-  public uses = ['1', '5', '10', '100', 'Infinite'];
-  public days = ['1', '7', '30', '365', 'Infinite'];
+  public selectUses = [1, 5, 10, 100, Infinity];
+  public selectDays = [1, 5, 30, 90, Infinity];
 
-  public created() { console.log('hello world'); }
+  private web: Web;
+  private hours = 0;
+  private uses = 0;
 
+  public invite = '';
+
+  get canGenerate() {
+    return this.hours && this.uses;
+  }
+
+  get canSave() {
+    return !!this.invite;
+  }
+
+
+  public created() { this.web = new Web(); }
+
+
+  public async generateInvite() {
+
+    // 0 hours is infinite invite
+    const hours = (this.hours == Infinity) ? 0 : this.hours;
+
+    const {status, data} = await this.web.get(
+      `https://localhost:3003/protected/invite?hours=${hours}`,
+    );
+    this.invite = data;
+  }
+
+  public execInvite() {
+
+    // 0 uses is infinite uses
+    const uses = (this.uses == Infinity) ? 0 : this.uses;
+    const invite = this.invite;
+
+    // Prevent saving the same invite more than once
+    this.invite = '';
+
+    if (invite) {
+      this.saveInvite(invite, uses);
+    }
+  }
+
+
+  public onDaySelect(days: number) {
+    this.hours = days * 24;
+  }
+
+
+  public onUsesSelect(uses: number) {
+    this.uses = uses;
+  }
+
+
+
+
+  private async saveInvite(code: string, uses: number) {
+    const {status, data} = await this.web.post(
+      `https://localhost:3003/protected/invite`,
+      { code, uses }
+    );
+  }
 }
 
 

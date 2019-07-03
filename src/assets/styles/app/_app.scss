@@ -104,19 +104,32 @@ button {
 
   &.dangerous {
     // background: desaturate(darken($error-c, 30%), 63%);
-    color: hsl(320, 80%, 80%);
+    color: hsl(320, 80%, 85%);
 
     &::before {
       background-color: hsla(320, 100%, 60%, 0.3);
     }
     &::after {
-      border: 1px solid hsla(320, 70%, 50%, 0.5);
-      background-color: hsla(320, 70%, 50%, 0.12);
+      border: 1px solid hsla(320, 70%, 50%, 0.7);
+      background-color: hsla(320, 70%, 50%, 0.17);
     }
     &:hover {
       color: $warn-c;
     }
   }
+
+  &.permanent {
+    color: hsl(212, 80%, 90%);
+
+    &::before {
+      background-color: hsla(212, 100%, 60%, 0.5);
+    }
+    &::after {
+      border: 1px solid hsla(212, 100%, 60%, 0.7);
+      background-color: hsla(212, 100%, 60%, 0.2);
+    }
+  }
+
 
   &.standard {
     &::before {

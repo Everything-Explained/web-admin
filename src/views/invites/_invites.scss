@@ -43,3 +43,14 @@ label.page {
   font-family: 'Fira Code';
   font-weight: 300;
 }
+
+.button-control {
+  margin: 25px auto 0 auto;
+  width: 460px;
+  button:first-child {
+    float: left;
+  }
+  button:last-child {
+    float: right;
+  }
+}
