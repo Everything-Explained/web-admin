@@ -32,8 +32,7 @@ export default class Invites extends Vue {
 
 
   public async generateInvite() {
-
-    // 0 hours is infinite invite
+    // 0 hours is infinite according to server API
     const hours = (this.hours == Infinity) ? 0 : this.hours;
 
     const {status, data} = await this.web.get(
@@ -42,13 +41,13 @@ export default class Invites extends Vue {
     this.invite = data;
   }
 
-  public execInvite() {
 
-    // 0 uses is infinite uses
+  public execInvite() {
+    // 0 uses is infinite according to server API
     const uses = (this.uses == Infinity) ? 0 : this.uses;
     const invite = this.invite;
 
-    // Prevent saving the same invite more than once
+    // Prevent saving the same invite again
     this.invite = '';
 
     if (invite) {
@@ -68,7 +67,10 @@ export default class Invites extends Vue {
 
 
 
-
+  /**
+   * Frees execInvite() from async so that it can
+   * prevent accidental saves of the same invite.
+   */
   private async saveInvite(code: string, uses: number) {
     const {status, data} = await this.web.post(
       `https://localhost:3003/protected/invite`,
