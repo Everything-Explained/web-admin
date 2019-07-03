@@ -243,7 +243,10 @@ export default class HttpLogs extends Vue {
     }
     // console.debug(LOGS);
 
-    return this._linkDuplicates(parsedLogs).reverse();
+    return this._linkDuplicates(parsedLogs).sort((l1, l2) => {
+      if (l1.date < l2.date) return 1;
+      return -1;
+    });
     // return this._linkDuplicates(
     //   this.getLogType(LOGS),
     // );
