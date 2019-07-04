@@ -46,7 +46,6 @@ export default class Invites extends Vue {
   /** Lifecycle method, equivalent to constructor() */
   public created() {
     this.web = new Web();
-    this.populateInvites();
   }
 
 

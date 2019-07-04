@@ -12,9 +12,10 @@
     div {
       position: relative;
       flex: 1;
+      // .code is skewed because of .delete
       &:nth-child(1) {
-        // .code is skewed because of .delete
         padding-left: 35px;
+        flex: 1.3;
       }
     }
   }
@@ -42,14 +43,36 @@
 }
 
 
+.copied-overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+  letter-spacing: 10px;
+  font-size: 1.34em;
+  text-align: center;
+  background-color: $good-bg-dark;
+  color: $good-c;
+  box-sizing: border-box;
+  z-index: 10;
+  transition: opacity 0.4s ease;
+  &.active {
+    opacity: 1;
+  }
+}
+
+
 .inv-del {
   position: absolute;
   top: 2px;
-  left: 4px;
+  left: 2px;
   font-size: 1.5em;
   color: $cmpt-darkest;
   cursor: pointer;
   user-select: none;
+  width: 0;
   transition: color .2s ease;
 
   &:hover {
@@ -60,4 +83,25 @@
 
 .code {
   padding-left: 35px;
+  flex: 1.3;
+}
+
+
+.inv-copy {
+  position: absolute;
+  width: 0;
+  top: 0px;
+  right: -7px;
+  font-size: 1.7em;
+  text-shadow: 1px 1px 0 black, 1px 0 0 black, 0 1px 0 black;
+  user-select: none;
+  cursor: pointer;
+  transition: color .2s ease;
+  &:hover {
+    color: $good-c;
+  }
+  &:active {
+    top: 1px;
+    right: -10px;
+  }
 }

@@ -29,6 +29,7 @@ $good-text: desaturate(darken($good-c, 3.3%), 48%);
 $good-accent: desaturate(darken($good-text, 9%), 20%);
 $good-bg: desaturate(darken($good-c, 50%), 75%);
 $good-bg-light: desaturate(darken($good-c, 47%), 40%);
+$good-bg-dark: desaturate(darken($good-c, 40%), 65%);
 $good-high: $good-text;
 
 $special-c: hsl(240, 100%, 80%);

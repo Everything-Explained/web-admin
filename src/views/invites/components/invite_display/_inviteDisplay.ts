@@ -14,6 +14,10 @@ export interface IInvite {
   uses: number;
 }
 
+interface RenderedInvite extends IInvite {
+  copied: boolean;
+}
+
 
 
 
@@ -24,16 +28,30 @@ export interface IInvite {
 export default class InviteDisplay extends Vue {
   @Prop(Array) readonly invites: IInvite[];
 
+  renderedInvites: RenderedInvite[] = [];
+
+
   private web!: Web;
+  private copiedInvite = false;
 
 
   created() {
     this.web = new Web();
+    this.$emit('populate');
   }
 
   @Watch('invites')
   watchInvites() {
-    console.debug(this.invites);
+    this.renderedInvites =
+      this.invites.map(inv => {
+        return {
+          code: inv.code,
+          uses: inv.uses,
+          used: inv.used,
+          copied: false
+        };
+      })
+    ;
   }
 
 
@@ -42,8 +60,18 @@ export default class InviteDisplay extends Vue {
     const {status, data} =
       await this.web.delete(`https://localhost:3003/protected/invite/${code}`)
     ;
-
     this.$emit('populate');
+  }
+
+
+  copyInvite(invite: RenderedInvite) {
+    // Prevent excessive animation toggles
+    if (invite.copied) return;
+    navigator.clipboard.writeText(invite.code);
+    invite.copied = true;
+    setTimeout(() => {
+      invite.copied = false;
+    }, 1200);
   }
 }
 

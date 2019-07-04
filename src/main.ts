@@ -1,4 +1,4 @@
-import Vue, { ComponentOptions } from 'vue';
+import Vue from 'vue';
 import App from './App.vue';
 import router from '@/router';
 import { Web } from './utilities/web';
