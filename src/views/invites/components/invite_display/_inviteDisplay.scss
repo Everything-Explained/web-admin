@@ -1,0 +1,63 @@
+@import '@/assets/styles/_dark-variables.scss';
+
+.invite-list {
+  .inv-header {
+    position: relative;
+    display: flex;
+    margin-bottom: 25px;
+    font-family: 'Fira Code';
+    font-size: 1.5em;
+    color: $pmry-dark;
+    text-align: center;
+    div {
+      position: relative;
+      flex: 1;
+      &:nth-child(1) {
+        // .code is skewed because of .delete
+        padding-left: 35px;
+      }
+    }
+  }
+}
+
+
+.invite {
+  position: relative;
+  display: flex;
+  margin-bottom: 15px;
+  padding: 5px 0 3px 0;
+  font-size: 1.3em;
+  font-family: 'Fira Code';
+  font-weight: 300;
+  background-color: $bg-lightest;
+  box-shadow: 1px 1px 0px 1px black;
+  line-height: normal;
+  color: $cmpt;
+}
+
+
+.inv-item {
+  text-align: center;
+  flex: 1;
+}
+
+
+.inv-del {
+  position: absolute;
+  top: 2px;
+  left: 4px;
+  font-size: 1.5em;
+  color: $cmpt-darkest;
+  cursor: pointer;
+  user-select: none;
+  transition: color .2s ease;
+
+  &:hover {
+    color: $forbidden-c;
+  }
+}
+
+
+.code {
+  padding-left: 35px;
+}

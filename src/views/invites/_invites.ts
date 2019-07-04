@@ -1,23 +1,36 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
+
+import { Vue, Component } from 'vue-property-decorator';
 import MySelect from '@/components/elements/MySelect.vue';
+import InviteDisplay from './components/invite_display/InviteDisplay.vue';
 import { Web } from '@/utilities/web';
+import { IInvite } from './components/invite_display/_inviteDisplay';
+
+
+
+
+
+
 
 @Component({
   components: {
-    MySelect
+    MySelect,
+    InviteDisplay
   }
 })
 export default class Invites extends Vue {
 
-  public selectUses = [1, 5, 10, 100, Infinity];
-  public selectDays = [1, 5, 30, 90, Infinity];
+  public readonly selectUses = [1, 5, 10, 100, Infinity];
+  public readonly selectDays = [1, 5, 30, 90, Infinity];
+  public readonly inviteURI = 'https://localhost:3003/protected/invite';
+
+  public invite = '';
+  public invites: IInvite[] = [];
 
   private web: Web;
   private hours = 0;
   private uses = 0;
 
-  public invite = '';
+
 
   get canGenerate() {
     return this.hours && this.uses;
@@ -28,7 +41,15 @@ export default class Invites extends Vue {
   }
 
 
-  public created() { this.web = new Web(); }
+
+
+  /** Lifecycle method, equivalent to constructor() */
+  public created() {
+    this.web = new Web();
+    this.populateInvites();
+  }
+
+
 
 
   public async generateInvite() {
@@ -36,13 +57,13 @@ export default class Invites extends Vue {
     const hours = (this.hours == Infinity) ? 0 : this.hours;
 
     const {status, data} = await this.web.get(
-      `https://localhost:3003/protected/invite?hours=${hours}`,
+      `${this.inviteURI}?hours=${hours}`,
     );
     this.invite = data;
   }
 
 
-  public execInvite() {
+  public saveInvite() {
     // 0 uses is infinite according to server API
     const uses = (this.uses == Infinity) ? 0 : this.uses;
     const invite = this.invite;
@@ -51,7 +72,18 @@ export default class Invites extends Vue {
     this.invite = '';
 
     if (invite) {
-      this.saveInvite(invite, uses);
+      this.execInviteSave(invite, uses);
+    }
+  }
+
+
+  public async populateInvites() {
+    const {status, data} = await this.web.get(
+      `${this.inviteURI}/list`
+    );
+
+    if (status == 200) {
+      this.invites = data as IInvite[];
     }
   }
 
@@ -68,14 +100,15 @@ export default class Invites extends Vue {
 
 
   /**
-   * Frees execInvite() from async so that it can
+   * Frees saveInvite() from async so that it can
    * prevent accidental saves of the same invite.
    */
-  private async saveInvite(code: string, uses: number) {
+  private async execInviteSave(code: string, uses: number) {
     const {status, data} = await this.web.post(
       `https://localhost:3003/protected/invite`,
       { code, uses }
     );
+    this.populateInvites();
   }
 }
 

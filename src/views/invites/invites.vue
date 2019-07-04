@@ -24,10 +24,11 @@
         <button
           class="permanent"
           :disabled="!canSave"
-          @click="execInvite"
+          @click="saveInvite"
         >Save</button>
       </div>
     </div>
+    <InviteDisplay @populate="populateInvites" :invites="invites" class="invite-display"></InviteDisplay>
   </div>
 </template>
 
