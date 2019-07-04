@@ -22,6 +22,7 @@
         "one-line": false,
         "forin": false,
         "variable-name": false,
+        "member-access": false,
         "trailing-comma": false,
         "typedef-whitespace": [
             true,

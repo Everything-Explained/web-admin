@@ -61,6 +61,7 @@ export class Web {
       {
         method,
         headers: { 'Content-Type': contentType },
+        body: data
       },
       options,
     );

@@ -6,8 +6,6 @@ import HttpLogs from '@/components/httpLogs/HttpLogs.vue';
 import { Web } from '@/utilities/web';
 import { IHttpLog } from '@/components/httpLogs/_httpLogs';
 import { LogHelper, LogType, ISelectedLog } from './_logHelper';
-import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
-
 
 
 
@@ -15,7 +13,6 @@ import ServerLogs from '@/components/serverLogs/ServerLogs.vue';
 
 @Component({
   components: {
-    ServerLogs,
     HttpLogs,
     MySelect,
     StatDisplay
@@ -126,6 +123,7 @@ export default class Logs extends Vue {
     }
     catch (err) {
       this.$emit('notify', err.message);
+      // tslint:disable-next-line: no-console
       console.error(err);
     }
     finally {

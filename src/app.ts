@@ -16,7 +16,8 @@ export default class App extends Vue {
     this.$data.MenuFlag = document.getElementById('MenuFlag');
     this.$router.afterEach((to, from) => {
       setTimeout(() => {
-        this.$refs.flag.checked = false;
+        let el = this.$refs.flag as HTMLInputElement;
+        el.checked = false;
       }, 30);
     });
   }

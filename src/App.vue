@@ -1,3 +1,4 @@
+
 <template lang="html">
   <div id="app">
     <!-- <div id="nav">
@@ -25,9 +26,6 @@
   </div>
 </template>
 
-<style>
-  @import 'https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css';
-</style>
 <style lang="scss" src="./assets/styles/app/_app.scss"></style>
 <script lang='ts' src='./app.ts'></script>
 
