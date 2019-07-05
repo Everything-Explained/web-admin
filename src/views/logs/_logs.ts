@@ -1,5 +1,6 @@
-import { Vue } from 'vue-property-decorator';
-import Component from 'vue-class-component';
+
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 import MySelect from '@/components/elements/MySelect.vue';
 import StatDisplay from '@/components/elements/StatDisplay.vue';
 import HttpLogs from '@/components/httpLogs/HttpLogs.vue';

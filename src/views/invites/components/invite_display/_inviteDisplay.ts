@@ -1,5 +1,6 @@
 
-import { Vue, Component, Prop, Watch } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component, Prop, Watch } from 'vue-property-decorator';
 import { Web } from '@/utilities/web';
 import Generator from '@/utilities/generator';
 

@@ -1,5 +1,6 @@
 
-import { Vue, Component } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 import MySelect from '@/components/elements/MySelect.vue';
 import InviteDisplay from './components/invite_display/InviteDisplay.vue';
 import { Web } from '@/utilities/web';

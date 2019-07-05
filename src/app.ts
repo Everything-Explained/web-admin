@@ -1,11 +1,13 @@
 
-import { Component, Vue } from 'vue-property-decorator';
+import Vue from 'vue';
+import { Component } from 'vue-property-decorator';
 import moment from '../node_modules/moment';
 
 
 Vue.filter('dateTime', (date: string, format: string) => {
   return moment(date).format(format);
 });
+
 
 @Component
 export default class App extends Vue {

@@ -22,7 +22,7 @@
       transform: translateX(0px);
     }
 
-    ~ #RouterView, ~ header {
+    ~ #RouterView {
       transform: translateX(180px);
       overflow: hidden;
     }

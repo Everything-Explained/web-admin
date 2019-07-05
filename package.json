@@ -12,8 +12,7 @@
     "moment": "^2.22.2",
     "normalize.css": "^8.0.0",
     "vue": "^2.5.16",
-    "vue-class-component": "^6.0.0",
-    "vue-property-decorator": "^7.0.0",
+    "vue-property-decorator": "^8.2.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

@@ -22,9 +22,6 @@
       </ul>
     </nav>
 
-    <header>
-    </header>
-
     <transition appear name="fade">
       <router-view id="RouterView" @notify="setNote" />
     </transition>

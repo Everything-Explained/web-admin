@@ -72,9 +72,6 @@
     margin-right: 20px;
   }
 
-  &:first-child {
-    margin-top: 60px;
-  }
   &:last-child {
     min-height: 25px;
   }
@@ -89,7 +86,7 @@
   height: 100%;
   width: 100%;
   flex-direction: column;
-  padding: 0 7px 0 1.5em;
+  padding: 60px 7px 0 1.5em;
 }
 
 
