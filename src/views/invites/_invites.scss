@@ -6,7 +6,7 @@
   .uses { width: 8em; margin: 0 24px 0 24px; }
   .days { width: 8em; }
   .days, .uses {
-    .my-select { overflow: hidden; }
+    .my-select { max-height: 20em; }
   }
 }
 
@@ -58,5 +58,5 @@ label.page {
 
 .invite-display {
   margin: 150px auto 0 auto;
-  width: 450px;
+  width: 550px;
 }

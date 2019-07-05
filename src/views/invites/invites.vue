@@ -28,7 +28,11 @@
         >Save</button>
       </div>
     </div>
-    <InviteDisplay @populate="populateInvites" :invites="invites" class="invite-display"></InviteDisplay>
+    <InviteDisplay
+      @populate="populateInvites"
+      :invites="invites"
+      class="invite-display"
+    ></InviteDisplay>
   </div>
 </template>
 

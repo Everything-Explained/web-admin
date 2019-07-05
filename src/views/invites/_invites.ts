@@ -19,8 +19,8 @@ import { IInvite } from './components/invite_display/_inviteDisplay';
 })
 export default class Invites extends Vue {
 
-  public readonly selectUses = [1, 5, 10, 100, Infinity];
-  public readonly selectDays = [1, 5, 30, 90, Infinity];
+  public readonly selectUses = [1, 3, 5, 10, 100, Infinity];
+  public readonly selectDays = [1, 3, 7, 30, 90, Infinity];
   public readonly inviteURI = 'https://localhost:3003/protected/invite';
 
   public invite = '';
@@ -76,24 +76,27 @@ export default class Invites extends Vue {
   }
 
 
-  public async populateInvites() {
-    const {status, data} = await this.web.get(
-      `${this.inviteURI}/list`
-    );
-
-    if (status == 200) {
-      this.invites = data as IInvite[];
-    }
+  public populateInvites() {
+    setTimeout(async () => {
+      const {status, data} = await this.web.get(
+        `${this.inviteURI}/list`
+      );
+      if (status == 200) {
+        this.invites = data as IInvite[];
+      }
+    }, 150);
   }
 
 
   public onDaySelect(days: number) {
     this.hours = days * 24;
+    this.invite = ''; // reset invite
   }
 
 
   public onUsesSelect(uses: number) {
     this.uses = uses;
+    this.invite = ''; // reset invite
   }
 
 

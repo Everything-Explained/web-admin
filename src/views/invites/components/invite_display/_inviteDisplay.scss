@@ -32,8 +32,33 @@
   font-weight: 300;
   background-color: $bg-lightest;
   box-shadow: 1px 1px 0px 1px black;
+  user-select: none;
   line-height: normal;
   color: $cmpt;
+
+  &.inf-uses {
+    background-color: hsl(240, 36%, 31%);
+  }
+
+  &.inf-time {
+    background-color: hsl(167, 62%, 16%);
+  }
+
+  &.master {
+    background-color: rgb(131, 50, 97);
+  }
+
+  &.expired {
+    color: hsl(240, 18%, 30%);
+    background-color: hsl(240, 22%, 13%);
+    box-shadow: none;
+    div.inv-copy {
+      display: none;
+    }
+    div.delete {
+      color: hsl(0, 100%, 73%);
+    }
+  }
 }
 
 
@@ -57,6 +82,7 @@
   color: $good-c;
   box-sizing: border-box;
   z-index: 10;
+  pointer-events: none;
   transition: opacity 0.4s ease;
   &.active {
     opacity: 1;
