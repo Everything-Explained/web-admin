@@ -16,12 +16,16 @@
           >{{ log.date | dateTime('h:mm:ssa') }}
         </span>
         <span class="ip"
-          >{{log.identity || log.address}}
+          >{{ normalizeAddress(log.address) }}
         </span>
         <span class="method">{{ log.type }}</span>
-        <span class="message" :class="getLevel(log)">{{ log.req.url }}</span>
+        <span
+            class="message"
+            :class="log.level"
+          >{{ log.req.url.replace(/\?.+$/, '') }}
+        </span>
         <span class="log-count"
-              :class="getLevel(log)"
+              :class="log.level"
               v-if="log.requests > 1 || log.children.length"
           >{{ getRequestCount(log) }}
         </span>

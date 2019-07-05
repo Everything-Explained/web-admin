@@ -16,7 +16,7 @@
       </div>
       <div class="tr">
         <div class="cell">Agent =></div>
-        <div class="cell">{{ log.agent }}</div>
+        <div class="cell">{{ getBrowser(log.agent) }}</div>
       </div>
       <div class="tr">
         <div class="cell">Requests =></div>
@@ -37,7 +37,10 @@
 
       <div class="log-map-container" v-if="log.req.status">
         <div class="log-map" :class="getStatusColor(log)">{{ log.req.method }}</div>
-        <div class="log-map" :class="getStatusColor(log)">{{ log.req.url }}
+        <div
+            class="log-map"
+            :class="getStatusColor(log)"
+          >{{ log.req.url.replace(/\?.+$/, '') }}
         </div>
         <div class="log-map" :class="getStatusColor(log)">{{ log.req.status }}</div>
       </div>

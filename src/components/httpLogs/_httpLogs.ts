@@ -220,6 +220,12 @@ export default class HttpLogs extends Vue {
   }
 
 
+  public normalizeAddress(address: string) {
+    address = (~address.indexOf('::1')) ? '127.0.0.1' : address;
+    return address.replace('::ffff:', '');
+  }
+
+
 
 
 
@@ -227,10 +233,6 @@ export default class HttpLogs extends Vue {
     const parsedLogs: IHttpLog[] = [];
 
     for (const log of logs) {
-      log.address = (~log.address.indexOf('::1')) ? '127.0.0.1' : log.address;
-      log.address = log.address.replace('::ffff:', '');
-      log.agent = this.getBrowser(log.agent);
-      log.req.url = log.req.url.replace(/\?.+$/, '');
       log.type = this.getLogType(log);
       log.level = this.getLevel(log);
       log.open = false; // Default
@@ -241,46 +243,11 @@ export default class HttpLogs extends Vue {
       log.children = [];
       parsedLogs.push(log);
     }
-    // console.debug(LOGS);
 
     return this._linkDuplicates(parsedLogs).sort((l1, l2) => {
       if (l1.date < l2.date) return 1;
       return -1;
     });
-    // return this._linkDuplicates(
-    //   this.getLogType(LOGS),
-    // );
-  }
-
-
-  private getBrowser(agentStr: string) {
-    const getBrowserVersion =
-      (platform: string) => {
-        return agentStr.match(`${platform}\/[0-9]+\.[0-9]`)[0].split('/')[1];
-      }
-    ;
-
-    if (agentStr) {
-      if (~agentStr.indexOf('Firefox')) {
-        return 'FireFox: ' + getBrowserVersion('Firefox');
-      }
-
-      else if (~agentStr.indexOf('Chrome')) {
-        return 'Chrome: ' + getBrowserVersion('Chrome');
-      }
-
-      else if (~agentStr.indexOf('Safari')) {
-        return 'Safari: ' + getBrowserVersion('Safari');
-      }
-
-      else if (~agentStr.indexOf('Netcraft')) {
-        return 'Netcraft SSL Survey';
-      }
-
-      else {
-        return `UNKNOWN:  [${agentStr}]`;
-      }
-    }
   }
 
 
@@ -304,11 +271,12 @@ export default class HttpLogs extends Vue {
       });
 
       log.children = (templogs.length) ? templogs : [];
-      log.date =
+      const childDate =
         (templogs.length)
           ? log.children[templogs.length - 1].date
           : log.date
       ;
+      log.date = log.date > childDate ? log.date : childDate;
       LOGS.push(log);
     }
     return this._combineLogs(LOGS);
@@ -335,18 +303,27 @@ export default class HttpLogs extends Vue {
               && log.req.status == l.req.status
               && this._isDataEqual(log, l)
               && this.isWithinHour(log, l)
-              && l.level == 'default')) return true;
+              && (l.level == 'default' || l.level == 'special'))) return true;
         similarLogs.push(l);
         return false;
       });
 
+      //
+      // TODO: Similar children date and actual children date
+      // should be defined separately
+      //
       if (similarLogs.length) {
         log.requests = log.children.length || 1;
-        log.children = similarLogs;
-        log.date = log.children[log.children.length - 1].date;
+        // Force "similar" children into chronological order
+        log.children = similarLogs.sort((l1, l2) => {
+          if (l1.date < l2.date) return 1;
+          return -1;
+        });
+        log.date = log.children[0].date;
       }
       else if (log.children.length) {
         log.requests = log.children.length + 1; // +1 for the log itself
+        // Log "actual" children are always in chronological order
         log.date = log.children[log.children.length - 1].date;
         log.children = [];
       }
@@ -395,12 +372,22 @@ export default class HttpLogs extends Vue {
    */
   private _isDataEqual(l1: IHttpLog, l2: IHttpLog) {
     if (l1.data && l2.data) {
-      // Check data length
-      if (Object.keys(l1.data).length != Object.keys(l2.data).length) return false;
 
-      for (const key in l1.data) {
-        if (!l2.data[key]) return false;
-        if (l1.data[key] != l2.data[key]) return false;
+      const l1Keys = Object.keys(l1.data);
+      const l2Keys = Object.keys(l2.data);
+
+      // Check data length
+      if (l1Keys.length != l2Keys.length) return false;
+
+      for (const i of l1Keys) {
+        if (!l2.data[i]) return false;
+        // Idendical if data is url parameter e.g. /url/:param
+        if ( ~l1.req.url.indexOf(`/${l1.data[i]}`)
+          && ~l2.req.url.indexOf(`/${l2.data[i]}`)
+        ) {
+          return true;
+        }
+        if (l1.data[i] != l2.data[i]) return false;
       }
 
       return true;

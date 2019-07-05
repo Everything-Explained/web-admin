@@ -21,4 +21,35 @@ export default class HTTPLogDetails extends Vue {
     return '';
   }
 
+
+  private getBrowser(agentStr: string) {
+    const getBrowserVersion =
+      (platform: string) => {
+        return agentStr.match(`${platform}\/[0-9]+\.[0-9]`)[0].split('/')[1];
+      }
+    ;
+
+    if (agentStr) {
+      if (~agentStr.indexOf('Firefox')) {
+        return 'FireFox: ' + getBrowserVersion('Firefox');
+      }
+
+      else if (~agentStr.indexOf('Chrome')) {
+        return 'Chrome: ' + getBrowserVersion('Chrome');
+      }
+
+      else if (~agentStr.indexOf('Safari')) {
+        return 'Safari: ' + getBrowserVersion('Safari');
+      }
+
+      else if (~agentStr.indexOf('Netcraft')) {
+        return 'Netcraft SSL Survey';
+      }
+
+      else {
+        return `UNKNOWN:  [${agentStr}]`;
+      }
+    }
+  }
+
 }
