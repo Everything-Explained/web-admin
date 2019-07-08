@@ -1,6 +1,9 @@
 @import '@/assets/styles/_dark-variables.scss';
 
 .invites {
+  display: flex;
+  flex-direction: column;
+
   padding-top: 50px;
   .uses { width: 8em; margin: 0 24px 0 24px; }
   .days { width: 8em; }
@@ -44,6 +47,7 @@ label.page {
 }
 
 .button-control {
+  position: relative;
   margin: 25px auto 0 auto;
   width: 460px;
   button:first-child {
@@ -55,7 +59,7 @@ label.page {
 }
 
 
-.invite-display {
-  margin: 150px auto 0 auto;
-  width: 550px;
-}
+
+
+
+

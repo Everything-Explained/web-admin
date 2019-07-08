@@ -1,8 +1,15 @@
 @import '@/assets/styles/_dark-variables.scss';
 
 .invite-list {
+  position: relative;
+  height: 100%;
   .inv-header {
-    position: relative;
+    position: absolute;
+    padding-right: 30px;
+    top: 60px;
+    left: 50%;
+    right: 0;
+    transform: translateX(-50%);
     display: flex;
     margin-bottom: 25px;
     font-family: 'Fira Code';
@@ -14,8 +21,31 @@
       flex: 1;
       // .code is skewed because of .delete
       &:nth-child(1) {
-        padding-left: 35px;
         flex: 1.5;
+      }
+    }
+  }
+
+  .scroller {
+    position: absolute;
+    padding-right: 55px;
+    width: 600px;
+    top: 115px;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    transform: translateX(-50%);
+    overflow: hidden;
+    overflow-y: auto;
+    &::-webkit-scrollbar {
+      width: 4px;
+      border: 0;
+      background: $bg-darkest;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: $cmpt-darker;
+      &:hover {
+        background: $good-high;
       }
     }
   }
@@ -45,7 +75,7 @@
   }
 
   &.master {
-    background-color: rgb(131, 50, 97);
+    background-color: hsl(325.2, 44.8%, 35.5%);
   }
 
   &.expired {

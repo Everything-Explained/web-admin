@@ -100,7 +100,7 @@ export default class InviteDisplay extends Vue {
     let text = '';
 
     if (timeLeft.milliseconds <= 0) {
-      text = 'Expired';
+      text = 'EXP';
     }
     else if (timeLeft.days < 1) {
       text = `${timeLeft.hours.toFixed(1)}h`;
