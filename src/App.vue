@@ -1,5 +1,5 @@
 
-<template lang="html">
+<template>
   <div id="app">
     <!-- <div id="nav">
       <router-link to="/">Chickens</router-link> |
@@ -15,13 +15,24 @@
     <label id="MenuIcon" for="MenuFlag"></label>
     <nav id="MainMenu">
       <ul>
-        <li @mousedown='goTo("/")'><span class="material-icons">home</span> Home</li>
-        <li @mousedown='goTo("logs")'><span class="material-icons">subject</span> Logs</li>
-        <li @mousedown="goTo('invites')"><span class="material-icons">card_giftcard</span> Invites</li>
-        <li><span class="material-icons">recent_actors</span> Users</li>
+        <li @mousedown='goTo("/")'
+          ><span class="material-icons">home</span> Home
+        </li>
+        <li @mousedown='goTo("logs")'
+          ><span class="material-icons"
+            >subject</span> Logs
+        </li>
+        <li @mousedown="goTo('invites')"
+          ><span class="material-icons"
+            >card_giftcard</span> Invites
+        </li>
+        <li @mousedown="goTo('users')"
+          ><span class="material-icons"
+            >recent_actors</span> Users
+        </li>
       </ul>
     </nav>
-
+    <header>{{ title }}</header>
     <transition appear name="fade">
       <router-view id="RouterView" @notify="setNote" />
     </transition>

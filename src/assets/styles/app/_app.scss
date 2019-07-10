@@ -200,10 +200,10 @@ button {
 
 #RouterView {
   position: absolute;
-  top: 0;
+  top: 70px; // Header margin
   left: 0;
   right: 0;
-  bottom: 0;
+  bottom: 0px;
   padding-bottom: 10px;
   transition: transform .3s ease;
 

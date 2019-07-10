@@ -13,9 +13,12 @@ Vue.filter('dateTime', (date: string, format: string) => {
 export default class App extends Vue {
 
   public noteText = '';
+  public title = '';
 
   public created() {
     this.$data.MenuFlag = document.getElementById('MenuFlag');
+    this.title = this.$route.name;
+
     this.$router.afterEach((to, from) => {
       setTimeout(() => {
         let el = this.$refs.flag as HTMLInputElement;
@@ -25,9 +28,9 @@ export default class App extends Vue {
   }
 
   public goTo(route: string) {
-    const router = this.$router
-    ;
+    const router = this.$router;
     router.push(route);
+    this.title = route;
   }
 
 

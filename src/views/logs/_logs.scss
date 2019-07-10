@@ -66,13 +66,14 @@
 .log-controls {
   position: relative;
   display: block;
-  margin: 20px 10px;
+  margin: 0 10px 20px 10px;
 
   button {
     margin-right: 20px;
   }
 
   &:last-child {
+    margin-top: 25px;
     min-height: 25px;
   }
 
@@ -86,7 +87,7 @@
   height: 100%;
   width: 100%;
   flex-direction: column;
-  padding: 60px 7px 0 1.5em;
+  padding: 0 7px 0 1.5em;
 }
 
 
