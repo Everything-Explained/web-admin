@@ -5,7 +5,7 @@ module.exports = {
         outputStyle: 'compressed'
       }
     },
-    sourceMap: true
+    extract: false
   },
 
   baseUrl: undefined,
@@ -13,5 +13,5 @@ module.exports = {
   assetsDir: undefined,
   runtimeCompiler: undefined,
   productionSourceMap: false,
-  parallel: undefined
+  parallel: undefined,
 }
