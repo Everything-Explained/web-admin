@@ -1,21 +1,18 @@
 <template>
   <div class="invite-list" v-if="canDisplay">
+
     <div class="inv-header">
       <div>Code</div>
       <div>Used</div>
       <div>Uses</div>
       <div>Time</div>
     </div>
+    
     <div class="scroller">
       <div
         class="invite"
         v-for="(invite, i) of renderedInvites" :key="i"
-        :class="{
-          'inf-uses': invite.uses == Infinity,
-          'inf-time': invite.time.num == Infinity,
-          'master': invite.uses == Infinity && invite.time.num == Infinity,
-          'expired': invite.uses == invite.used || invite.time.left == 'EXP'
-        }"
+        :class="inviteClass(invite)"
       >
         <div
           class="copied-overlay"

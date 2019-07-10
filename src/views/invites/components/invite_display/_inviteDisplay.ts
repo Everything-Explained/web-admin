@@ -16,8 +16,12 @@ export interface IInvite {
   uses: number;
 }
 
-interface RenderedInvite extends IInvite {
+interface IRenderedInvite extends IInvite {
   copied: boolean;
+  time: {
+    left: string;
+    num: number;
+  };
 }
 
 
@@ -30,7 +34,7 @@ interface RenderedInvite extends IInvite {
 export default class InviteDisplay extends Vue {
   @Prop(Array) readonly invites: IInvite[];
 
-  renderedInvites: RenderedInvite[] = [];
+  renderedInvites: IRenderedInvite[] = [];
 
 
   private web!: Web;
@@ -47,6 +51,37 @@ export default class InviteDisplay extends Vue {
     this.web = new Web();
     this.$emit('populate');
   }
+
+
+  /**
+   * Gets the invite class based on the type
+   * of invite.
+   */
+  inviteClass(invite: IRenderedInvite) {
+    if (
+      invite.uses == Infinity
+      && invite.time.num == Infinity
+    ) {
+      return 'master';
+    }
+
+    if (
+      invite.uses == invite.used
+      || invite.time.left == 'EXP'
+    ) {
+      return 'expired';
+    }
+
+    if (invite.uses == Infinity)
+      return 'inf-uses'
+    ;
+
+    if (invite.time.num == Infinity)
+      return 'inf-time'
+    ;
+
+  }
+
 
   @Watch('invites')
   watchInvites() {
@@ -77,11 +112,13 @@ export default class InviteDisplay extends Vue {
   }
 
 
-  copyInvite(invite: RenderedInvite) {
+  copyInvite(invite: IRenderedInvite) {
     // Prevent excessive animation toggles
     if (invite.copied) return;
+
     navigator.clipboard.writeText(invite.code);
     invite.copied = true;
+
     setTimeout(() => {
       invite.copied = false;
     }, 1200);
