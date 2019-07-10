@@ -19,18 +19,16 @@ import { IInvite } from './components/invite_display/_inviteDisplay';
   }
 })
 export default class Invites extends Vue {
+  invite = '';
+  invites: IInvite[] = [];
 
-  public readonly selectUses = [1, 3, 5, 10, 100, Infinity];
-  public readonly selectDays = [1, 3, 7, 30, 90, Infinity];
-  public readonly inviteURI = 'https://localhost:3003/protected/invite';
-
-  public invite = '';
-  public invites: IInvite[] = [];
+  readonly selectUses = [1, 3, 5, 10, 100, Infinity];
+  readonly selectDays = [1, 3, 7, 30, 90, Infinity];
+  readonly inviteURI = 'https://localhost:3003/protected/invite';
 
   private web: Web;
   private hours = 0;
   private uses = 0;
-
 
 
   get canGenerate() {
@@ -43,11 +41,11 @@ export default class Invites extends Vue {
 
 
 
-
   /** Lifecycle method, equivalent to constructor() */
   public created() {
     this.web = new Web();
   }
+
 
 
 
@@ -59,8 +57,10 @@ export default class Invites extends Vue {
     const {status, data} = await this.web.get(
       `${this.inviteURI}?hours=${hours}`,
     );
+
     this.invite = data;
   }
+
 
 
   public saveInvite() {
@@ -68,13 +68,13 @@ export default class Invites extends Vue {
     const uses = (this.uses == Infinity) ? 0 : this.uses;
     const invite = this.invite;
 
-    // Prevent saving the same invite again
-    this.invite = '';
+    this.resetInvite();
 
     if (invite) {
       this.execInviteSave(invite, uses);
     }
   }
+
 
 
   public populateInvites() {
@@ -89,15 +89,27 @@ export default class Invites extends Vue {
   }
 
 
+
   public onDaySelect(days: number) {
     this.hours = days * 24;
-    this.invite = ''; // reset invite
+    this.resetInvite();
   }
+
 
 
   public onUsesSelect(uses: number) {
     this.uses = uses;
-    this.invite = ''; // reset invite
+    this.resetInvite();
+  }
+
+
+
+  /**
+   * Toggles canSave() to prevent saving the same
+   * invite multiple times.
+   */
+  private resetInvite() {
+    this.invite = '';
   }
 
 
