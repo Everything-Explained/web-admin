@@ -31,9 +31,6 @@ export interface IHttpLogData {
 
 
 export interface IHttpLog extends IHttpLogData {
-  // TODO: This is a message map and should be named as such
-  // msgs:             string[];   // INIT::_linkLogParts()
-  // localeDateString: string;     // INIT::_linkLogs()
   open    : boolean;
   level   : string;
   type    : string;      // INIT::_setLogType()
@@ -308,10 +305,7 @@ export default class HttpLogs extends Vue {
         return false;
       });
 
-      //
-      // TODO: Similar children date and actual children date
-      // should be defined separately
-      //
+
       if (similarLogs.length) {
         log.requests = log.children.length || 1;
         // Force "similar" children into chronological order
