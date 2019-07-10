@@ -156,12 +156,8 @@ export class LogHelper {
    */
   private _parseLogs(rawLogs: string) {
     const logObjs = []
-        , logs = rawLogs.split('\n')
+        , logs = rawLogs.trim().split('\n')
     ;
-
-    // TODO: trim() instead of pop()
-    // Last line will always be an empty string
-    logs.pop();
 
     for (const log of logs) {
       const pLog = JSON.parse(log);
