@@ -1,16 +1,17 @@
+
 import Vue from 'vue';
-import Component from 'vue-class-component';
+import { Component, Prop } from 'vue-property-decorator';
 import { IHttpLog } from './_httpLogs';
 
-@Component({
-  props: {
-    log: {
-      type: Object,
-      required: true,
-    },
-  },
-})
+
+
+
+@Component
 export default class HTTPLogDetails extends Vue {
+
+  @Prop({ type: Object, required: true })
+  readonly log: IHttpLog;
+
 
   public getStatusColor(log: IHttpLog) {
     if (log.level == 'default' || log.level == 'special') return 'good';

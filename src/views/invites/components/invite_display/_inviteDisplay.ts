@@ -106,7 +106,7 @@ export default class InviteDisplay extends Vue {
 
   async deleteInvite(code: string) {
     const {status, data} =
-      await this.web.delete(`https://localhost:3003/protected/invite/${code}`)
+      await this.web.delete(`/protected/invite/${code}`)
     ;
     this.$emit('populate');
   }

@@ -52,7 +52,7 @@ export class LogHelper {
   private _lastFileName = '';
   private _lastLogUID   = '';
   private _lastFile: any[];
-  private _basePath = 'https://localhost:3003/protected/logs';
+  private _basePath = '/protected/logs';
 
 
 

@@ -24,7 +24,7 @@ export default class Invites extends Vue {
 
   readonly selectUses = [1, 3, 5, 10, 100, Infinity];
   readonly selectDays = [1, 3, 7, 30, 90, Infinity];
-  readonly inviteURI = 'https://localhost:3003/protected/invite';
+  readonly inviteURI = '/protected/invite';
 
   private web: Web;
   private hours = 0;
@@ -120,7 +120,7 @@ export default class Invites extends Vue {
    */
   private async execInviteSave(code: string, uses: number) {
     const {status, data} = await this.web.post(
-      `https://localhost:3003/protected/invite`,
+      `${this.inviteURI}`,
       { code, uses }
     );
     this.populateInvites();
