@@ -52,16 +52,17 @@ export class LogHelper {
   private _lastFileName = '';
   private _lastLogUID   = '';
   private _lastFile: any[];
-  private _basePath = '/protected/logs';
+  private _basePath: string;
 
 
 
 
-  constructor(private _web: Web) {
+  constructor(private _web: Web, basePath: string) {
     this.levels[20] = 'debug';
     this.levels[30] = 'default';
     this.levels[40] = 'warn';
     this.levels[50] = 'error';
+    this._basePath = `${basePath}/logs`;
   }
 
 

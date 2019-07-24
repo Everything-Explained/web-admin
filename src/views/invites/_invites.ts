@@ -24,7 +24,7 @@ export default class Invites extends Vue {
 
   readonly selectUses = [1, 3, 5, 10, 100, Infinity];
   readonly selectDays = [1, 3, 7, 30, 90, Infinity];
-  readonly inviteURI = '/protected/invite';
+  readonly inviteURI = `${this.$apiURI}/invite`;
 
   private web: Web;
   private hours = 0;
