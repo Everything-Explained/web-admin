@@ -9,18 +9,19 @@
   flex-wrap: wrap;
   background: $bg-light;
   font-weight: 300;
-}
 
-
-
-.table {
-  .tr {
-    display: flex;
-  }
-  .cell {
-    height: 1.5em;
+  .table {
+    .tr {
+      display: flex;
+    }
+    .cell {
+      height: 1.5em;
+    }
   }
 }
+
+
+
 
 
 
