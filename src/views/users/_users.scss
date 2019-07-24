@@ -1,0 +1,152 @@
+@import '../../assets/styles/dark-variables';
+
+.userlist {
+  display: flex;
+  flex-direction: column;
+  min-width: 600px;
+  max-width: 90%;
+  margin: 0 auto;
+}
+
+
+
+.user-container {
+  margin-bottom: 15px;
+}
+
+
+
+.user {
+  position: relative;
+  display: flex;
+  padding: 13px 0;
+  margin-left: 38px;
+  color: $pmry;
+  align-items: center;
+  background: $bg-lighter;
+  border-bottom: 2px solid black;
+
+  img {
+    position: absolute;
+    top: 0;
+    left: -48px;
+    width: 48px;
+    border-right: 8px solid $bg;
+  }
+
+  div {
+    flex: 1;
+  }
+
+  .id {
+    padding-left: 10px;
+    max-width: 120px;
+  }
+
+  .alias {
+    position: relative;
+    padding-left: 10px;
+    max-width: 150px;
+
+    &.f::before, &.g::before {
+      position: absolute;
+      top: -0.6em;
+      left: -0.5em;
+      padding-left: 10px;
+      font-size: 1.8em;
+      font-variant: small-caps;
+      font-family: 'Fira Code';
+    }
+    &.f::before {
+      content: 'f';
+      color: hsl(207, 100%, 55%);
+    }
+    &.g::before {
+      content: 'g';
+      color: hsl(0, 100%, 72%);
+    }
+  }
+
+  .email { flex: 2; }
+
+  .provider {
+    position: relative;
+    top: -6px;
+    min-width: 48px;
+    max-width: 48px;
+    font-size: 2.5em;
+    font-variant: small-caps;
+    font-weight: bold;
+    font-family: 'Fira Code';
+    &.f {
+      color: hsl(207, 100%, 55%);
+    }
+    &.g {
+      color: hsl(0, 100%, 73%);
+    }
+  }
+}
+
+
+
+.user-details {
+  margin-left: 38px;
+  padding: 5px 0;
+  background: $bg-light;
+  color: $cmpt-dark;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+
+  .table {
+    position: relative;
+    width: 160px;
+    margin-top: 0.7em;
+    margin-left: 15px;
+    border: 1px solid $good-accent;
+
+    &::before {
+      position: absolute;
+      top: -0.6em;
+      left: 50%;
+      padding: 0 10px;
+      transform: translateX(-50%);
+      white-space: nowrap;
+      color: $warn-accent;
+      font-variant: small-caps;
+      font-size: 1.5em;
+      background: $bg-light;
+      content: attr(data-key);
+    }
+    &::after {
+      position: absolute;
+      bottom: -0.3em;
+      left: 50%;
+      height: 5px;
+      padding: 0 70px;
+      transform: translateX(-50%);
+      content: '';
+      background: $bg-light;
+      color: $bg-light;
+
+    }
+
+    .tr { display: flex; }
+    .tr:first-child { padding-top: 0.75em; }
+
+    .cell {
+      &:first-child {
+        flex: 1;
+        padding-bottom: 5px;
+        text-align: right;
+      }
+      &:last-child {
+        flex: 0.5;
+        margin-left: 0.55em;
+      }
+      &.long:last-child {
+        flex: 1;
+      }
+    }
+  }
+}

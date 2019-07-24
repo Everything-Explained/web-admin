@@ -3,6 +3,7 @@ import Router from 'vue-router';
 import Home from './views/home/home.vue';
 import Logs from './views/logs/logs.vue';
 import Invites from './views/invites/invites.vue';
+import Users from './views/users/Users.vue';
 
 Vue.use(Router);
 
@@ -22,6 +23,11 @@ export default new Router({
       path: '/invites',
       name: 'invites',
       component: Invites
+    },
+    {
+      path: '/users',
+      name: 'users',
+      component: Users
     }
   ],
 });
