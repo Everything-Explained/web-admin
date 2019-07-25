@@ -2,10 +2,6 @@
   <div class="log-details-container">
 
     <div class="table log-details">
-      <!-- <div class="tr">
-        <div class="cell">Date =></div>
-        <div class="cell">{{ log.time | dateTime('MMMM Mo, YYYY') }}</div>
-      </div> -->
       <div class="tr">
         <div class="cell">UID =></div>
         <div class="cell">{{ log.id }}</div>
@@ -59,10 +55,10 @@
           :class="$parent.getLevel(clog)"
       >
         <span class="timestamp large">
-          {{ clog.date | dateTime('D/M => h:mm:ssa') }}
+          {{ clog.date | dateTime }}
         </span>
         <span class="timestamp small">
-          {{ clog.date | dateTime('h:mm:ssa') }}
+          {{ clog.date | timeOnly }}
         </span>
         <span class="method">{{ clog.kind }}</span>
         <span class="message" :class="$parent.getLevel(clog)">{{ clog.req.url }}</span>

@@ -10,10 +10,10 @@
         @click='toggle($event, log)'
       >
         <span class="timestamp large"
-          >{{ log.date | dateTime('D/M => h:mm:ssa') }}
+          >{{ log.date | dateTime }}
         </span>
         <span class="timestamp small"
-          >{{ log.date | dateTime('h:mm:ssa') }}
+          >{{ log.date | timeOnly }}
         </span>
         <span class="ip"
           >{{ normalizeAddress(log.address) }}

@@ -9,7 +9,6 @@
     "test:e2e": "vue-cli-service test:e2e"
   },
   "dependencies": {
-    "moment": "^2.24.0",
     "vue": "^2.6.10",
     "vue-property-decorator": "^8.2.1",
     "vue-router": "^3.0.7"
