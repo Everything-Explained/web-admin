@@ -16,7 +16,7 @@
           >{{ log.date | timeOnly }}
         </span>
         <span class="ip"
-          >{{ normalizeAddress(log.address) }}
+          >{{ log.identity || normalizeAddress(log.address) }}
         </span>
         <span class="method">{{ log.type }}</span>
         <span

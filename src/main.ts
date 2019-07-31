@@ -6,8 +6,8 @@ import { LogHelper } from './views/logs/_logHelper';
 
 const apiBasePath =
   (window.location.hostname == 'localhost')
-    ? 'https://localhost:3003'
-    : ''
+    ? 'https://localhost/aapi'
+    : '/aapi'
 ;
 const WEB = new Web();
 const logHelper = new LogHelper(WEB, apiBasePath);

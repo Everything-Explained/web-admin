@@ -6,9 +6,17 @@
         <div class="cell">UID =></div>
         <div class="cell">{{ log.id }}</div>
       </div>
-      <div class="tr">
+      <div class="tr" v-if="log.identity">
         <div class="cell ident">Identity =></div>
-        <div class="cell">{{ log.identity || log.address }}</div>
+        <div class="cell">{{ log.identity }}</div>
+      </div>
+      <div class="tr">
+        <div class="cell indent">Address =></div>
+        <div class="cell">{{ log.address }}</div>
+      </div>
+      <div class="tr">
+        <div class="cell indent">Country =></div>
+        <div class="cell">{{ log.country }}</div>
       </div>
       <div class="tr">
         <div class="cell">Agent =></div>

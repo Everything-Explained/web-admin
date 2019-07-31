@@ -219,7 +219,7 @@ export default class HttpLogs extends Vue {
 
   public normalizeAddress(address: string) {
     address = (~address.indexOf('::1')) ? '127.0.0.1' : address;
-    return address.replace('::ffff:', '');
+    return address.replace('::ffff:', '').substr(0, 15);
   }
 
 
