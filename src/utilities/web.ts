@@ -1,4 +1,3 @@
-import { relativeTimeRounding } from 'moment';
 
 export class Web {
 
